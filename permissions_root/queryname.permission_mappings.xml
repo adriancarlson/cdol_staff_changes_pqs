@@ -1,0 +1,20 @@
+<permission_mappings>
+	<permission name="/admin/students/emailconfig.html">
+		<implies allow="post">/ws/schema/query/net.cdolinc.student.invalid_email.flat</implies>
+	</permission>
+	<permission name="/admin/students/contacts.html">
+		<implies allow="post">/ws/schema/query/net.cdolinc.sca.sequence.flat</implies>
+	</permission>
+	<permission name="/admin/contacts/edit.html">
+		<implies allow="post">/ws/schema/query/net.cdolinc.contact.phone_sequence.flat</implies>
+	</permission>
+	<permission name="/admin/contacts/edit.html">
+		<implies allow="post">/ws/schema/query/net.cdolinc.contact.invalid_phone_format.flat</implies>
+	</permission>
+	<permission name="/admin/contacts/edit.html">
+		<implies allow="post">/ws/schema/query/net.cdolinc.contact.duplicate_phone.flat</implies>
+	</permission>
+	<permission name="/admin/contacts/edit.html">
+		<implies allow="post">/ws/schema/query/net.cdolinc.contact.address_sequence.flat</implies>
+	</permission>
+</permission_mappings>

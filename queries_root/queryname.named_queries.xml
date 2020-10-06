@@ -1,0 +1,403 @@
+<queries>
+	<query name="net.cdolinc.student.invalid_email.flat" flattened="true" tags="myPowerQuery">
+		<summary>Invalid Student Emails - Flat</summary>
+		<description>PowerQuery to identify students with invalid email addresses</description>
+		<columns>
+			<column column="students.id">client_uid</column>
+			<column column="students.dcid">id</column>
+			<column column="students.enroll_status">action</column>
+			<column column="psm_studentcontact.email">email</column>
+		</columns>
+		<sql>
+			<![CDATA[
+        SELECT 
+        rownum as client_uid,
+        students.dcid as id,
+        'UPDATE' as action,
+        students.student_web_id||'@365.cdolinc.net' as email 
+        FROM students
+        LEFT JOIN
+			(
+				SELECT students.dcid,
+					psm_studentcontact.email
+				FROM psm_studentcontact
+				INNER JOIN psm_studentcontacttype
+					ON psm_studentcontact.studentcontacttypeid = psm_studentcontacttype.id
+					AND psm_studentcontacttype.name            = 'Self'
+				INNER JOIN sync_studentmap
+					ON psm_studentcontact.studentid = sync_studentmap.studentid
+				INNER JOIN students
+					ON sync_studentmap.studentsdcid = students.dcid
+			) 
+			std_email ON students.dcid    = std_email.dcid
+        WHERE 
+			(
+				std_email.email           IS NULL
+				OR std_email.email NOT LIKE '%@365.cdolinc.net'
+			)
+        AND students.enroll_status = 0 AND students.student_web_id IS NOT NULL
+        ORDER BY students.last_name
+        ]]>
+		</sql>
+	</query>
+	<query name="net.cdolinc.sca.sequence.flat" flattened="true" tags="myPowerQuery">
+		<summary>Invalid Contact Priority Order - Flat</summary>
+		<description>PowerQuery to identify student contact associations that require sequence updates</description>
+		<columns>
+			<column column="STUDENTCONTACTASSOC.PERSONID">contactid</column>
+			<column column="STUDENTCONTACTASSOC.STUDENTCONTACTASSOCID">deleted</column>
+			<column column="STUDENTCONTACTASSOC.STUDENTCONTACTASSOCID">studentContactId</column>
+			<column column="STUDENTCONTACTASSOC.CONTACTPRIORITYORDER">sequence</column>
+			<column column="STUDENTS.DCID">dcid</column>
+			<column column="STUDENTS.STUDENT_NUMBER">studentNumber</column>
+			<column column="STUDENTS.FIRST_NAME">firstName</column>
+			<column column="STUDENTS.MIDDLE_NAME">middleName</column>
+			<column column="STUDENTS.LAST_NAME">lastName</column>
+			<column column="SCHOOLS.ABBREVIATION">schoolAbbr</column>
+			<column column="SCHOOLS.SCHOOL_NUMBER">schoolNumber</column>
+			<column column="ORIGINALCONTACTMAP.ORIGINALCONTACTTYPE">originalContactType</column>
+			<column column="GUARDIANSTUDENT.AUTOSEND_HOWOFTEN">autosendHowOften</column>
+			<column column="GUARDIANSTUDENT.AUTOSEND_SUMMARY">emailSummary</column>
+			<column column="GUARDIANSTUDENT.AUTOSEND_GRADEDETAIL">assignmentDetails</column>
+			<column column="GUARDIANSTUDENT.AUTOSEND_ATTENDANCEDETAIL">attendanceDetails</column>
+			<column column="GUARDIANSTUDENT.AUTOSEND_SCHOOLANNOUNCEMENTS">schoolAnnouncements</column>
+			<column column="GUARDIANSTUDENT.AUTOSEND_BALANCEALERT">balanceAlert</column>
+			<column column="GUARDIANNOTIFICATIONEMAIL.NOTIFICATIONEMAIL">notificationEmails</column>
+			<column column="GUARDIANSTUDENT.GUARDIANSTUDENTID">canAccessData</column>
+		</columns>
+		<sql>
+			<![CDATA[
+				SELECT 
+					"contactid",
+					'false' AS "deleted",
+					"studentContactId",
+					"sequence",
+					"dcid",
+					"studentNumber",
+					"firstName",
+					"middleName",
+					"lastName",
+					"schoolAbbr",
+					"schoolNumber",
+					"originalContactType",
+					"autosendHowOften",
+					"emailSummary",
+					"assignmentDetails",
+					"attendanceDetails",
+					"schoolAnnouncements",
+					"balanceAlert",
+					"notificationEmails",
+					"canAccessData"
+				FROM
+					(
+						SELECT 
+							SCA.PERSONID "contactid",
+							SCA.STUDENTCONTACTASSOCID "studentContactId",
+							SCA.CONTACTPRIORITYORDER "sca_contactpriorityorder",
+							ROW_NUMBER() Over (Partition BY SCA.STUDENTDCID Order By SCA.CONTACTPRIORITYORDER) "sequence",
+							S.DCID "dcid",
+							S.STUDENT_NUMBER "studentNumber",
+							S.FIRST_NAME "firstName",
+							S.MIDDLE_NAME "middleName",
+							S.LAST_NAME "lastName",
+							SCH.ABBREVIATION "schoolAbbr",
+							SCH.SCHOOL_NUMBER "schoolNumber",
+							OCM.ORIGINALCONTACTTYPE "originalContactType",
+							nvl(GS.AUTOSEND_HOWOFTEN,0) "autosendHowOften", 
+							DECODE(GS.AUTOSEND_SUMMARY, Null, 'false', 0, 'false', 1, 'true') "emailSummary",
+							DECODE(GS.AUTOSEND_GRADEDETAIL, Null, 'false', 0, 'false', 1, 'true') "assignmentDetails",
+							DECODE(GS.AUTOSEND_ATTENDANCEDETAIL, Null, 'false', 0, 'false', 1, 'true') "attendanceDetails",
+							DECODE(GS.AUTOSEND_SCHOOLANNOUNCEMENTS, Null, 'false', 0, 'false', 1, 'true') "schoolAnnouncements",
+							DECODE(GS.AUTOSEND_BALANCEALERT, Null, 'false', 0, 'false', 1, 'true') "balanceAlert",
+							EMAIL_LIST.LIST_AGG "notificationEmails",
+							NVL2(GS.GUARDIANSTUDENTID,'true','false') "canAccessData"
+						FROM STUDENTCONTACTASSOC SCA
+						LEFT JOIN PERSON P ON P.ID = SCA.PERSONID
+						LEFT JOIN STUDENTS S ON S.DCID = SCA.STUDENTDCID
+						LEFT JOIN SCHOOLS SCH ON SCH.SCHOOL_NUMBER = S.SCHOOLID
+						LEFT JOIN ORIGINALCONTACTMAP OCM ON OCM.STUDENTCONTACTASSOCID = SCA.STUDENTCONTACTASSOCID
+						LEFT JOIN GUARDIANPERSONASSOC GPA ON GPA.PERSONID = SCA.PERSONID
+						LEFT JOIN GUARDIAN G ON G.GUARDIANID  = GPA.GUARDIANID AND GPA.PERSONID = P.ID
+						LEFT JOIN GUARDIANSTUDENT GS ON GS.GUARDIANID = G.GUARDIANID AND GS.STUDENTSDCID = S.DCID
+						LEFT JOIN
+							(
+								SELECT 
+									GNE.GUARDIANSTUDENTID,
+									ListAgg(GNE.NOTIFICATIONEMAIL, ', ') Within GROUP (ORDER BY GNE.NOTIFICATIONEMAIL) LIST_AGG
+								FROM 
+									GUARDIANNOTIFICATIONEMAIL GNE
+								GROUP BY 
+									GNE.GUARDIANSTUDENTID
+							) EMAIL_LIST
+						ON EMAIL_LIST.GUARDIANSTUDENTID = GS.GUARDIANSTUDENTID
+					)
+				WHERE "sca_contactpriorityorder" != "sequence"
+				ORDER BY "studentContactId"
+			]]>
+		</sql>
+	</query>
+	<query name="net.cdolinc.contact.phone_sequence.flat" flattened="true" tags="myPowerQuery">
+		<summary>Invalid Contact Phone Number Priority Order - Flat</summary>
+		<description>PowerQuery to identify contact phone number associations that require sequence updates</description>
+		<columns>
+			<column column="PERSONPHONENUMBERASSOC.PERSONID">contactid</column>
+			<column column="PERSONPHONENUMBERASSOC.PERSONPHONENUMBERASSOCID">deleted</column>
+			<column column="PERSONPHONENUMBERASSOC.PERSONPHONENUMBERASSOCID">contactsPhoneId</column>
+			<column column="PERSONPHONENUMBERASSOC.PHONENUMBERPRIORITYORDER">sequence</column>
+			<column column="PERSONPHONENUMBERASSOC.ISPREFERRED">preferred</column>
+			<column column="PERSONPHONENUMBERASSOC.PHONETYPECODESETID">phoneType</column>
+			<column column="PERSONPHONENUMBERASSOC.PHONENUMBERID">phoneNumberId</column>
+			<column column="PERSONPHONENUMBERASSOC.PHONENUMBERASENTERED">phoneNumber</column>
+			<column column="PHONENUMBER.PHONENUMBEREXT">extension</column>
+			<column column="PHONENUMBER.ISSMS">sms</column>
+		</columns>
+		<sql>
+			<![CDATA[
+				SELECT 
+					"contactid",
+					"deleted",
+					"contactsPhoneId",
+					"sequence",
+					"preferred",
+					"phoneType",
+					"phoneNumberId",
+					"phoneNumber",
+					"extension",
+					"sms"
+				FROM
+				(
+					SELECT 
+						personphonenumberassoc.PERSONID "contactid",
+						'false' AS "deleted",
+						personphonenumberassoc.PERSONPHONENUMBERASSOCID "contactsPhoneId",
+						personphonenumberassoc.PHONENUMBERPRIORITYORDER "phoneNumberPriorityOrder",
+						ROW_NUMBER() Over (Partition BY person.ID Order By personphonenumberassoc.PHONENUMBERPRIORITYORDER) "sequence",
+						DECODE(personphonenumberassoc.ISPREFERRED, 0, 'false', 1, 'true') "preferred",
+						(
+							SELECT 
+								CODE 
+							FROM 
+								CODESET 
+							WHERE 
+								CODESETID= personphonenumberassoc.PHONETYPECODESETID
+						) "phoneType",
+						personphonenumberassoc.PHONENUMBERID "phoneNumberId",
+						personphonenumberassoc.PHONENUMBERASENTERED "phoneNumber",
+						phonenumber.PHONENUMBEREXT "extension",
+						DECODE(phonenumber.ISSMS, 0, 'false', 1, 'true') "sms"
+					FROM person
+					INNER JOIN personphonenumberassoc 
+						ON person.ID = personphonenumberassoc.PERSONID
+					LEFT JOIN phonenumber 
+						ON personphonenumberassoc.PHONENUMBERID = phonenumber.PHONENUMBERID
+					LEFT OUTER JOIN students 
+						ON person.ID = students.PERSON_ID
+					WHERE students.DCID IS NULL
+				)
+				WHERE "phoneNumberPriorityOrder" != "sequence"
+				ORDER BY "contactsPhoneId"
+			]]>
+		</sql>
+	</query>
+	<query name="net.cdolinc.contact.invalid_phone_format.flat" flattened="true" tags="myPowerQuery">
+		<summary>Invalid Contact Phone Number Format - Flat</summary>
+		<description>PowerQuery to identify contact phone number associations that require phonenumberasentered updates</description>
+		<columns>
+			<column column="PERSONPHONENUMBERASSOC.PERSONID">contactid</column>
+			<column column="PERSONPHONENUMBERASSOC.PERSONPHONENUMBERASSOCID">deleted</column>
+			<column column="PERSONPHONENUMBERASSOC.PERSONPHONENUMBERASSOCID">contactsPhoneId</column>
+			<column column="PERSONPHONENUMBERASSOC.PHONENUMBERPRIORITYORDER">sequence</column>
+			<column column="PERSONPHONENUMBERASSOC.ISPREFERRED">preferred</column>
+			<column column="PERSONPHONENUMBERASSOC.PHONETYPECODESETID">phoneType</column>
+			<column column="PERSONPHONENUMBERASSOC.PHONENUMBERID">phoneNumberId</column>
+			<column column="PERSONPHONENUMBERASSOC.PHONENUMBERASENTERED">phoneNumber</column>
+			<column column="PHONENUMBER.PHONENUMBEREXT">extension</column>
+			<column column="PHONENUMBER.ISSMS">sms</column>
+		</columns>
+		<sql>
+			<![CDATA[
+				SELECT 
+					"contactid",
+					"deleted",
+					"contactsPhoneId",
+					"sequence",
+					"preferred",
+					"phoneType",
+					"phoneNumberId",
+					"phoneNumber",
+					"extension",
+					"sms"
+				FROM
+					(
+						SELECT 
+						"contactid",
+						"deleted",
+						"contactsPhoneId",
+						"sequence",
+						"preferred",
+						"phoneType",
+						"phoneNumberId",
+						"phoneNumberAsEntered",
+						CASE
+							WHEN LENGTH(clean_phone) = 10
+							THEN SUBSTR(clean_phone, 1, 3)
+							|| '-'
+							|| SUBSTR(clean_phone, 4, 3)
+							|| '-'
+							|| SUBSTR(clean_phone, 7, 4)
+							ELSE NULL
+						END AS "phoneNumber",
+						"extension",
+						"sms"
+					FROM
+						(
+							SELECT 
+								personphonenumberassoc.PERSONID "contactid",
+								'false' AS "deleted",
+								personphonenumberassoc.PERSONPHONENUMBERASSOCID "contactsPhoneId",
+								personphonenumberassoc.PHONENUMBERPRIORITYORDER "sequence",
+								DECODE(personphonenumberassoc.ISPREFERRED, 0, 'false', 1, 'true') "preferred",
+								(
+									SELECT 
+										CODESET.CODE
+									FROM CODESET
+									WHERE CODESET.CODESETID = personphonenumberassoc.PHONETYPECODESETID
+								) "phoneType",
+								personphonenumberassoc.PHONENUMBERID "phoneNumberId",
+								personphonenumberassoc.PHONENUMBERASENTERED "phoneNumberAsEntered",
+								SUBSTR(TRANSLATE(personphonenumberassoc.PHONENUMBERASENTERED, '1234567890'
+								|| personphonenumberassoc.PHONENUMBERASENTERED, '1234567890'), 1, 10) AS clean_phone,
+								phonenumber.PHONENUMBEREXT "extension",
+								DECODE(phonenumber.ISSMS, 0, 'false', 1, 'true') "sms"
+							FROM person
+							INNER JOIN personphonenumberassoc
+								ON person.ID = personphonenumberassoc.PERSONID
+							LEFT OUTER JOIN phonenumber
+								ON personphonenumberassoc.PHONENUMBERID = phonenumber.PHONENUMBERID
+							LEFT OUTER JOIN students
+								ON person.ID         = students.PERSON_ID
+							WHERE students.DCID IS NULL
+						)
+					)
+				WHERE "phoneNumberAsEntered" != "phoneNumber"
+				AND "phoneNumberAsEntered" NOT LIKE '% x%'
+				ORDER BY "contactsPhoneId"
+			]]>
+		</sql>
+	</query>
+	<query name="net.cdolinc.contact.duplicate_phone.flat" flattened="true" tags="myPowerQuery">
+		<summary>Duplicate Contact Phone Number - Flat</summary>
+		<description>PowerQuery to identify duplicate contact phone number associations</description>
+		<columns>
+			<column column="PERSONPHONENUMBERASSOC.PERSONID">contactid</column>
+			<column column="PERSONPHONENUMBERASSOC.PERSONPHONENUMBERASSOCID">contactsPhoneId</column>
+		</columns>
+		<sql>
+			<![CDATA[
+				SELECT 
+					"contactid",
+					"contactsPhoneId"
+				FROM
+					(
+						SELECT 
+						personphonenumberassoc.personid "contactid",
+						personphonenumberassoc.PERSONPHONENUMBERASSOCID "contactsPhoneId",
+						ROW_NUMBER() Over (Partition BY person.ID, phonenumber.phonenumber Order By personphonenumberassoc.PHONENUMBERPRIORITYORDER) rn
+						FROM person
+						INNER JOIN personphonenumberassoc 
+							ON person.ID = personphonenumberassoc.PERSONID
+						LEFT OUTER JOIN phonenumber 
+							on personphonenumberassoc.phonenumberid = phonenumber.phonenumberid
+						LEFT OUTER JOIN students 
+							ON person.ID = students.PERSON_ID
+					WHERE students.DCID IS NULL
+					)
+				WHERE rn > 1
+				ORDER BY "contactsPhoneId"
+			]]>
+		</sql>
+	</query>
+	<query name="net.cdolinc.contact.address_sequence.flat" flattened="true" tags="myPowerQuery">
+	<summary>Invalid Contact Address Priority Order - Flat</summary>
+	<description>PowerQuery to identify contact address associations that require sequence updates</description>
+	<columns>
+		<column column="PERSONADDRESSASSOC.PERSONID">contactid</column>
+		<column column="PERSONADDRESSASSOC.PERSONADDRESSASSOCID">deleted</column>
+		<column column="PERSONADDRESSASSOC.PERSONADDRESSASSOCID">contactsAddressId</column>
+		<column column="PERSONADDRESSASSOC.ADDRESSPRIORITYORDER">sequence</column>
+		<column column="PERSONADDRESSASSOC.PERSONADDRESSID">addressId</column>
+		<column column="PERSONADDRESSASSOC.ADDRESSTYPECODESETID">addressType</column>
+		<column column="PERSONADDRESS.STREET">street</column>
+		<column column="PERSONADDRESS.LINETWO">linetwo</column>
+		<column column="PERSONADDRESS.UNIT">unit</column>
+		<column column="PERSONADDRESS.CITY">city</column>
+		<column column="PERSONADDRESS.STATESCODESETID">state</column>
+		<column column="PERSONADDRESS.COUNTRYCODESETID">country</column>
+		<column column="PERSONADDRESS.POSTALCODE">postalcode</column>	
+		<column column="PERSONADDRESSASSOC.STARTDATE">startDate</column>
+		<column column="PERSONADDRESSASSOC.ENDDATE">endDate</column>
+	</columns>
+	<sql>
+		<![CDATA[
+			SELECT 
+				"contactid",
+				"deleted",
+				"contactsAddressId",
+				"sequence",
+				"addressId",
+				"addressType",
+				"street",
+				"linetwo",
+				"unit",
+				"city",
+				"state",
+				"country",
+				"postalcode",
+				"startDate",
+				"endDate"
+			FROM
+				(
+					SELECT 
+					personaddressassoc.personid "contactid",
+					'false' AS "deleted",
+					personaddressassoc.PERSONADDRESSASSOCID "contactsAddressId",
+					personaddressassoc.ADDRESSPRIORITYORDER "addressPriorityOrder",
+					ROW_NUMBER() Over (Partition BY person.ID Order By personaddressassoc.ADDRESSPRIORITYORDER) "sequence",
+					personaddressassoc.PERSONADDRESSID "addressId",
+					(
+						SELECT CODE 
+						FROM CODESET 
+						WHERE CODESETID= personaddressassoc.ADDRESSTYPECODESETID
+					) "addressType",
+					personaddress.STREET "street",
+					personaddress.LINETWO "linetwo",
+					personaddress.UNIT "unit",
+					personaddress.CITY "city",
+					(
+						SELECT CODE 
+						FROM CODESET 
+						WHERE CODESETID= personaddress.STATESCODESETID
+					) "state",
+					(
+						SELECT CODE 
+						FROM CODESET 
+						WHERE CODESETID= personaddress.COUNTRYCODESETID
+					) "country",
+					personaddress.POSTALCODE "postalcode",
+					personaddressassoc.STARTDATE "startDate",
+					personaddressassoc.ENDDATE "endDate"
+				FROM person
+				INNER JOIN personaddressassoc
+					ON person.ID = personaddressassoc.PERSONID
+				LEFT OUTER JOIN personaddress
+					ON personaddressassoc.PERSONADDRESSID = personaddress.PERSONADDRESSID
+				LEFT OUTER JOIN students
+					ON person.ID         = students.PERSON_ID
+				WHERE students.DCID IS NULL
+				)
+			WHERE "addressPriorityOrder" != "sequence"
+			ORDER BY "contactsAddressId"
+		]]>
+	</sql>
+</query>
+</queries>

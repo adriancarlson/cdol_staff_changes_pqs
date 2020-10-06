@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://plugin.powerschool.pearson.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd"
+name="CDOL Rest API"
+version="20.10.0"
+description="CDOL PowerSchool REST API inherited from Sean McCleery">
+	<oauth></oauth>
+		<access_request>
+			<field table="CODESET" field="CODE" access="FullAccess" />
+			<field table="CODESET" field="CODESETID" access="FullAccess" />
+			<field table="CODESET" field="CODETYPE" access="FullAccess" />
+			<field table="EMAILADDRESS" field="EMAILADDRESS" access="FullAccess" />
+			<field table="EMAILADDRESS" field="EMAILADDRESSID" access="FullAccess" />
+			<field table="GUARDIAN" field="GUARDIANID" access="FullAccess" />
+			<field table="GUARDIANNOTIFICATIONEMAIL" field="GUARDIANSTUDENTID" access="FullAccess" />
+			<field table="GUARDIANNOTIFICATIONEMAIL" field="NOTIFICATIONEMAIL" access="FullAccess" />
+			<field table="GUARDIANPERSONASSOC" field="GUARDIANID" access="FullAccess" />
+			<field table="GUARDIANPERSONASSOC" field="PERSONID" access="FullAccess" />
+			<field table="GUARDIANSTUDENT" field="AUTOSEND_ATTENDANCEDETAIL" access="FullAccess" />
+			<field table="GUARDIANSTUDENT" field="AUTOSEND_BALANCEALERT" access="FullAccess" />
+			<field table="GUARDIANSTUDENT" field="AUTOSEND_GRADEDETAIL" access="FullAccess" />
+			<field table="GUARDIANSTUDENT" field="AUTOSEND_HOWOFTEN" access="FullAccess" />
+			<field table="GUARDIANSTUDENT" field="AUTOSEND_SCHOOLANNOUNCEMENTS" access="FullAccess" />
+			<field table="GUARDIANSTUDENT" field="AUTOSEND_SUMMARY" access="FullAccess" />
+			<field table="GUARDIANSTUDENT" field="GUARDIANID" access="FullAccess" />
+			<field table="GUARDIANSTUDENT" field="GUARDIANSTUDENTID" access="FullAccess" />
+			<field table="GUARDIANSTUDENT" field="STUDENTSDCID" access="FullAccess" />
+			<field table="ORIGINALCONTACTMAP" field="ORIGINALCONTACTTYPE" access="FullAccess" />
+			<field table="ORIGINALCONTACTMAP" field="STUDENTCONTACTASSOCID" access="FullAccess" />
+			<field table="PCAS_ACCOUNT" field="ISENABLED" access="FullAccess" />
+			<field table="PCAS_ACCOUNT" field="USERNAME" access="FullAccess" />
+			<field table="PERSON" field="EMPLOYER" access="FullAccess" />
+			<field table="PERSON" field="EXCLUDEFROMSTATEREPORTING" access="FullAccess" />
+			<field table="PERSON" field="FIRSTNAME" access="FullAccess" />
+			<field table="PERSON" field="GENDERCODESETID" access="FullAccess" />
+			<field table="PERSON" field="ID" access="FullAccess" />
+			<field table="PERSON" field="ISACTIVE" access="FullAccess" />
+			<field table="PERSON" field="LASTNAME" access="FullAccess" />
+			<field table="PERSON" field="MIDDLENAME" access="FullAccess" />
+			<field table="PERSON" field="PREFIXCODESETID" access="FullAccess" />
+			<field table="PERSON" field="STATECONTACTID" access="FullAccess" />
+			<field table="PERSON" field="STATECONTACTNUMBER" access="FullAccess" />
+			<field table="PERSON" field="SUFFIXCODESETID" access="FullAccess" />
+			<field table="PERSONADDRESS" field="CITY" access="FullAccess" />
+			<field table="PERSONADDRESS" field="COUNTRYCODESETID" access="FullAccess" />
+			<field table="PERSONADDRESS" field="GEOCODELATITUDE" access="FullAccess" />
+			<field table="PERSONADDRESS" field="GEOCODELONGITUDE" access="FullAccess" />
+			<field table="PERSONADDRESS" field="LINETWO" access="FullAccess" />
+			<field table="PERSONADDRESS" field="PERSONADDRESSID" access="FullAccess" />
+			<field table="PERSONADDRESS" field="POSTALCODE" access="FullAccess" />
+			<field table="PERSONADDRESS" field="STATESCODESETID" access="FullAccess" />
+			<field table="PERSONADDRESS" field="STREET" access="FullAccess" />
+			<field table="PERSONADDRESS" field="UNIT" access="FullAccess" />
+			<field table="PERSONADDRESSASSOC" field="ADDRESSPRIORITYORDER" access="FullAccess" />
+			<field table="PERSONADDRESSASSOC" field="ADDRESSTYPECODESETID" access="FullAccess" />
+			<field table="PERSONADDRESSASSOC" field="ENDDATE" access="FullAccess" />
+			<field table="PERSONADDRESSASSOC" field="PERSONADDRESSASSOCID" access="FullAccess" />
+			<field table="PERSONADDRESSASSOC" field="PERSONADDRESSID" access="FullAccess" />
+			<field table="PERSONADDRESSASSOC" field="PERSONID" access="FullAccess" />
+			<field table="PERSONADDRESSASSOC" field="STARTDATE" access="FullAccess" />
+			<field table="PERSONEMAILADDRESSASSOC" field="EMAILADDRESSID" access="FullAccess" />
+			<field table="PERSONEMAILADDRESSASSOC" field="EMAILADDRESSPRIORITYORDER" access="FullAccess" />
+			<field table="PERSONEMAILADDRESSASSOC" field="EMAILTYPECODESETID" access="FullAccess" />
+			<field table="PERSONEMAILADDRESSASSOC" field="ISPRIMARYEMAILADDRESS" access="FullAccess" />
+			<field table="PERSONEMAILADDRESSASSOC" field="PERSONEMAILADDRESSASSOCID" access="FullAccess" />
+			<field table="PERSONEMAILADDRESSASSOC" field="PERSONID" access="FullAccess" />
+			<field table="PERSONPHONENUMBERASSOC" field="ISPREFERRED" access="FullAccess" />
+			<field table="PERSONPHONENUMBERASSOC" field="PERSONID" access="FullAccess" />
+			<field table="PERSONPHONENUMBERASSOC" field="PERSONPHONENUMBERASSOCID" access="FullAccess" />
+			<field table="PERSONPHONENUMBERASSOC" field="PHONENUMBERASENTERED" access="FullAccess" />
+			<field table="PERSONPHONENUMBERASSOC" field="PHONENUMBERID" access="FullAccess" />
+			<field table="PERSONPHONENUMBERASSOC" field="PHONENUMBERPRIORITYORDER" access="FullAccess" />
+			<field table="PERSONPHONENUMBERASSOC" field="PHONETYPECODESETID" access="FullAccess" />
+			<field table="PHONENUMBER" field="ISSMS" access="FullAccess" />
+			<field table="PHONENUMBER" field="PHONENUMBER" access="FullAccess" />
+			<field table="PHONENUMBER" field="PHONENUMBEREXT" access="FullAccess" />
+			<field table="PHONENUMBER" field="PHONENUMBERID" access="FullAccess" />
+			<field table="PSM_STUDENTCONTACT" field="EMAIL" access="FullAccess" />
+			<field table="PSM_STUDENTCONTACT" field="STUDENTCONTACTTYPEID" access="FullAccess" />
+			<field table="PSM_STUDENTCONTACT" field="STUDENTID" access="FullAccess" />
+			<field table="PSM_STUDENTCONTACTTYPE" field="ID" access="FullAccess" />
+			<field table="PSM_STUDENTCONTACTTYPE" field="NAME" access="FullAccess" />
+			<field table="SCHOOLS" field="ABBREVIATION" access="FullAccess" />
+			<field table="SCHOOLS" field="SCHOOL_NUMBER" access="FullAccess" />
+			<field table="STUDENTCONTACTASSOC" field="CONTACTPRIORITYORDER" access="FullAccess" />
+			<field table="STUDENTCONTACTASSOC" field="CURRRELTYPECODESETID" access="FullAccess" />
+			<field table="STUDENTCONTACTASSOC" field="PERSONID" access="FullAccess" />
+			<field table="STUDENTCONTACTASSOC" field="STUDENTCONTACTASSOCID" access="FullAccess" />
+			<field table="STUDENTCONTACTASSOC" field="STUDENTDCID" access="FullAccess" />
+			<field table="STUDENTCONTACTDETAIL" field="ENDDATE" access="FullAccess" />
+			<field table="STUDENTCONTACTDETAIL" field="EXCLUDEFROMSTATEREPORTINGFLG" access="FullAccess" />
+			<field table="STUDENTCONTACTDETAIL" field="ISACTIVE" access="FullAccess" />
+			<field table="STUDENTCONTACTDETAIL" field="ISCUSTODIAL" access="FullAccess" />
+			<field table="STUDENTCONTACTDETAIL" field="ISEMERGENCY" access="FullAccess" />
+			<field table="STUDENTCONTACTDETAIL" field="LIVESWITHFLG" access="FullAccess" />
+			<field table="STUDENTCONTACTDETAIL" field="RECEIVESMAILFLG" access="FullAccess" />
+			<field table="STUDENTCONTACTDETAIL" field="RELATIONSHIPNOTE" access="FullAccess" />
+			<field table="STUDENTCONTACTDETAIL" field="RELATIONSHIPTYPECODESETID" access="FullAccess" />
+			<field table="STUDENTCONTACTDETAIL" field="SCHOOLPICKUPFLG" access="FullAccess" />
+			<field table="STUDENTCONTACTDETAIL" field="STARTDATE" access="FullAccess" />
+			<field table="STUDENTCONTACTDETAIL" field="STUDENTCONTACTASSOCID" access="FullAccess" />
+			<field table="STUDENTCONTACTDETAIL" field="STUDENTCONTACTDETAILID" access="FullAccess" />
+			<field table="STUDENTCOREFIELDS" field="AUTOSEND_HOWOFTEN" access="FullAccess" />
+			<field table="STUDENTS" field="ID" access="FullAccess" />
+			<field table="STUDENTS" field="DCID" access="FullAccess" />
+			<field table="STUDENTS" field="ENROLL_STATUS" access="FullAccess" />
+			<field table="STUDENTS" field="FIRST_NAME" access="FullAccess" />
+			<field table="STUDENTS" field="LAST_NAME" access="FullAccess" />
+			<field table="STUDENTS" field="MIDDLE_NAME" access="FullAccess" />
+			<field table="students" field="PERSON_ID" access="FullAccess" />
+			<field table="STUDENTS" field="SCHOOLID" access="FullAccess" />
+			<field table="STUDENTS" field="STUDENT_NUMBER" access="FullAccess" />
+			<field table="STUDENTS" field="STUDENT_WEB_ID" access="FullAccess" />
+			<field table="SYNC_STUDENTMAP" field="STUDENTID" access="FullAccess" />
+			<field table="SYNC_STUDENTMAP" field="STUDENTSDCID" access="FullAccess" />
+		</access_request>
+<publisher name="Adrian Carlson">
+<contact email="adrian-carlson@cdolinc.net" />
+</publisher>
+</plugin>
