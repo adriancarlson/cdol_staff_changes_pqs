@@ -505,7 +505,7 @@
 			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 1 Parish City">U_PERSON_ADDITIONAL_INFO.person_parish_city</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_state" description="Contact 1 Parish State">U_PERSON_ADDITIONAL_INFO.person_parish_state</column>
 			<column column="students.Next_school" description="Next School">students.Next_school</column>
-			<column column="students.schoolid" description="School">students.schoolid</column>
+			<column column="SCHOOLS.name" description="School">SCHOOLS.name</column>
 		</columns>
 		<sql>
 			<![CDATA[
