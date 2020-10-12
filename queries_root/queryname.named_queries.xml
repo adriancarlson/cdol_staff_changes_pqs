@@ -481,7 +481,7 @@
 			<column column="person.lastname" description="Contact 1 Last Name">person.lastname</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME" description="Contact 1 Maiden Name">U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME</column>
 			<column column="codeset.code" description="Contact 1 Suffix">person.suffix</column>
-			<column column="person.firstname" description="Contact 1 First Last">person.firstname</column>
+column			<column column="person.firstname" description="Contact 1 First Last">person.firstlast</column>
 			<column column="codeset.code" description="Contact 1 Gender">person.gender</column>
 			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 1 Phone numbers">personphonenumberassoc.phonenumberasentered</column>
 			<column column="PersonEmailAddressAssoc.emailaddress" description="Contact 1 Email Adresses">PersonEmailAddressAssoc.emailaddress</column>
