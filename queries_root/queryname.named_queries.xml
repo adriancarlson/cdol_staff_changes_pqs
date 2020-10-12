@@ -474,24 +474,24 @@
 			<column column="StudentCoreFields.SINGLEPARENTHSHLDFLAG" description="Single Parent Household">StudentCoreFields.SINGLEPARENTHSHLDFLAG</column>
 			<column column="person.isActive" description="Contact 1 is Active">person.isActive</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_status" description="Contact 1 Living or Deceased">U_PERSON_ADDITIONAL_INFO.person_status</column>
-			<column column="codeset.code" description="Contact 1 Relationship">codeset.code</column>
-			<column column="codeset.code" description="Contact 1 Prefix">codeset.code</column>
+			<column column="codeset.code" description="Contact 1 Relationship">person.relationship</column>
+			<column column="codeset.code" description="Contact 1 Prefix">person.prefix</column>
 			<column column="person.firstname" description="Contact 1 First Name">person.firstname</column>
 			<column column="person.middlename" description="Contact 1 Middle Name">person.middlename</column>
 			<column column="person.lastname" description="Contact 1 Last Name">person.lastname</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME" description="Contact 1 Maiden Name">U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME</column>
-			<column column="codeset.code" description="Contact 1 Suffix">codeset.code</column>
+			<column column="codeset.code" description="Contact 1 Suffix">person.suffix</column>
 			<column column="person.firstname" description="Contact 1 First Last">person.firstname</column>
-			<column column="codeset.code" description="Contact 1 Gender">codeset.code</column>
+			<column column="codeset.code" description="Contact 1 Gender">person.gender</column>
 			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 1 Phone numbers">personphonenumberassoc.phonenumberasentered</column>
 			<column column="PersonEmailAddressAssoc.emailaddress" description="Contact 1 Email Adresses">PersonEmailAddressAssoc.emailaddress</column>
 			<column column="personaddress.street" description="Contact 1 Home Street">personaddress.street</column>
 			<column column="personaddress.city" description="Contact 1 Home City">personaddress.city</column>
-			<column column="codeset.code" description="Contact 1 Home State">codeset.code</column>
+			<column column="codeset.code" description="Contact 1 Home State">person.home_state</column>
 			<column column="personaddress.postalcode" description="Contact 1 Home Zip">personaddress.postalcode</column>
 			<column column="personaddress.street" description="Contact 1 Mailing Street">personaddress.street</column>
 			<column column="personaddress.city" description="Contact 1 Mailing City">personaddress.city</column>
-			<column column="codeset.code" description="Contact 1 Mailing State">codeset.code</column>
+			<column column="codeset.code" description="Contact 1 Mailing State">person.mailing_state</column>
 			<column column="personaddress.postalcode" description="Contact 1 Mailing Zip">personaddress.postalcode</column>
 			<column column="studentcontactdetail.iscustodial" description="Contact 1 Has Custody">studentcontactdetail.iscustodial</column>
 			<column column="studentcontactdetail.liveswithflg" description="Contact 1 Lives With">studentcontactdetail.liveswithflg</column>
