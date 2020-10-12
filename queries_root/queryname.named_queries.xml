@@ -480,7 +480,6 @@
 						SELECT 
 							A.STATE_STUDENTNUMBER AS "State_Number(UUID)",
 							SCF.PrevStudentID as Old_SMS_Number,
-							A.DCID,
 							A.STUDENT_NUMBER,
 							A.FIRST_NAME,
 							A.MIDDLE_NAME,
