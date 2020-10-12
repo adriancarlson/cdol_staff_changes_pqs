@@ -484,7 +484,7 @@
 			<column column="person.firstname" description="Contact 1 First Last">person.firstlast</column>
 			<column column="codeset.code" description="Contact 1 Gender">person.Person_gender</column>
 			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 1 Phone numbers">personphonenumberassoc.phonenumberasentered</column>
-			<column column="PersonEmailAddressAssoc.emailaddress" description="Contact 1 Email Adresses">PersonEmailAddressAssoc.emailaddress</column>
+			<column column="EmailAddress.emailaddress" description="Contact 1 Email Adresses">EmailAddress.emailaddress</column>
 			<column column="personaddress.street" description="Contact 1 Home Street">personaddress.Person_mailing_street</column>
 			<column column="personaddress.city" description="Contact 1 Home City">personaddress.Person_Mailing_city</column>
 			<column column="codeset.code" description="Contact 1 Home State">person.home_state</column>
