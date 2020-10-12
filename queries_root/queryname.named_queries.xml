@@ -405,7 +405,7 @@
 		<description>List all demographic data for students and their first 6 contacts</description>
 		<columns>
 			<column column="students.STATE_STUDENTNUMBER" description="State Number">students.STATE_STUDENTNUMBER</column>
-			<column column="students.PrevStudentID" description="Old SMS Number">students.PrevStudentID</column>
+			<column column="StudentCoreFields.PrevStudentID" description="Old SMS Number">StudentCoreFields.PrevStudentID</column>
 			<column column="students.STUDENT_NUMBER" description="Student Number">students.STUDENT_NUMBER</column>
 			<column column="students.FIRST_NAME" description="First Name">students.FIRST_NAME</column>
 			<column column="students.MIDDLE_NAME" description="Middle Name">students.MIDDLE_NAME</column>
