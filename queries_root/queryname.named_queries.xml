@@ -405,22 +405,22 @@
 		<description>List all demographic data for students and their first 6 contacts</description>
 		<columns>
 			<column column="students.STATE_STUDENTNUMBER" description="State Number">students.STATE_STUDENTNUMBER</column>
-			<column column="StudentCoreFields.PrevStudentID" description="Old SMS Number">StudentCoreFields.PrevStudentID</column>
+			<column column="StudentCoreFields.PrevStudentID" description="Old SMS Number">StudentCoreFields.SMS_Number</column>
 			<column column="students.STUDENT_NUMBER" description="Student Number">students.STUDENT_NUMBER</column>
 			<column column="students.FIRST_NAME" description="First Name">students.FIRST_NAME</column>
 			<column column="students.MIDDLE_NAME" description="Middle Name">students.MIDDLE_NAME</column>
 			<column column="students.LAST_NAME" description="Last Name">students.LAST_NAME</column>
 			<column column="students.LASTFIRST" description="Last First">students.LASTFIRST</column>
-			<column column="U_STUDENT_ADDITIONAL_INFO.STUDENT_PREFERRED_NAME" description="Preferend Name">U_STUDENT_ADDITIONAL_INFO.STUDENT_PREFERRED_NAME</column>
+			<column column="U_STUDENT_ADDITIONAL_INFO.STUDENT_PREFERRED_NAME" description="Preferend Name">students.STUDENT_PREFERRED_NAME</column>
 			<column column="students.GENDER" description="Gender">students.GENDER</column>
 			<column column="students.dob" description="DoB">students.dob</column>
 			<column column="students.GRADE_LEVEL" description="Grade">students.GRADE_LEVEL</column>
 			<column column="students.HOME_ROOM" description="Home Room">students.HOME_ROOM</column>
 			<column column="students.CLASSOF" description="Class Of">students.CLASSOF</column>
 			<column column="students.FEDETHNICITY" description="Ethnicity">students.FEDETHNICITY</column>
-			<column column="STUDENTRACE.RACECD" description="Race">STUDENTRACE.RACECD</column>
-			<column column="Gen.name" description="District of Residence">Gen.name</column>
-			<column column="StudentCoreFields.FAMILY_REP" description="Family Rep">StudentCoreFields.FAMILY_REP</column>
+			<column column="STUDENTRACE.RACECD" description="Race">students.race</column>
+			<column column="Gen.name" description="District of Residence">students.District_of_Residence</column>
+			<column column="StudentCoreFields.FAMILY_REP" description="Family Rep">students.FAMILY_REP</column>
 			<column column="students.MAILING_STREET" description="Mailing Street">students.MAILING_STREET</column>
 			<column column="students.MAILING_CITY" description="Mailing City">students.MAILING_CITY</column>
 			<column column="students.MAILING_STATE" description="Mailing State">students.MAILING_STATE</column>
@@ -430,82 +430,82 @@
 			<column column="students.STATE" description="State">students.STATE</column>
 			<column column="students.ZIP" description="Zip">students.ZIP</column>
 			<column column="students.HOME_PHONE" description="Home Phone">students.HOME_PHONE</column>
-			<column column="U_STUDENT_ADDITIONAL_INFO.LOCKER_LOCATION" description="Locker Location">U_STUDENT_ADDITIONAL_INFO.LOCKER_LOCATION</column>
+			<column column="U_STUDENT_ADDITIONAL_INFO.LOCKER_LOCATION" description="Locker Location">students.LOCKER_LOCATION</column>
 			<column column="students.LOCKER_NUMBER" description="Locker Number">students.LOCKER_NUMBER</column>
 			<column column="students.LOCKER_COMBINATION" description="Locker Combo">students.LOCKER_COMBINATION</column>
-			<column column="S_STU_NCEA_X.TITLEI_TF" description="Title 1">S_STU_NCEA_X.TITLEI_TF</column>
-			<column column="S_STU_NCEA_X.DIAGNOSEDDISABILITY_TF" description="Disability">S_STU_NCEA_X.DIAGNOSEDDISABILITY_TF</column>
-			<column column="S_STU_NCEA_X.UNGRADED_TF" description="Ungraded">S_STU_NCEA_X.UNGRADED_TF</column>
-			<column column="S_STU_NCEA_X.FEDERALNUTRITION" description="Free Reduced">S_STU_NCEA_X.FEDERALNUTRITION</column>
-			<column column="S_STU_NCEA_X.SUBSIDIZEDTRANS_TF" description="Sub Transportation">S_STU_NCEA_X.SUBSIDIZEDTRANS_TF</column>
-			<column column="S_STU_NCEA_X.RELIGIOUSAFFILIATION" description="Religion">S_STU_NCEA_X.RELIGIOUSAFFILIATION</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_PARISH" description="Parish">U_STUDENT_SACRAMENTAL.STUDENT_PARISH</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_PARISH_CITY" description="Parish City">U_STUDENT_SACRAMENTAL.STUDENT_PARISH_CITY</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_PARISH_STATE" description="Parish State">U_STUDENT_SACRAMENTAL.STUDENT_PARISH_STATE</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_DATE" description="Baptism Date">U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_DATE</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_PARISH" description="Baptism Parish">U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_PARISH</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_CITY" description="Baptism City">U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_CITY</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_STATE" description="Baptism State">U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_STATE</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_DATE" description="Confession Date">U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_DATE</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_PARISH" description="Confession Parish">U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_PARISH</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_CITY" description="Confession City">U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_CITY</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_STATE" description="Confession State">U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_STATE</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_DATE" description="Communion Date">U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_DATE</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_PARISH" description="Communion Parish">U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_PARISH</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_CITY" description="Communion City">U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_CITY</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_STATE" description="Communion State">U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_STATE</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_DATE" description="Confirmation Date">U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_DATE</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_PARISH" description="Confirmation Parish">U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_PARISH</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_CITY" description="Confirmation City">U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_CITY</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_STATE" description="Confirmation State">U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_STATE</column>
+			<column column="S_STU_NCEA_X.TITLEI_TF" description="Title 1">students.TITLE_1</column>
+			<column column="S_STU_NCEA_X.DIAGNOSEDDISABILITY_TF" description="Disability">students.DIAGNOSED_DISABILITY</column>
+			<column column="S_STU_NCEA_X.UNGRADED_TF" description="Ungraded">students.UNGRADED</column>
+			<column column="S_STU_NCEA_X.FEDERALNUTRITION" description="Free Reduced">students.free_reduced</column>
+			<column column="S_STU_NCEA_X.SUBSIDIZEDTRANS_TF" description="Sub Transportation">students.SUB_Transportation</column>
+			<column column="S_STU_NCEA_X.RELIGIOUSAFFILIATION" description="Religion">students.religion</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_PARISH" description="Parish">students.STUDENT_PARISH</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_PARISH_CITY" description="Parish City">students.STUDENT_PARISH_CITY</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_PARISH_STATE" description="Parish State">students.STUDENT_PARISH_STATE</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_DATE" description="Baptism Date">students.STUDENT_BAPTISM_DATE</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_PARISH" description="Baptism Parish">students.STUDENT_BAPTISM_PARISH</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_CITY" description="Baptism City">students.STUDENT_BAPTISM_CITY</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_STATE" description="Baptism State">students.STUDENT_BAPTISM_STATE</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_DATE" description="Confession Date">students.STUDENT_CONFESSION_DATE</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_PARISH" description="Confession Parish">students.STUDENT_CONFESSION_PARISH</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_CITY" description="Confession City">students.STUDENT_CONFESSION_CITY</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_STATE" description="Confession State">students.STUDENT_CONFESSION_STATE</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_DATE" description="Communion Date">students.STUDENT_COMMUNION_DATE</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_PARISH" description="Communion Parish">students.STUDENT_COMMUNION_PARISH</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_CITY" description="Communion City">students.STUDENT_COMMUNION_CITY</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_STATE" description="Communion State">students.STUDENT_COMMUNION_STATE</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_DATE" description="Confirmation Date">students.STUDENT_CONFIRMATION_DATE</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_PARISH" description="Confirmation Parish">students.STUDENT_CONFIRMATION_PARISH</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_CITY" description="Confirmation City">students.STUDENT_CONFIRMATION_CITY</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_STATE" description="Confirmation State">students.STUDENT_CONFIRMATION_STATE</column>
 			<column column="students.DOCTOR_NAME" description="Doctor Name">students.DOCTOR_NAME</column>
 			<column column="students.DOCTOR_PHONE" description="Doctor Phone">students.DOCTOR_PHONE</column>
-			<column column="StudentCoreFields.Dentist_Name" description="Dentist Name">StudentCoreFields.Dentist_Name</column>
-			<column column="StudentCoreFields.dentist_phone" description="Dentist Phone">StudentCoreFields.dentist_phone</column>
+			<column column="StudentCoreFields.Dentist_Name" description="Dentist Name">students.Dentist_Name</column>
+			<column column="StudentCoreFields.dentist_phone" description="Dentist Phone">students.dentist_phone</column>
 			<column column="students.ALERT_MEDICAL" description="Medical Alert">students.ALERT_MEDICAL</column>
-			<column column="StudentCoreFields.ALLERGIES" description="Allergies">StudentCoreFields.ALLERGIES</column>
+			<column column="StudentCoreFields.ALLERGIES" description="Allergies">students.ALLERGIES</column>
 			<column column="students.ALERT_DISCIPLINE" description="Discipline Alert">students.ALERT_DISCIPLINE</column>
 			<column column="students.ALERT_OTHER" description="Other Alert">students.ALERT_OTHER</column>
-			<column column="students.LDAPENABLED" description="LDAP Enabled">students.LDAPENABLED</column>
-			<column column="students.STUDENT_ALLOWWEBACCESS" description="Student Web Access">students.STUDENT_ALLOWWEBACCESS</column>
-			<column column="students.STUDENT_WEB_ID" description="Student Username">students.STUDENT_WEB_ID</column>
-			<column column="students.ALLOWWEBACCESS" description="Parent Web Access">students.ALLOWWEBACCESS</column>
-			<column column="students.WEB_ID" description="Parent Access ID">students.WEB_ID</column>
-			<column column="StudentCoreFields.SINGLEPARENTHSHLDFLAG" description="Single Parent Household">StudentCoreFields.SINGLEPARENTHSHLDFLAG</column>
-			<column column="person.isActive" description="Contact 1 is Active">person.isActive</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_status" description="Contact 1 Living or Deceased">U_PERSON_ADDITIONAL_INFO.person_status</column>
-			<column column="codeset.code" description="Contact 1 Relationship">person.relationship</column>
-			<column column="codeset.code" description="Contact 1 Prefix">person.prefix</column>
-			<column column="person.firstname" description="Contact 1 First Name">person.firstname</column>
-			<column column="person.middlename" description="Contact 1 Middle Name">person.middlename</column>
-			<column column="person.lastname" description="Contact 1 Last Name">person.lastname</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME" description="Contact 1 Maiden Name">U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME</column>
-			<column column="codeset.code" description="Contact 1 Suffix">person.suffix</column>
-			<column column="person.firstname" description="Contact 1 First Last">person.firstlast</column>
-			<column column="codeset.code" description="Contact 1 Gender">person.Person_gender</column>
-			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 1 Phone numbers">personphonenumberassoc.phonenumberasentered</column>
-			<column column="EmailAddress.emailaddress" description="Contact 1 Email Adresses">EmailAddress.emailaddress</column>
-			<column column="personaddress.street" description="Contact 1 Home Street">personaddress.Person_mailing_street</column>
-			<column column="personaddress.city" description="Contact 1 Home City">personaddress.Person_Mailing_city</column>
-			<column column="codeset.code" description="Contact 1 Home State">person.Person_mailing_state</column>
-			<column column="personaddress.postalcode" description="Contact 1 Home Zip">personaddress.postalcode</column>
-			<column column="personaddress.street" description="Contact 1 Mailing Street">personaddress.Person_street</column>
-			<column column="personaddress.city" description="Contact 1 Mailing City">personaddress.Person_city</column>
-			<column column="codeset.code" description="Contact 1 Mailing State">person.Person_state</column>
-			<column column="personaddress.postalcode" description="Contact 1 Mailing Zip">personaddress.Person_postalcode</column>
-			<column column="studentcontactdetail.iscustodial" description="Contact 1 Has Custody">studentcontactdetail.iscustodial</column>
-			<column column="studentcontactdetail.liveswithflg" description="Contact 1 Lives With">studentcontactdetail.liveswithflg</column>
-			<column column="studentcontactdetail.receivesmailflg" description="Contact 1 Receives Mail">studentcontactdetail.receivesmailflg</column>
-			<column column="studentcontactdetail.isemergency" description="Contact 1 Emergency Contact">studentcontactdetail.isemergency</column>
-			<column column="studentcontactdetail.schoolpickupflg" description="Contact 1 School Pickup">studentcontactdetail.schoolpickupflg</column>
-			<column column="guardianstudent.studentsdcid" description="Contact 1 Parent Portal Account">guardianstudent.studentsdcid</column>
-			<column column="person.employer" description="Contact 1 Employer">person.employer</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 1 Religion">U_PERSON_ADDITIONAL_INFO.person_religion</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 1 Parish">U_PERSON_ADDITIONAL_INFO.person_parish</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 1 Parish City">U_PERSON_ADDITIONAL_INFO.person_parish_city</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_state" description="Contact 1 Parish State">U_PERSON_ADDITIONAL_INFO.person_parish_state</column>
+			<column column="students.LDAPENABLED" description="LDAP Enabled">students.LDAP_ENABLED</column>
+			<column column="students.STUDENT_ALLOWWEBACCESS" description="Student Web Access">students.Web_Access</column>
+			<column column="students.STUDENT_WEB_ID" description="Student Username">students.STUDENT_Username</column>
+			<column column="students.ALLOWWEBACCESS" description="Parent Web Access">students.Parent_Web_Access</column>
+			<column column="students.WEB_ID" description="Parent Access ID">students.Parent_Access_ID</column>
+			<column column="StudentCoreFields.SINGLEPARENTHSHLDFLAG" description="Single Parent Household">Students.SINGLE_PARENT_HOUSEHOLD</column>
+			<column column="person.isActive" description="Contact 1 is Active">contact1.isActive</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_status" description="Contact 1 Living or Deceased">contact1.Living_Deceased</column>
+			<column column="codeset.code" description="Contact 1 Relationship">contact1.relationship</column>
+			<column column="codeset.code" description="Contact 1 Prefix">contact1.prefix</column>
+			<column column="person.firstname" description="Contact 1 First Name">contact1.firstname</column>
+			<column column="person.middlename" description="Contact 1 Middle Name">contact1.middlename</column>
+			<column column="person.lastname" description="Contact 1 Last Name">contact1.lastname</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME" description="Contact 1 Maiden Name">contact1.MAIDEN_NAME</column>
+			<column column="codeset.code" description="Contact 1 Suffix">contact1.suffix</column>
+			<column column="person.firstname" description="Contact 1 First Last">contact1.firstlast</column>
+			<column column="codeset.code" description="Contact 1 Gender">contact1.contact1_gender</column>
+			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 1 Phone numbers">contact1.phone_numbers</column>
+			<column column="EmailAddress.emailaddress" description="Contact 1 Email Adresses">contact1.email_address</column>
+			<column column="personaddress.street" description="Contact 1 Home Street">contact1.contact1_mailing_street</column>
+			<column column="personaddress.city" description="Contact 1 Home City">contact1.contact1_Mailing_city</column>
+			<column column="codeset.code" description="Contact 1 Home State">contact1.contact1_mailing_state</column>
+			<column column="personaddress.postalcode" description="Contact 1 Home Zip">contact1.postalcode</column>
+			<column column="personaddress.street" description="Contact 1 Mailing Street">contact1.contact1_street</column>
+			<column column="personaddress.city" description="Contact 1 Mailing City">personaddress.contact1_city</column>
+			<column column="codeset.code" description="Contact 1 Mailing State">contact1.contact1_state</column>
+			<column column="personaddress.postalcode" description="Contact 1 Mailing Zip">contact1.contact1_postalcode</column>
+			<column column="studentcontactdetail.iscustodial" description="Contact 1 Has Custody">contact1.has_custody</column>
+			<column column="studentcontactdetail.liveswithflg" description="Contact 1 Lives With">contact1.Lives_with</column>
+			<column column="studentcontactdetail.receivesmailflg" description="Contact 1 Receives Mail">contact1.receives_mail</column>
+			<column column="studentcontactdetail.isemergency" description="Contact 1 Emergency Contact">contact1.Emergency_contACT</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 1 School Pickup">contact1.school_pickup</column>
+			<column column="guardianstudent.studentsdcid" description="Contact 1 Parent Portal Account">contact1.Parent_portal_accounts</column>
+			<column column="person.employer" description="Contact 1 Employer">contact1.employer</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 1 Religion">contact1.contact1_religion</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 1 Parish">contact1.contact1_parish</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 1 Parish City">contact1.contact1_parish_city</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_state" description="Contact 1 Parish State">contact1.contact1_parish_state</column>
 			<column column="students.Next_school" description="Next School">students.Next_school</column>
-			<column column="SCHOOLS.name" description="School">SCHOOLS.school_name</column>
+			<column column="SCHOOLS.name" description="School">students.school_name</column>
 		</columns>
 		<sql>
 			<![CDATA[
