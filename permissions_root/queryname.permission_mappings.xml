@@ -17,4 +17,7 @@
 	<permission name="/admin/contacts/edit.html">
 		<implies allow="post">/ws/schema/query/net.cdolinc.contact.address_sequence.flat</implies>
 	</permission>
+	<permission name="/admin/contacts/edit.html">
+		<implies allow="post">/ws/schema/query/net.cdolinc.allDemoData.students.demographics</implies>
+	</permission>
 </permission_mappings>
