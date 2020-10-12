@@ -624,8 +624,6 @@
 							ORDER BY s.lastfirst, sca.contactpriorityorder 
 						)
 						SELECT 
-							
-							--A.ENROLL_STATUS,
 							A.STATE_STUDENTNUMBER AS "State_Number(UUID)",
 							SCF.PrevStudentID as Old_SMS_Number,
 							A.DCID,
@@ -948,9 +946,9 @@
 						LEFT JOIN MA C6MA
 							ON (C6.contactid = C6MA.id)
 						WHERE
-							enroll_status in (-1,0)
+							A.enroll_status in (-1,0)
 						ORDER BY 
-							lastfirst
+							A.lastfirst
         ]]>
 		</sql>
 	</query>
