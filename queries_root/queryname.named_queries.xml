@@ -489,7 +489,6 @@
 							AD.STUDENT_PREFERRED_NAME,
 							CASE WHEN A.GENDER= 'M' THEN 'Male' WHEN A.GENDER = 'F' THEN 'Female' ELSE '' End AS Gender,
 							to_char(a.dob,'MM/DD/YYYY') AS Birthday,
-							--BIRTHPLACE
 							A.GRADE_LEVEL,
 							A.HOME_ROOM,
 							A.CLASSOF,
