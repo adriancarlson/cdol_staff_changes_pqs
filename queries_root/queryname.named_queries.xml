@@ -487,11 +487,11 @@
 			<column column="EmailAddress.emailaddress" description="Contact 1 Email Adresses">EmailAddress.emailaddress</column>
 			<column column="personaddress.street" description="Contact 1 Home Street">personaddress.Person_mailing_street</column>
 			<column column="personaddress.city" description="Contact 1 Home City">personaddress.Person_Mailing_city</column>
-			<column column="codeset.code" description="Contact 1 Home State">person.home_state</column>
+			<column column="codeset.code" description="Contact 1 Home State">person.Person_mailing_state</column>
 			<column column="personaddress.postalcode" description="Contact 1 Home Zip">personaddress.postalcode</column>
 			<column column="personaddress.street" description="Contact 1 Mailing Street">personaddress.Person_street</column>
 			<column column="personaddress.city" description="Contact 1 Mailing City">personaddress.Person_city</column>
-			<column column="codeset.code" description="Contact 1 Mailing State">person.mailing_state</column>
+			<column column="codeset.code" description="Contact 1 Mailing State">person.Person_state</column>
 			<column column="personaddress.postalcode" description="Contact 1 Mailing Zip">personaddress.Person_postalcode</column>
 			<column column="studentcontactdetail.iscustodial" description="Contact 1 Has Custody">studentcontactdetail.iscustodial</column>
 			<column column="studentcontactdetail.liveswithflg" description="Contact 1 Lives With">studentcontactdetail.liveswithflg</column>
