@@ -880,8 +880,6 @@
 							C1.ISEMERGENCY as Contact_1_Emergency_Contact,
 							C1.SCHOOLPICKUPFLG as Contact_1_School_Pickup,
 							C1.DATAACCESS as Contact_1_Parent_Portal_Account,
-							C1.username as Contact_1_Parent_Portal_Username,
-							C1.emailaddress as Contact_1_Parent_Portal_Email_Address,
 							C1.Employer as Contact_1_Employer, 
 							C1.person_religion as Contact_1_Religion, 
 							C1.person_parish as Contact_1_Parish, 
