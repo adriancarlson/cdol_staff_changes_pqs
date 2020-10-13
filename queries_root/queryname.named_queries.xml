@@ -747,12 +747,12 @@
 							) AS Contact_Phone_Numbers,
 							(
 								SELECT 
-									LISTAGG(emailaddress, ' | ') WITHIN GROUP(ORDER BY emailaddresspriorityorder) Email_Addresses
+									LISTAGG(ea.emailaddress, ' | ') WITHIN GROUP(ORDER BY pea.emailaddresspriorityorder) Email_Addresses
 								FROM PersonEmailAddressAssoc pea
 								INNER JOIN EmailAddress	ea 
 								ON (pea.EmailAddressID = ea.EmailAddressID)
 								WHERE pea.personid = p.id
-								GROUP BY personid
+								GROUP BY pea.personid
 							)  AS Email_Addresses, 
 							Decode(gs.studentsdcid, NULL, 'No', 'Yes') dataaccess,
 							DECODE(scd.iscustodial, 1, 'Yes','No') iscustodial,
