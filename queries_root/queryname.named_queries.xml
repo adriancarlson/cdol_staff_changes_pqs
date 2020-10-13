@@ -486,7 +486,7 @@
 			<column column="person.firstname" description="Contact 1 First Last">Contact1.10_Contact_1_First_Last</column>
 			<column column="codeset.code" description="Contact 1 Gender">Contact1.11_Contact_1_Gender</column>
 			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 1 Phone Numbers">Contact1.12_Contact_1_Phone_Numbers</column>
-			<column column="PersonEmailAddressAssoc.EmailAddressID" description="Contact 1 Email Adresses">Contact1.13_Contact_1_Email_Adresses</column>
+			<column column="person.firstname" description="Contact 1 Email Adresses">Contact1.13_Contact_1_Email_Adresses</column>
 			<column column="personaddress.street" description="Contact 1 Home Street">Contact1.14_Contact_1_Home_Street</column>
 			<column column="personaddress.city" description="Contact 1 Home City">Contact1.15_Contact_1_Home_City</column>
 			<column column="codeset.code" description="Contact 1 Home State">Contact1.16_Contact_1_Home_State</column>
@@ -518,7 +518,7 @@
 			<column column="person.firstname" description="Contact 2 First Last">Contact2.10_Contact_2_First_Last</column>
 			<column column="codeset.code" description="Contact 2 Gender">Contact2.11_Contact_2_Gender</column>
 			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 2 Phone Numbers">Contact2.12_Contact_2_Phone_Numbers</column>
-			<column column="PersonEmailAddressAssoc.EmailAddressID" description="Contact 2 Email Adresses">Contact2.13_Contact_2_Email_Adresses</column>
+			<column column="person.firstname" description="Contact 2 Email Adresses">Contact2.13_Contact_2_Email_Adresses</column>
 			<column column="personaddress.street" description="Contact 2 Home Street">Contact2.14_Contact_2_Home_Street</column>
 			<column column="personaddress.city" description="Contact 2 Home City">Contact2.15_Contact_2_Home_City</column>
 			<column column="codeset.code" description="Contact 2 Home State">Contact2.16_Contact_2_Home_State</column>
@@ -550,7 +550,7 @@
 			<column column="person.firstname" description="Contact 3 First Last">Contact3.10_Contact_3_First_Last</column>
 			<column column="codeset.code" description="Contact 3 Gender">Contact3.11_Contact_3_Gender</column>
 			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 3 Phone Numbers">Contact3.12_Contact_3_Phone_Numbers</column>
-			<column column="PersonEmailAddressAssoc.EmailAddressID" description="Contact 3 Email Adresses">Contact3.13_Contact_3_Email_Adresses</column>
+			<column column="person.firstname" description="Contact 3 Email Adresses">Contact3.13_Contact_3_Email_Adresses</column>
 			<column column="personaddress.street" description="Contact 3 Home Street">Contact3.14_Contact_3_Home_Street</column>
 			<column column="personaddress.city" description="Contact 3 Home City">Contact3.15_Contact_3_Home_City</column>
 			<column column="codeset.code" description="Contact 3 Home State">Contact3.16_Contact_3_Home_State</column>
@@ -582,7 +582,7 @@
 			<column column="person.firstname" description="Contact 4 First Last">Contact4.10_Contact_4_First_Last</column>
 			<column column="codeset.code" description="Contact 4 Gender">Contact4.11_Contact_4_Gender</column>
 			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 4 Phone Numbers">Contact4.12_Contact_4_Phone_Numbers</column>
-			<column column="PersonEmailAddressAssoc.EmailAddressID" description="Contact 4 Email Adresses">Contact4.13_Contact_4_Email_Adresses</column>
+			<column column="person.firstname" description="Contact 4 Email Adresses">Contact4.13_Contact_4_Email_Adresses</column>
 			<column column="personaddress.street" description="Contact 4 Home Street">Contact4.14_Contact_4_Home_Street</column>
 			<column column="personaddress.city" description="Contact 4 Home City">Contact4.15_Contact_4_Home_City</column>
 			<column column="codeset.code" description="Contact 4 Home State">Contact4.16_Contact_4_Home_State</column>
@@ -614,7 +614,7 @@
 			<column column="person.firstname" description="Contact 5 First Last">Contact5.10_Contact_5_First_Last</column>
 			<column column="codeset.code" description="Contact 5 Gender">Contact5.11_Contact_5_Gender</column>
 			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 5 Phone Numbers">Contact5.12_Contact_5_Phone_Numbers</column>
-			<column column="PersonEmailAddressAssoc.EmailAddressID" description="Contact 5 Email Adresses">Contact5.13_Contact_5_Email_Adresses</column>
+			<column column="person.firstname" description="Contact 5 Email Adresses">Contact5.13_Contact_5_Email_Adresses</column>
 			<column column="personaddress.street" description="Contact 5 Home Street">Contact5.14_Contact_5_Home_Street</column>
 			<column column="personaddress.city" description="Contact 5 Home City">Contact5.15_Contact_5_Home_City</column>
 			<column column="codeset.code" description="Contact 5 Home State">Contact5.16_Contact_5_Home_State</column>
@@ -646,7 +646,7 @@
 			<column column="person.firstname" description="Contact 6 First Last">Contact6.10_Contact_6_First_Last</column>
 			<column column="codeset.code" description="Contact 6 Gender">Contact6.11_Contact_6_Gender</column>
 			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 6 Phone Numbers">Contact6.12_Contact_6_Phone_Numbers</column>
-			<column column="PersonEmailAddressAssoc.EmailAddressID" description="Contact 6 Email Adresses">Contact6.13_Contact_6_Email_Adresses</column>
+			<column column="person.firstname" description="Contact 6 Email Adresses">Contact6.13_Contact_6_Email_Adresses</column>
 			<column column="personaddress.street" description="Contact 6 Home Street">Contact6.14_Contact_6_Home_Street</column>
 			<column column="personaddress.city" description="Contact 6 Home City">Contact6.15_Contact_6_Home_City</column>
 			<column column="codeset.code" description="Contact 6 Home State">Contact6.16_Contact_6_Home_State</column>
