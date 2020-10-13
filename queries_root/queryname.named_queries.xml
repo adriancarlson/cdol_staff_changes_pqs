@@ -509,101 +509,248 @@
 		</columns>
 		<sql>
 			<![CDATA[
-						SELECT 
-							A.STATE_STUDENTNUMBER AS "State_Number(UUID)",
-							SCF.PrevStudentID as Old_SMS_Number,
-							A.STUDENT_NUMBER,
-							A.FIRST_NAME,
-							A.MIDDLE_NAME,
-							A.LAST_NAME ,
-							A.LASTFIRST AS LastFirst,
-							AD.STUDENT_PREFERRED_NAME,
-							CASE WHEN A.GENDER= 'M' THEN 'Male' WHEN A.GENDER = 'F' THEN 'Female' ELSE '' End AS Gender,
-							to_char(a.dob,'MM/DD/YYYY') AS Birthday,
-							A.GRADE_LEVEL,
-							A.HOME_ROOM,
-							A.CLASSOF,
-							CASE WHEN A.FEDETHNICITY = 1 THEN 'Hispanic / Latino' WHEN A.FEDETHNICITY = 0 THEN 'Not Hispanic / Latino' ELSE ' ' END AS "Fed_Ethnicity",
-						(SELECT LISTAGG (RACECD, ', ') WITHIN GROUP (ORDER BY RACECD)
-								FROM STUDENTRACE A2
-								WHERE A2.STUDENTID = A.ID) as "RACE",
-							G.name as "District of Residence",
-							CASE WHEN SCF.FAMILY_REP= 1 THEN 'YES' WHEN SCF.FAMILY_REP=0 THEN 'NO' END AS Family_rep,
-							A.MAILING_STREET,
-							A.MAILING_CITY,
-							A.MAILING_STATE,
-							A.MAILING_ZIP,
-							A.STREET as Physical_Street,
-							A.CITY as Physical_City,
-							A.STATE as Physical_State,
-							A.ZIP as Physical_Zip,
-							A.HOME_PHONE,
-							AD.LOCKER_LOCATION,
-							A.LOCKER_NUMBER,
-							A.LOCKER_COMBINATION,
-							CASE WHEN NCEA.TITLEI_TF= 1 THEN 'Yes' WHEN NCEA.TITLEI_TF= 0 THEN 'No' ELSE '' END AS Title_1,
-							CASE WHEN NCEA.DIAGNOSEDDISABILITY_TF= 1 THEN 'Yes' WHEN NCEA.DIAGNOSEDDISABILITY_TF= 0 THEN 'No' ELSE '' END AS Disability,
-							CASE WHEN NCEA.UNGRADED_TF= 1 THEN 'Yes' WHEN NCEA.UNGRADED_TF= 0 THEN 'No' ELSE '' END AS Ungraded,
-							NCEA.FEDERALNUTRITION AS "Free_Reduced",
-							CASE WHEN NCEA.SUBSIDIZEDTRANS_TF= 1 THEN 'Yes' WHEN NCEA.SUBSIDIZEDTRANS_TF= 0 THEN 'No' ELSE '' END AS Sub_Transport,
-							CASE WHEN NCEA.RELIGIOUSAFFILIATION= 'C' THEN 'Catholic' WHEN NCEA.RELIGIOUSAFFILIATION= 'N' THEN 'Non-Catholic'ELSE '' END AS Religion,
-							SAC.STUDENT_PARISH,
-							SAC.STUDENT_PARISH_CITY,
-							SAC.STUDENT_PARISH_STATE,
-							to_char(SAC.STUDENT_BAPTISM_DATE,'MM/DD/YYYY')as "Baptism_Date",
-							SAC.STUDENT_BAPTISM_PARISH,
-							SAC.STUDENT_BAPTISM_CITY,
-							SAC.STUDENT_BAPTISM_STATE,
-							to_char(SAC.STUDENT_CONFESSION_DATE,'MM/DD/YYYY')as "Confession_Date",
-							SAC.STUDENT_CONFESSION_PARISH,
-							SAC.STUDENT_CONFESSION_CITY,
-							SAC.STUDENT_CONFESSION_STATE,
-							to_char(SAC.STUDENT_COMMUNION_DATE,'MM/DD/YYYY')as "Communion_Date",
-							SAC.STUDENT_COMMUNION_PARISH,
-							SAC.STUDENT_COMMUNION_CITY,
-							SAC.STUDENT_COMMUNION_STATE,
-							to_char(SAC.STUDENT_CONFIRMATION_DATE,'MM/DD/YYYY')as "Confirmation_Date",
-							SAC.STUDENT_CONFIRMATION_PARISH,
-							SAC.STUDENT_CONFIRMATION_CITY,
-							SAC.STUDENT_CONFIRMATION_STATE,
-							A.DOCTOR_NAME,
-							A.DOCTOR_PHONE,
-							SCF.Dentist_Name,
-							SCF.dentist_phone,
-							A.ALERT_MEDICAL AS Medical_Alert,
-							SCF.ALLERGIES AS Allergies,
-							A.ALERT_DISCIPLINE AS Discipline_Alert,
-							A.ALERT_OTHER as Other_Alert,
-							CASE WHEN A.LDAPENABLED= 1 THEN 'Yes' WHEN A.LDAPENABLED= 0 THEN 'No' ELSE '' END AS LDAP_Enabled,
-							CASE WHEN A.STUDENT_ALLOWWEBACCESS= 1 THEN 'Yes' WHEN A.STUDENT_ALLOWWEBACCESS= 0 THEN 'No' ELSE '' END AS Student_Web_Access,
-							A.STUDENT_WEB_ID AS Student_Username,
-							CASE WHEN A.ALLOWWEBACCESS= 1 THEN 'Yes' WHEN A.ALLOWWEBACCESS= 0 THEN 'No' ELSE '' END AS Parent_Web_Access,
-							A.WEB_ID AS Parent_Access_ID,                            
-							SCF.SINGLEPARENTHSHLDFLAG AS "Single Parent Household",
-							nxtsch.NAME as Next_school,
-							B.NAME as school
-						FROM  STUDENTS A
-						INNER JOIN SCHOOLS B
-							ON B.SCHOOL_NUMBER = A.SCHOOLID
-						Left JOIN SCHOOLS nxtsch
-							ON nxtsch.SCHOOL_NUMBER = A.Next_School
-						INNER JOIN FTE Z
-							ON Z.ID = A.FTEID
-						LEFT JOIN U_STUDENT_SACRAMENTAL SAC
-							ON SAC.STUDENTSDCID = A.DCID
-						LEFT JOIN U_STUDENT_ADDITIONAL_INFO AD
-							ON AD.STUDENTSDCID = A.DCID
-						INNER JOIN StudentCoreFields SCF
-							ON SCF.STUDENTSDCID =A.DCID
-						LEFT JOIN S_STU_NCEA_X NCEA
-							ON NCEA.STUDENTSDCID =A.DCID
-						LEFT JOIN Gen G
-							ON G.value = A.DistrictOfResidence AND G.cat = 'districts'
-						
-						WHERE
-							A.enroll_status in (-1,0)
-						ORDER BY 
-							A.lastfirst
+					WITH HA AS (
+						SELECT	
+							p.id, 
+							pa.street Home_Street,
+							pa.city Home_City,
+							scs.code Home_State,
+							pa.postalcode Home_Zip			
+						FROM 
+							person p	
+							LEFT OUTER JOIN personaddressassoc paa ON (p.id = paa.personid)
+							LEFT OUTER JOIN personaddress pa ON (paa.personAddressID = pa.personAddressID)
+							JOIN codeset cs ON (paa.AddressTypeCodeSetID = cs.CodeSetID)
+							LEFT JOIN codeset scs	ON (pa.statescodesetid = scs.codesetid)
+							WHERE  cs.code = 'Home'
+							and paa.enddate is null
+					), MA AS (
+						SELECT	
+							p.id, 
+							pa.street Mailing_Street,
+							pa.city Mailing_City,
+							scs.code Mailing_State,
+							pa.postalcode Mailing_Zip			
+						FROM 
+							person p	
+							LEFT OUTER JOIN personaddressassoc paa ON (p.id = paa.personid)
+							LEFT OUTER JOIN personaddress pa ON (paa.personAddressID = pa.personAddressID)
+							JOIN codeset cs ON (paa.AddressTypeCodeSetID = cs.CodeSetID)
+							LEFT JOIN codeset scs	ON (pa.statescodesetid = scs.codesetid)
+							WHERE  cs.code = 'Mailing'
+							and paa.enddate is null
+					),
+					pcontact as (
+						SELECT DISTINCT
+							s.dcid,
+							sch.abbreviation school,
+							s.student_number,
+							s.lastfirst,
+							s.grade_level,
+							s.home_room, 
+							p.id contactid,
+							sca.contactpriorityorder as pcontactorder,
+							precs.code Prefix,
+							p.firstname, 
+							p.middlename,
+							p.lastname,
+							CASE 
+								WHEN p.firstname IS NULL AND p.lastname IS NULL 
+								THEN '-No Name-' 
+								ELSE p.firstname||' '||p.lastname 
+							END ContactFirstLast,
+							sufcs.code Suffix,
+							sca.contactpriorityorder, 
+							cs.code Relationship, 
+							gcs.displayvalue Gender,
+							p.employer, 
+							Decode(p.isActive, 1, 'Active', 'Inactive') isactive,
+							u.person_status,
+							u.PERSON_MAIDEN_NAME,
+							(
+								SELECT LISTAGG(
+												Nvl(ppa.phonenumberasentered,'') || '  ' || Nvl(cs.code,''), '  '
+												) 
+										WITHIN GROUP (ORDER BY po.phoneorder)
+								FROM (
+										SELECT 
+											LEVEL AS phoneorder 
+										FROM 
+											DUAL CONNECT BY LEVEL <= 3
+										) po 
+								LEFT JOIN personphonenumberassoc ppa 
+								ON (po.phoneorder = ppa.phonenumberpriorityorder  AND ppa.personid = p.id)  
+								LEFT JOIN codeset cs 
+								ON (ppa.PhoneTypeCodeSetID = cs.CodeSetID)
+							) AS Contact_Phone_Numbers,
+							(
+								SELECT 
+									LISTAGG(emailaddress, ' | ') WITHIN GROUP(ORDER BY emailaddresspriorityorder) Email_Addresses
+								FROM PersonEmailAddressAssoc pea
+								INNER JOIN EmailAddress	ea 
+								ON (pea.EmailAddressID = ea.EmailAddressID)
+								WHERE pea.personid = p.id
+								GROUP BY personid
+							)  AS Email_Addresses, 
+							Decode(gs.studentsdcid, NULL, 'No', 'Yes') dataaccess,
+							DECODE(scd.iscustodial, 1, 'Yes','No') iscustodial,
+							DECODE(scd.liveswithflg, 1, 'Yes','No') liveswithflg,
+							DECODE(scd.receivesmailflg, 1, 'Yes','No') receivesmailflg,
+							DECODE(scd.isemergency, 1, 'Yes','No') isemergency,
+							DECODE(scd.schoolpickupflg, 1, 'Yes','No') schoolpickupflg,
+							u.person_religion,
+							u.person_parish,
+							u.person_parish_city, 
+							u.person_parish_state,
+							g.guardianid,
+							PCAS.USERNAME,
+							PCASE.emailaddress
+							FROM Students s            
+							JOIN schools sch ON (s.schoolid = sch.school_number)
+							LEFT JOIN studentcontactassoc sca ON (s.dcid = sca.studentdcid)
+							LEFT JOIN studentcontactdetail scd  ON (sca.studentcontactassocid = scd.studentcontactassocid)
+							LEFT JOIN person p	ON  (sca.personid = p.ID)
+							LEFT JOIN codeset cs	ON (cs.codesetid = scd.relationshiptypecodesetid)
+							LEFT JOIN codeset precs	ON (precs.codesetid = p.PREFIXCODESETID)
+							LEFT JOIN codeset sufcs	ON (sufcs.codesetid = p.SUFFIXCODESETID)
+							LEFT JOIN codeset gcs	ON (gcs.codesetid = p.GENDERCODESETID)
+							LEFT JOIN guardianpersonassoc gp ON (p.id = gp.personid)
+							LEFT JOIN GUARDIAN g ON (gp.guardianid = g.guardianid)
+							LEFT JOIN PCAS_ACCOUNT pcas on (g.ACCOUNTIDENTIFIER = pcas.PCAS_ACCOUNTTOKEN)
+							LEFT JOIN PCAS_EMAILCONTACT PCASE ON (pcas.PCAS_ACCOUNTID = pcase.PCAS_ACCOUNTID)
+							LEFT JOIN guardianstudent gs ON (s.dcid = gs.studentsdcid AND gp.guardianid = gs.guardianid)
+							LEFT JOIN U_PERSON_ADDITIONAL_INFO U	ON  (p.ID = u.personid)
+							WHERE s.enroll_status in (-1,0)
+							ORDER BY s.lastfirst, sca.contactpriorityorder 
+					)
+					SELECT 
+						A.STATE_STUDENTNUMBER AS "State_Number(UUID)",
+						SCF.PrevStudentID as Old_SMS_Number,
+						A.STUDENT_NUMBER,
+						A.FIRST_NAME,
+						A.MIDDLE_NAME,
+						A.LAST_NAME ,
+						A.LASTFIRST AS LastFirst,
+						AD.STUDENT_PREFERRED_NAME,
+						CASE WHEN A.GENDER= 'M' THEN 'Male' WHEN A.GENDER = 'F' THEN 'Female' ELSE '' End AS Gender,
+						to_char(a.dob,'MM/DD/YYYY') AS Birthday,
+						A.GRADE_LEVEL,
+						A.HOME_ROOM,
+						A.CLASSOF,
+						CASE WHEN A.FEDETHNICITY = 1 THEN 'Hispanic / Latino' WHEN A.FEDETHNICITY = 0 THEN 'Not Hispanic / Latino' ELSE ' ' END AS "Fed_Ethnicity",
+					(SELECT LISTAGG (RACECD, ', ') WITHIN GROUP (ORDER BY RACECD)
+							FROM STUDENTRACE A2
+							WHERE A2.STUDENTID = A.ID) as "RACE",
+						G.name as "District of Residence",
+						CASE WHEN SCF.FAMILY_REP= 1 THEN 'YES' WHEN SCF.FAMILY_REP=0 THEN 'NO' END AS Family_rep,
+						A.MAILING_STREET,
+						A.MAILING_CITY,
+						A.MAILING_STATE,
+						A.MAILING_ZIP,
+						A.STREET as Physical_Street,
+						A.CITY as Physical_City,
+						A.STATE as Physical_State,
+						A.ZIP as Physical_Zip,
+						A.HOME_PHONE,
+						AD.LOCKER_LOCATION,
+						A.LOCKER_NUMBER,
+						A.LOCKER_COMBINATION,
+						CASE WHEN NCEA.TITLEI_TF= 1 THEN 'Yes' WHEN NCEA.TITLEI_TF= 0 THEN 'No' ELSE '' END AS Title_1,
+						CASE WHEN NCEA.DIAGNOSEDDISABILITY_TF= 1 THEN 'Yes' WHEN NCEA.DIAGNOSEDDISABILITY_TF= 0 THEN 'No' ELSE '' END AS Disability,
+						CASE WHEN NCEA.UNGRADED_TF= 1 THEN 'Yes' WHEN NCEA.UNGRADED_TF= 0 THEN 'No' ELSE '' END AS Ungraded,
+						NCEA.FEDERALNUTRITION AS "Free_Reduced",
+						CASE WHEN NCEA.SUBSIDIZEDTRANS_TF= 1 THEN 'Yes' WHEN NCEA.SUBSIDIZEDTRANS_TF= 0 THEN 'No' ELSE '' END AS Sub_Transport,
+						CASE WHEN NCEA.RELIGIOUSAFFILIATION= 'C' THEN 'Catholic' WHEN NCEA.RELIGIOUSAFFILIATION= 'N' THEN 'Non-Catholic'ELSE '' END AS Religion,
+						SAC.STUDENT_PARISH,
+						SAC.STUDENT_PARISH_CITY,
+						SAC.STUDENT_PARISH_STATE,
+						to_char(SAC.STUDENT_BAPTISM_DATE,'MM/DD/YYYY')as "Baptism_Date",
+						SAC.STUDENT_BAPTISM_PARISH,
+						SAC.STUDENT_BAPTISM_CITY,
+						SAC.STUDENT_BAPTISM_STATE,
+						to_char(SAC.STUDENT_CONFESSION_DATE,'MM/DD/YYYY')as "Confession_Date",
+						SAC.STUDENT_CONFESSION_PARISH,
+						SAC.STUDENT_CONFESSION_CITY,
+						SAC.STUDENT_CONFESSION_STATE,
+						to_char(SAC.STUDENT_COMMUNION_DATE,'MM/DD/YYYY')as "Communion_Date",
+						SAC.STUDENT_COMMUNION_PARISH,
+						SAC.STUDENT_COMMUNION_CITY,
+						SAC.STUDENT_COMMUNION_STATE,
+						to_char(SAC.STUDENT_CONFIRMATION_DATE,'MM/DD/YYYY')as "Confirmation_Date",
+						SAC.STUDENT_CONFIRMATION_PARISH,
+						SAC.STUDENT_CONFIRMATION_CITY,
+						SAC.STUDENT_CONFIRMATION_STATE,
+						A.DOCTOR_NAME,
+						A.DOCTOR_PHONE,
+						SCF.Dentist_Name,
+						SCF.dentist_phone,
+						A.ALERT_MEDICAL AS Medical_Alert,
+						SCF.ALLERGIES AS Allergies,
+						A.ALERT_DISCIPLINE AS Discipline_Alert,
+						A.ALERT_OTHER as Other_Alert,
+						CASE WHEN A.LDAPENABLED= 1 THEN 'Yes' WHEN A.LDAPENABLED= 0 THEN 'No' ELSE '' END AS LDAP_Enabled,
+						CASE WHEN A.STUDENT_ALLOWWEBACCESS= 1 THEN 'Yes' WHEN A.STUDENT_ALLOWWEBACCESS= 0 THEN 'No' ELSE '' END AS Student_Web_Access,
+						A.STUDENT_WEB_ID AS Student_Username,
+						CASE WHEN A.ALLOWWEBACCESS= 1 THEN 'Yes' WHEN A.ALLOWWEBACCESS= 0 THEN 'No' ELSE '' END AS Parent_Web_Access,
+						A.WEB_ID AS Parent_Access_ID,                            
+						SCF.SINGLEPARENTHSHLDFLAG AS "Single Parent Household",
+						C1.ISACTIVE as Contact_1_is_Active,
+						C1.person_status as Contact_1_Living_or_Deceased,
+						C1.RELATIONSHIP as Contact_1_Relationship,
+						C1.prefix as Contact_1_Prefix,
+						C1.firstname as Contact_1_First_Name,
+						C1.middlename as Contact_1_Middle_Name,
+						C1.lastname as Contact_1_Last_Name,
+						C1.PERSON_MAIDEN_NAME as Contact_1_Maiden_Name,
+						C1.suffix as Contact_1_Suffix,
+						C1.ContactFirstLast as Contact_1_First_Last,
+						C1.Gender as Contact_1_Gender,    
+						C1.CONTACT_PHONE_NUMBERS as Contact_1_Phone_numbers,
+						C1.EMAIL_ADDRESSES as Contact_1_Email_Adresses,
+						C1HA.Home_Street as Contact_1_Home_Street,
+						C1HA.Home_City as Contact_1_Home_City,
+						C1HA.Home_State as Contact_1_Home_State, 
+						C1HA.Home_zip as Contact_1_Home_Zip,
+						nvl(C1MA.Mailing_Street,C1HA.Home_Street) as Contact_1_Mailing_Street ,
+						nvl(C1MA.Mailing_City,C1HA.Home_City) as Contact_1_Mailing_City,
+						nvl(C1MA.Mailing_State,C1HA.Home_State)as Contact_1_Mailing_State,
+						nvl(C1MA.Mailing_Zip,C1HA.Home_zip) as Contact_1_Mailing_Zip,
+						C1.ISCUSTODIAL as Contact_1_Has_Custody,
+						C1.LIVESWITHFLG as Contact_1_Lives_With,
+						C1.RECEIVESMAILFLG as Contact_1_Recieves_Mail,
+						C1.ISEMERGENCY as Contact_1_Emergency_Contact,
+						C1.SCHOOLPICKUPFLG as Contact_1_School_Pickup,
+						C1.DATAACCESS as Contact_1_Parent_Portal_Account,
+						C1.username as Contact_1_Parent_Portal_Username,
+						C1.emailaddress as Contact_1_Parent_Portal_Email_Address,
+						C1.Employer as Contact_1_Employer, 
+						C1.person_religion as Contact_1_Religion, 
+						C1.person_parish as Contact_1_Parish, 
+						C1.Person_parish_city as Contact_1_Parish_City, 
+						C1.person_parish_state as Contact_1_Parish_State,
+						nxtsch.NAME as Next_school,
+						B.NAME as school
+					FROM  STUDENTS A
+					INNER JOIN SCHOOLS B
+						ON B.SCHOOL_NUMBER = A.SCHOOLID
+					Left JOIN SCHOOLS nxtsch
+						ON nxtsch.SCHOOL_NUMBER = A.Next_School
+					INNER JOIN FTE Z
+						ON Z.ID = A.FTEID
+					LEFT JOIN U_STUDENT_SACRAMENTAL SAC
+						ON SAC.STUDENTSDCID = A.DCID
+					LEFT JOIN U_STUDENT_ADDITIONAL_INFO AD
+						ON AD.STUDENTSDCID = A.DCID
+					INNER JOIN StudentCoreFields SCF
+						ON SCF.STUDENTSDCID =A.DCID
+					LEFT JOIN S_STU_NCEA_X NCEA
+						ON NCEA.STUDENTSDCID =A.DCID
+					LEFT JOIN Gen G
+						ON G.value = A.DistrictOfResidence AND G.cat = 'districts'
+					WHERE
+						A.enroll_status in (-1,0)
+					ORDER BY 
+						A.lastfirst
         ]]>
 		</sql>
 	</query>
