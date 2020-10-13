@@ -477,6 +477,120 @@
 		</columns>
 		<sql>
 			<![CDATA[
+					WITH HA AS (
+						SELECT	
+							p.id, 
+							pa.street Home_Street,
+							pa.city Home_City,
+							scs.code Home_State,
+							pa.postalcode Home_Zip			
+						FROM 
+							person p	
+							LEFT OUTER JOIN personaddressassoc paa ON (p.id = paa.personid)
+							LEFT OUTER JOIN personaddress pa ON (paa.personAddressID = pa.personAddressID)
+							JOIN codeset cs ON (paa.AddressTypeCodeSetID = cs.CodeSetID)
+							LEFT JOIN codeset scs	ON (pa.statescodesetid = scs.codesetid)
+							WHERE  cs.code = 'Home'
+							and paa.enddate is null
+						), MA AS (
+						SELECT	
+							p.id, 
+							pa.street Mailing_Street,
+							pa.city Mailing_City,
+							scs.code Mailing_State,
+							pa.postalcode Mailing_Zip			
+						FROM 
+							person p	
+							LEFT OUTER JOIN personaddressassoc paa ON (p.id = paa.personid)
+							LEFT OUTER JOIN personaddress pa ON (paa.personAddressID = pa.personAddressID)
+							JOIN codeset cs ON (paa.AddressTypeCodeSetID = cs.CodeSetID)
+							LEFT JOIN codeset scs	ON (pa.statescodesetid = scs.codesetid)
+							WHERE  cs.code = 'Mailing'
+							and paa.enddate is null
+						),
+						pcontact as (
+						SELECT DISTINCT
+							s.dcid,
+							sch.abbreviation school,
+							s.student_number,
+							s.lastfirst,
+							s.grade_level,
+							s.home_room, 
+							p.id contactid,
+							sca.contactpriorityorder as pcontactorder,
+							precs.code Prefix,
+							p.firstname, 
+							p.middlename,
+							p.lastname,
+							CASE 
+								WHEN p.firstname IS NULL AND p.lastname IS NULL 
+								THEN '-No Name-' 
+								ELSE p.firstname||' '||p.lastname 
+							END ContactFirstLast,
+							sufcs.code Suffix,
+							sca.contactpriorityorder, 
+							cs.code Relationship, 
+							gcs.displayvalue Gender,
+							p.employer, 
+							Decode(p.isActive, 1, 'Active', 'Inactive') isactive,
+							u.person_status,
+							u.PERSON_MAIDEN_NAME,
+							(
+								SELECT LISTAGG(
+												Nvl(ppa.phonenumberasentered,'') || '  ' || Nvl(cs.code,''), '  '
+												) 
+										WITHIN GROUP (ORDER BY po.phoneorder)
+								FROM (
+										SELECT 
+											LEVEL AS phoneorder 
+										FROM 
+											DUAL CONNECT BY LEVEL <= 3
+										) po 
+								LEFT JOIN personphonenumberassoc ppa 
+								ON (po.phoneorder = ppa.phonenumberpriorityorder  AND ppa.personid = p.id)  
+								LEFT JOIN codeset cs 
+								ON (ppa.PhoneTypeCodeSetID = cs.CodeSetID)
+							) AS Contact_Phone_Numbers,
+							(
+								SELECT 
+									LISTAGG(emailaddress, ' | ') WITHIN GROUP(ORDER BY emailaddresspriorityorder) Email_Addresses
+								FROM PersonEmailAddressAssoc pea
+								INNER JOIN EmailAddress	ea 
+								ON (pea.EmailAddressID = ea.EmailAddressID)
+								WHERE pea.personid = p.id
+								GROUP BY personid
+							)  AS Email_Addresses, 
+							Decode(gs.studentsdcid, NULL, 'No', 'Yes') dataaccess,
+							DECODE(scd.iscustodial, 1, 'Yes','No') iscustodial,
+							DECODE(scd.liveswithflg, 1, 'Yes','No') liveswithflg,
+							DECODE(scd.receivesmailflg, 1, 'Yes','No') receivesmailflg,
+							DECODE(scd.isemergency, 1, 'Yes','No') isemergency,
+							DECODE(scd.schoolpickupflg, 1, 'Yes','No') schoolpickupflg,
+							u.person_religion,
+							u.person_parish,
+							u.person_parish_city, 
+							u.person_parish_state,
+							g.guardianid,
+							PCAS.USERNAME,
+							PCASE.emailaddress
+							FROM Students s            
+							JOIN schools sch ON (s.schoolid = sch.school_number)
+							LEFT JOIN studentcontactassoc sca ON (s.dcid = sca.studentdcid)
+							LEFT JOIN studentcontactdetail scd  ON (sca.studentcontactassocid = scd.studentcontactassocid)
+							LEFT JOIN person p	ON  (sca.personid = p.ID)
+							LEFT JOIN codeset cs	ON (cs.codesetid = scd.relationshiptypecodesetid)
+							LEFT JOIN codeset precs	ON (precs.codesetid = p.PREFIXCODESETID)
+							LEFT JOIN codeset sufcs	ON (sufcs.codesetid = p.SUFFIXCODESETID)
+							LEFT JOIN codeset gcs	ON (gcs.codesetid = p.GENDERCODESETID)
+							LEFT JOIN guardianpersonassoc gp ON (p.id = gp.personid)
+							LEFT JOIN GUARDIAN g ON (gp.guardianid = g.guardianid)
+							LEFT JOIN PCAS_ACCOUNT pcas on (g.ACCOUNTIDENTIFIER = pcas.PCAS_ACCOUNTTOKEN)
+							LEFT JOIN PCAS_EMAILCONTACT PCASE ON (pcas.PCAS_ACCOUNTID = pcase.PCAS_ACCOUNTID)
+							LEFT JOIN guardianstudent gs ON (s.dcid = gs.studentsdcid AND gp.guardianid = gs.guardianid)
+							LEFT JOIN U_PERSON_ADDITIONAL_INFO U	ON  (p.ID = u.personid)
+							WHERE s.enroll_status in (-1,0)
+							ORDER BY s.lastfirst, sca.contactpriorityorder 
+						)
 						SELECT 
 							A.STATE_STUDENTNUMBER AS "State_Number(UUID)",
 							SCF.PrevStudentID as Old_SMS_Number,
@@ -567,6 +681,42 @@
 							ON NCEA.STUDENTSDCID =A.DCID
 						LEFT JOIN Gen G
 							ON G.value = A.DistrictOfResidence AND G.cat = 'districts'
+						LEFT JOIN pcontact  C1
+							ON (C1.DCID = A.DCID AND C1.pcontactorder =1)
+						LEFT JOIN HA C1HA
+							ON (C1.contactid = C1HA.id)
+						LEFT JOIN MA C1MA
+							ON (C1.contactid = C1MA.id)
+						LEFT JOIN  pcontact C2
+							ON (C2.DCID = A.DCID AND C2.pcontactorder =2)
+						LEFT JOIN HA C2HA
+							ON (C2.contactid = C2HA.id)
+						LEFT JOIN MA C2MA
+							ON (C2.contactid = C2MA.id)
+						LEFT JOIN  pcontact C3
+							ON (C3.DCID = A.DCID AND C3.pcontactorder =3)
+						LEFT JOIN HA C3HA
+							ON (C3.contactid = C3HA.id)
+						LEFT JOIN MA C3MA
+							ON (C3.contactid = C3MA.id)
+						LEFT JOIN  pcontact C4
+							ON (C4.DCID = A.DCID AND C4.pcontactorder =4)
+						LEFT JOIN HA C4HA
+							ON (C4.contactid = C4HA.id)
+						LEFT JOIN MA C4MA
+							ON (C4.contactid = C4MA.id)
+						LEFT JOIN  pcontact C5
+							ON (C5.DCID = A.DCID AND C5.pcontactorder =5)
+						LEFT JOIN HA C5HA
+							ON (C5.contactid = C5HA.id)
+						LEFT JOIN MA C5MA
+							ON (C5.contactid = C5MA.id)
+						LEFT JOIN  pcontact C6
+							ON (C6.DCID = A.DCID AND C6.pcontactorder =6)
+						LEFT JOIN HA C6HA
+							ON (C6.contactid = C6HA.id)
+						LEFT JOIN MA C6MA
+							ON (C6.contactid = C6MA.id)
 						WHERE
 							A.enroll_status in (-1,0)
 						ORDER BY 
