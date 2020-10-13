@@ -872,41 +872,41 @@
 							ON NCEA.STUDENTSDCID =A.DCID
 						LEFT JOIN Gen G
 							ON G.value = A.DistrictOfResidence AND G.cat = 'districts'
-						LEFT JOIN pcontact  C1
+						LEFT JOIN (select * from pcontact)  C1
 							ON (C1.DCID = A.DCID AND C1.pcontactorder =1)
-						LEFT JOIN HA C1HA
+						LEFT JOIN (select* from HA) C1HA
 							ON (C1.contactid = C1HA.id)
-						LEFT JOIN MA C1MA
+						LEFT JOIN (select* from MA) C1MA
 							ON (C1.contactid = C1MA.id)
-						LEFT JOIN  pcontact C2
+						LEFT JOIN  (select * from pcontact) C2
 							ON (C2.DCID = A.DCID AND C2.pcontactorder =2)
-						LEFT JOIN HA C2HA
+						LEFT JOIN (select* from HA) C2HA
 							ON (C2.contactid = C2HA.id)
-						LEFT JOIN MA C2MA
+						LEFT JOIN (select* from MA) C2MA
 							ON (C2.contactid = C2MA.id)
-						LEFT JOIN  pcontact C3
+						LEFT JOIN  (select * from pcontact) C3
 							ON (C3.DCID = A.DCID AND C3.pcontactorder =3)
-						LEFT JOIN HA C3HA
+						LEFT JOIN (select* from HA) C3HA
 							ON (C3.contactid = C3HA.id)
-						LEFT JOIN MA C3MA
+						LEFT JOIN (select* from MA) C3MA
 							ON (C3.contactid = C3MA.id)
-						LEFT JOIN  pcontact C4
+						LEFT JOIN  (select * from pcontact) C4
 							ON (C4.DCID = A.DCID AND C4.pcontactorder =4)
-						LEFT JOIN HA C4HA
+						LEFT JOIN (select* from HA) C4HA
 							ON (C4.contactid = C4HA.id)
-						LEFT JOIN MA C4MA
+						LEFT JOIN (select* from MA) C4MA
 							ON (C4.contactid = C4MA.id)
-						LEFT JOIN  pcontact C5
+						LEFT JOIN  (select * from pcontact) C5
 							ON (C5.DCID = A.DCID AND C5.pcontactorder =5)
-						LEFT JOIN HA C5HA
+						LEFT JOIN (select* from HA) C5HA
 							ON (C5.contactid = C5HA.id)
-						LEFT JOIN MA C5MA
+						LEFT JOIN (select* from MA) C5MA
 							ON (C5.contactid = C5MA.id)
-						LEFT JOIN  pcontact C6
+						LEFT JOIN  (select * from pcontact)  C6
 							ON (C6.DCID = A.DCID AND C6.pcontactorder =6)
-						LEFT JOIN HA C6HA
+						LEFT JOIN (select* from HA) C6HA
 							ON (C6.contactid = C6HA.id)
-						LEFT JOIN MA C6MA
+						LEFT JOIN (select* from MA) C6MA
 							ON (C6.contactid = C6MA.id)
 						WHERE
 							A.enroll_status in (-1,0)
