@@ -415,9 +415,9 @@
 			<column column="students.GENDER" description="Gender">students.09_Gender</column>
 			<column column="students.dob" description="DoB">students.10_DoB</column>
 			<column column="students.GRADE_LEVEL" description="Grade">students.11_Grade_Level</column>
-			<column column="students.HOME_ROOM" description="Home Room">students.12_Home Room</column>
+			<column column="students.HOME_ROOM" description="Home Room">students.12_Home_Room</column>
 			<column column="students.CLASSOF" description="Class Of">students.13_Class_of</column>
-			<column column="students.FEDETHNICITY" description="Ethnicity">students.14 Ethnicity</column>
+			<column column="students.FEDETHNICITY" description="Ethnicity">students.14_Ethnicity</column>
 			<column column="STUDENTRACE.RACECD" description="Race">students.15_race</column>
 			<column column="Gen.name" description="District of Residence">students.16_District_of_Residence</column>
 			<column column="StudentCoreFields.FAMILY_REP" description="Family Rep">students.17_Family_Rep</column>
