@@ -763,10 +763,7 @@
 							u.person_religion,
 							u.person_parish,
 							u.person_parish_city, 
-							u.person_parish_state,
-							g.guardianid,
-							PCAS.USERNAME,
-							PCASE.emailaddress
+							u.person_parish_state
 							FROM Students s            
 							JOIN schools sch ON (s.schoolid = sch.school_number)
 							LEFT JOIN studentcontactassoc sca ON (s.dcid = sca.studentdcid)
@@ -778,8 +775,6 @@
 							LEFT JOIN codeset gcs	ON (gcs.codesetid = p.GENDERCODESETID)
 							LEFT JOIN guardianpersonassoc gp ON (p.id = gp.personid)
 							LEFT JOIN GUARDIAN g ON (gp.guardianid = g.guardianid)
-							LEFT JOIN PCAS_ACCOUNT pcas on (g.ACCOUNTIDENTIFIER = pcas.PCAS_ACCOUNTTOKEN)
-							LEFT JOIN PCAS_EMAILCONTACT PCASE ON (pcas.PCAS_ACCOUNTID = pcase.PCAS_ACCOUNTID)
 							LEFT JOIN guardianstudent gs ON (s.dcid = gs.studentsdcid AND gp.guardianid = gs.guardianid)
 							LEFT JOIN U_PERSON_ADDITIONAL_INFO U	ON  (p.ID = u.personid)
 							WHERE s.enroll_status = 0
