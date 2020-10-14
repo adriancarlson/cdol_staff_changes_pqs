@@ -403,6 +403,9 @@
 <query name="net.cdolinc.allDemoData.students.demographics" flattened="true">
 		<summary>CDOL: All Demo Data</summary>
 		<description>List all demographic data for students and their first 6 contacts</description>
+		<args>
+			<arg name="curSchoolID" column="students.schoolid" required="true" description="Current School ID" default="~(curschoolid)" />
+		</args>
 		<columns>
 			<column column="students.STATE_STUDENTNUMBER" description="State Number">students.01_State_Number</column>
 			<column column="StudentCoreFields.PrevStudentID" description="Old SMS Number">students.02_Old_SMS_Number</column>
@@ -1102,6 +1105,8 @@
 							ON (C6.contactid = C6MA.id)
 						WHERE
 							A.enroll_status in (-1,0)
+						AND
+							a.schoolid = :curSchoolID
 						ORDER BY 
 							A.lastfirst
         ]]>
