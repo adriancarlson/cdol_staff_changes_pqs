@@ -689,6 +689,7 @@
 							LEFT JOIN codeset scs	ON (pa.statescodesetid = scs.codesetid)
 							WHERE  cs.code = 'Home'
 							and paa.enddate is null
+							fetch first 1 rows only
 						), MA AS (
 						SELECT	
 							p.id, 
@@ -704,6 +705,7 @@
 							LEFT JOIN codeset scs	ON (pa.statescodesetid = scs.codesetid)
 							WHERE  cs.code = 'Mailing'
 							and paa.enddate is null
+							fetch first 1 rows only
 						),
 						pcontact as (
 						SELECT DISTINCT
@@ -781,7 +783,8 @@
 							LEFT JOIN guardianstudent gs ON (s.dcid = gs.studentsdcid AND gp.guardianid = gs.guardianid)
 							LEFT JOIN U_PERSON_ADDITIONAL_INFO U	ON  (p.ID = u.personid)
 							WHERE s.enroll_status = 0
-							ORDER BY s.lastfirst, sca.contactpriorityorder 
+							and cs.codesetid != 32
+							ORDER BY s.lastfirst, sca.contactpriorityorder
 						)
 						SELECT 
 							A.STATE_STUDENTNUMBER AS "State_Number(UUID)",
@@ -1104,9 +1107,11 @@
 						LEFT JOIN (select* from MA) C6MA
 							ON (C6.contactid = C6MA.id)
 						WHERE
-							A.enroll_status in (-1,0)
+							A.enroll_status = 0
 						AND
-							a.schoolid = :curSchoolID
+							(a.schoolid = :curSchoolID
+								or 
+								:curSchoolID = 0)
 						ORDER BY 
 							A.lastfirst
         ]]>

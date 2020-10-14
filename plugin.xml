@@ -3,7 +3,7 @@
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd"
 name="CDOL Rest API"
-version="20.10.1.0"
+version="20.10.1.1"
 description="CDOL PowerSchool REST API inherited from Sean McCleery">
 	<oauth></oauth>
 		<access_request>
