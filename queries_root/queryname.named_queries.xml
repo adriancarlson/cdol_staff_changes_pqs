@@ -689,6 +689,7 @@
 							LEFT JOIN codeset scs	ON (pa.statescodesetid = scs.codesetid)
 							WHERE  cs.code = 'Home'
 							and paa.enddate is null
+							fetch first 1 rows only
 						), MA AS (
 						SELECT	
 							p.id, 
@@ -704,6 +705,7 @@
 							LEFT JOIN codeset scs	ON (pa.statescodesetid = scs.codesetid)
 							WHERE  cs.code = 'Mailing'
 							and paa.enddate is null
+							fetch first 1 rows only
 						),
 						pcontact as (
 						SELECT DISTINCT
