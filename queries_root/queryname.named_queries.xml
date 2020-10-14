@@ -405,6 +405,7 @@
 		<description>List all demographic data for students and their first 6 contacts</description>
 		<args>
 			<arg name="curSchoolID" column="students.schoolid" required="true" description="Current School ID" default="~(curschoolid)" />
+			<arg name="enrollStatus" column="students.enroll_status" required="true" description="student enroll status" default="0" />
 		</args>
 		<columns>
 			<column column="students.STATE_STUDENTNUMBER" description="State Number">students.01_State_Number</column>
@@ -796,7 +797,7 @@
 							LEFT JOIN GUARDIAN g ON (gp.guardianid = g.guardianid)
 							LEFT JOIN guardianstudent gs ON (s.dcid = gs.studentsdcid AND gp.guardianid = gs.guardianid)
 							LEFT JOIN U_PERSON_ADDITIONAL_INFO U	ON  (p.ID = u.personid)
-							WHERE s.enroll_status = 0
+							WHERE s.enroll_status in (:enrollStatus)
                             and cs.codesetid != 32
 							ORDER BY s.lastfirst, sca.contactpriorityorder 
 						)
@@ -1119,7 +1120,7 @@
 						LEFT JOIN (select* from MA) C6MA
 							ON (C6.contactid = C6MA.id)
 						WHERE
-							A.enroll_status = 0
+							A.enroll_status in (:enrollStatus)
 						AND
 							(a.schoolid = :curSchoolID
 								or 
