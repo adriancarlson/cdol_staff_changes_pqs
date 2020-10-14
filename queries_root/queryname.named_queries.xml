@@ -675,41 +675,41 @@
 		<sql>
 			<![CDATA[
 					WITH HA AS (
-						SELECT * 
-							FROM (
-									SELECT 
-										p.id, 
-										pa.street Home_Street,
-										pa.city Home_City,
-										scs.code Home_State,
-										pa.postalcode Home_Zip,
-										ROW_NUMBER() OVER (
-															PARTITION BY p.id
-															ORDER BY paa.personaddressassocid ASC
-														) AS RowNumber
-									FROM 
-										person p	
-										LEFT OUTER JOIN personaddressassoc paa ON (p.id = paa.personid)
-										LEFT OUTER JOIN personaddress pa ON (paa.personAddressID = pa.personAddressID)
-										JOIN codeset cs ON (paa.AddressTypeCodeSetID = cs.CodeSetID)
-										LEFT JOIN codeset scs	ON (pa.statescodesetid = scs.codesetid)
-										WHERE  cs.code = 'Home'
-										and paa.enddate is null
-									)
-							WHERE RowNumber =1
-						), MA AS (
-							SELECT * 
+            SELECT * 
+                FROM (
+						SELECT 
+							p.id, 
+							pa.street Home_Street,
+							pa.city Home_City,
+							scs.code Home_State,
+							pa.postalcode Home_Zip,
+                            ROW_NUMBER() OVER (
+                                                PARTITION BY p.id
+                                                ORDER BY paa.personaddressassocid ASC
+                                            ) AS RowNumber
+						FROM 
+							person p	
+							LEFT OUTER JOIN personaddressassoc paa ON (p.id = paa.personid)
+							LEFT OUTER JOIN personaddress pa ON (paa.personAddressID = pa.personAddressID)
+							JOIN codeset cs ON (paa.AddressTypeCodeSetID = cs.CodeSetID)
+							LEFT JOIN codeset scs	ON (pa.statescodesetid = scs.codesetid)
+							WHERE  cs.code = 'Home'
+							and paa.enddate is null
+						)
+                    WHERE RowNumber =1
+                        ), MA AS (
+                        SELECT * 
 								FROM (
-										SELECT	
+										SELECT 
 											p.id, 
 											pa.street Mailing_Street,
 											pa.city Mailing_City,
 											scs.code Mailing_State,
 											pa.postalcode Mailing_Zip,
 											ROW_NUMBER() OVER (
-															PARTITION BY p.id
-															ORDER BY paa.personaddressassocid ASC
-														) AS RowNumber			
+																PARTITION BY p.id
+																ORDER BY paa.personaddressassocid ASC
+															) AS RowNumber
 										FROM 
 											person p	
 											LEFT OUTER JOIN personaddressassoc paa ON (p.id = paa.personid)
@@ -718,9 +718,9 @@
 											LEFT JOIN codeset scs	ON (pa.statescodesetid = scs.codesetid)
 											WHERE  cs.code = 'Mailing'
 											and paa.enddate is null
-									)
-							WHERE RowNumber =1		
-						),
+										)
+									WHERE RowNumber =1
+                        ),
 						pcontact as (
 						SELECT DISTINCT
 							s.dcid,
@@ -797,10 +797,10 @@
 							LEFT JOIN guardianstudent gs ON (s.dcid = gs.studentsdcid AND gp.guardianid = gs.guardianid)
 							LEFT JOIN U_PERSON_ADDITIONAL_INFO U	ON  (p.ID = u.personid)
 							WHERE s.enroll_status = 0
-							and cs.codesetid != 32
-							ORDER BY s.lastfirst, sca.contactpriorityorder
+                            and cs.codesetid != 32
+							ORDER BY s.lastfirst, sca.contactpriorityorder 
 						)
-						SELECT 
+						SELECT
 							A.STATE_STUDENTNUMBER AS "State_Number(UUID)",
 							SCF.PrevStudentID as Old_SMS_Number,
 							A.STUDENT_NUMBER,
@@ -1068,12 +1068,10 @@
 							nxtsch.NAME as Next_school,
 							B.NAME as school
 						FROM  STUDENTS A
-						INNER JOIN SCHOOLS B
+						LEFT JOIN SCHOOLS B
 							ON B.SCHOOL_NUMBER = A.SCHOOLID
-						Left JOIN SCHOOLS nxtsch
+						LEFT JOIN SCHOOLS nxtsch
 							ON nxtsch.SCHOOL_NUMBER = A.Next_School
-						INNER JOIN FTE Z
-							ON Z.ID = A.FTEID
 						LEFT JOIN U_STUDENT_SACRAMENTAL SAC
 							ON SAC.STUDENTSDCID = A.DCID
 						LEFT JOIN U_STUDENT_ADDITIONAL_INFO AD
@@ -1123,11 +1121,9 @@
 						WHERE
 							A.enroll_status = 0
 						AND
-							(
-								a.schoolid = :curSchoolID
-								OR
-								:curSchoolID = 0
-							)
+							(a.schoolid = :curSchoolID
+								or 
+							:curSchoolID = 0)
 						ORDER BY 
 							A.lastfirst
         ]]>
