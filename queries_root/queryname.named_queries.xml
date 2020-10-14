@@ -405,7 +405,7 @@
 		<description>List all demographic data for students and their first 6 contacts</description>
 		<args>
 			<arg name="curSchoolID" column="students.schoolid" required="true" description="Current School ID" default="~(curschoolid)" />
-			<arg name="enrollStatus" column="students.enroll_status" required="true" description="student enroll status" default="0" />
+			<arg name="enrollStatus" column="students.LASTFIRST" required="true" description="student enroll status" default="0" />
 		</args>
 		<columns>
 			<column column="students.STATE_STUDENTNUMBER" description="State Number">students.01_State_Number</column>
