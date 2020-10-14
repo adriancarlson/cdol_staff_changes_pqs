@@ -675,35 +675,51 @@
 		<sql>
 			<![CDATA[
 					WITH HA AS (
-						SELECT	
-							p.id, 
-							pa.street Home_Street,
-							pa.city Home_City,
-							scs.code Home_State,
-							pa.postalcode Home_Zip			
-						FROM 
-							person p	
-							LEFT OUTER JOIN personaddressassoc paa ON (p.id = paa.personid)
-							LEFT OUTER JOIN personaddress pa ON (paa.personAddressID = pa.personAddressID)
-							JOIN codeset cs ON (paa.AddressTypeCodeSetID = cs.CodeSetID)
-							LEFT JOIN codeset scs	ON (pa.statescodesetid = scs.codesetid)
-							WHERE  cs.code = 'Home'
-							and paa.enddate is null
+						SELECT * 
+							FROM (
+									SELECT 
+										p.id, 
+										pa.street Home_Street,
+										pa.city Home_City,
+										scs.code Home_State,
+										pa.postalcode Home_Zip,
+										ROW_NUMBER() OVER (
+															PARTITION BY p.id
+															ORDER BY paa.personaddressassocid ASC
+														) AS RowNumber
+									FROM 
+										person p	
+										LEFT OUTER JOIN personaddressassoc paa ON (p.id = paa.personid)
+										LEFT OUTER JOIN personaddress pa ON (paa.personAddressID = pa.personAddressID)
+										JOIN codeset cs ON (paa.AddressTypeCodeSetID = cs.CodeSetID)
+										LEFT JOIN codeset scs	ON (pa.statescodesetid = scs.codesetid)
+										WHERE  cs.code = 'Home'
+										and paa.enddate is null
+									)
+							WHERE RowNumber =1
 						), MA AS (
-						SELECT	
-							p.id, 
-							pa.street Mailing_Street,
-							pa.city Mailing_City,
-							scs.code Mailing_State,
-							pa.postalcode Mailing_Zip			
-						FROM 
-							person p	
-							LEFT OUTER JOIN personaddressassoc paa ON (p.id = paa.personid)
-							LEFT OUTER JOIN personaddress pa ON (paa.personAddressID = pa.personAddressID)
-							JOIN codeset cs ON (paa.AddressTypeCodeSetID = cs.CodeSetID)
-							LEFT JOIN codeset scs	ON (pa.statescodesetid = scs.codesetid)
-							WHERE  cs.code = 'Mailing'
-							and paa.enddate is null
+							SELECT * 
+								FROM (
+										SELECT	
+											p.id, 
+											pa.street Mailing_Street,
+											pa.city Mailing_City,
+											scs.code Mailing_State,
+											pa.postalcode Mailing_Zip,
+											ROW_NUMBER() OVER (
+															PARTITION BY p.id
+															ORDER BY paa.personaddressassocid ASC
+														) AS RowNumber			
+										FROM 
+											person p	
+											LEFT OUTER JOIN personaddressassoc paa ON (p.id = paa.personid)
+											LEFT OUTER JOIN personaddress pa ON (paa.personAddressID = pa.personAddressID)
+											JOIN codeset cs ON (paa.AddressTypeCodeSetID = cs.CodeSetID)
+											LEFT JOIN codeset scs	ON (pa.statescodesetid = scs.codesetid)
+											WHERE  cs.code = 'Mailing'
+											and paa.enddate is null
+									)
+							WHERE RowNumber =1		
 						),
 						pcontact as (
 						SELECT DISTINCT
