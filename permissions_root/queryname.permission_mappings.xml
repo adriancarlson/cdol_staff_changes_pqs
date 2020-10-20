@@ -23,7 +23,7 @@
 	<permission name="/admin/contacts/edit.html">
 		<implies allow="post">/ws/schema/query/net.cdolinc.cdolsm.contactsstudentdetail.schoolsmessenger</implies>
 	</permission>
-	<permission name='/admin/contacts/edit.html'>
+	<permission name='/admin/students/contacts.html'>
 			<implies allow="post">/ws/schema/table/U_STUDENTCONTACTDETAIL_CDOL</implies>
 			<implies allow="put">/ws/schema/table/U_STUDENTCONTACTDETAIL_CDOL/#</implies>
 			<implies allow="delete">/ws/schema/table/U_STUDENTCONTACTDETAIL_CDOL/#</implies>
