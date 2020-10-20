@@ -404,8 +404,8 @@
 	<summary>CDOL: School Messenger Contact Flag Update</summary>
 	<description>PowerQuery to identify contacts that need the SchoolMessgener flag</description>
 	<columns>
-		<column column="U_STUDENTCONTACTDETAIL_CDOL.StudentCSTUDENTCONTACTDETAILID">StudentCSTUDENTCONTACTDETAILID</column>
-		<column column="U_STUDENTCONTACTDETAIL_CDOL.schoolmessengerflg">schoolmessengerflg</column>
+		<column column="STUDENTCONTACTDETAIL.STUDENTCONTACTDETAILID">StudentCSTUDENTCONTACTDETAILID</column>
+		<column column="STUDENTCONTACTDETAIL.STUDENTCONTACTDETAILID">schoolmessengerflg</column>
 	</columns>
 	<sql>
 		<![CDATA[
@@ -431,7 +431,7 @@
     ORDER BY STUDENTCONTACTASSOC.STUDENTDCID,STUDENTCONTACTASSOC.CONTACTPRIORITYORDER
 )
 SELECT
-CNTCOUNT.STUDENTCONTACTDETAILID as StudentCSTUDENTCONTACTDETAILID,
+CNTCOUNT.STUDENTCONTACTDETAILID,
 1 as schoolmessengerflg
 FROM STUDENTS
 INNER JOIN SCHOOLS
