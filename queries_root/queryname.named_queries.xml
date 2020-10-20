@@ -400,7 +400,7 @@
 		]]>
 	</sql>
 </query>
-<query name="net.cdolinc.cdolsm.contactsstudentdetail.schoolsmessenger" flattened="true">
+<query name="net.cdolinc.cdolsm.contactsstudentdetail.schoolmessenger" flattened="true">
 	<summary>CDOL: School Messenger Contact Flag Update</summary>
 	<description>PowerQuery to identify contacts that need the SchoolMessgener flag</description>
 	<columns>
