@@ -405,7 +405,7 @@
 	<description>PowerQuery to identify contacts that need the SchoolMessgener flag</description>
 	<columns>
 		<column column="U_STUDENTCONTACTDETAIL_CDOL.STUDENTCSTUDENTCONTACTDETAILID">STUDENTCSTUDENTCONTACTDETAILID</column>
-		<column column="U_STUDENTCONTACTDETAIL_CDOL.STUDENTCONTACTDETAILID">SCHOOLMESSENGERFLG</column>
+		<column column="U_STUDENTCONTACTDETAIL_CDOL.SCHOOLMESSENGERFLG">SCHOOLMESSENGERFLG</column>
 	</columns>
 	<sql>
 		<![CDATA[
