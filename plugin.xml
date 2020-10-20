@@ -3,7 +3,7 @@
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd"
 name="CDOL Rest API"
-version="20.10.2.7"
+version="20.10.2.8"
 description="CDOL PowerSchool REST API inherited from Sean McCleery">
 	<oauth></oauth>
 		<access_request>
@@ -123,6 +123,8 @@ description="CDOL PowerSchool REST API inherited from Sean McCleery">
 			<field table="U_PERSON_ADDITIONAL_INFO" field="PERSON_PARISH_STATE" access="FullAccess" />
 			<field table="U_PERSON_ADDITIONAL_INFO" field="PERSON_RELIGION" access="FullAccess" />
 			<field table="U_PERSON_ADDITIONAL_INFO" field="PERSON_STATUS" access="FullAccess" />
+			<field table="U_STUDENTCONTACTDETAIL_CDOL" field="StudentCSTUDENTCONTACTDETAILID" access="FullAccess" />
+			<field table="U_STUDENTCONTACTDETAIL_CDOL" field="schoolmessengerflg" access="FullAccess" />
 		</access_request>
 <publisher name="Adrian Carlson">
 <contact email="adrian-carlson@cdolinc.net" />
