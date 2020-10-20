@@ -409,145 +409,45 @@
 	</columns>
 	<sql>
 		<![CDATA[
-			WITH CNT as (
-						SELECT 
-							STD_CONTACT_ASSOC_1.STUDENTCONTACTDETAILID, 
-							STD_CONTACT_ASSOC_1.STUDENTDCID, 
-							CONTACT_1.PERSONDCID, 
-							CONTACT_1.HOME_PHONE, 
-							CONTACT_1.MOBILE_PHONE, 
-							CONTACT_1.EMAILADDRESS
-						FROM
-							(
-								SELECT 
-									STUDENTCONTACTASSOC.STUDENTDCID, 
-									PERSON.DCID PERSONDCID, 
-									STUDENTCONTACTDETAIL.STUDENTCONTACTDETAILID, 
-									ROW_NUMBER() OVER(PARTITION BY STUDENTDCID ORDER BY STUDENTDCID) as STU_CNT_INDEX
-								FROM PERSON
-								INNER JOIN STUDENTCONTACTASSOC
-									ON PERSON.ID = STUDENTCONTACTASSOC.PERSONID
-								INNER JOIN STUDENTCONTACTDETAIL
-									ON STUDENTCONTACTASSOC.STUDENTCONTACTASSOCID = STUDENTCONTACTDETAIL.STUDENTCONTACTASSOCID
-								LEFT JOIN OriginalContactMap
-									ON STUDENTCONTACTASSOC.STUDENTCONTACTASSOCID = OriginalContactMap.STUDENTCONTACTASSOCID
-								WHERE STUDENTCONTACTDETAIL.ISCUSTODIAL = 1 OR STUDENTCONTACTDETAIL.LIVESWITHFLG = 1
-								OR OriginalContactMap.ORIGINALCONTACTTYPE IN ('mother','father','guardian')
-								OR studentcontactdetail.relationshiptypecodesetid IN (18200, --StepFather
-																						18201, --StepMother
-																						18202, --Host Parent
-																						18203, --Foster Parent
-																						26, --Father
-																						30 --Mother
-																						)
-								ORDER BY STUDENTCONTACTASSOC.STUDENTDCID,STUDENTCONTACTASSOC.CONTACTPRIORITYORDER 
-							) STD_CONTACT_ASSOC_1
-                        INNER JOIN
-								(
-									SELECT 
-										PERSON.DCID PERSONDCID, 
-										PERSON.ID PERSONID, 
-										HOME_PHONE.PhoneNumber as HOME_PHONE,
-										MOBILE_PHONE.PhoneNumber as MOBILE_PHONE, 
-										SINGLE_EMAIL.EMAILADDRESS
-									FROM PERSON
-									LEFT JOIN
-											(
-											SELECT 
-												PERSON.DCID,
-												PERSON.ID, 
-												PhoneNumber.PhoneNumber
-											FROM PERSON
-												INNER JOIN PersonPhoneNumberAssoc
-													ON PERSON.ID = PersonPhoneNumberAssoc.PersonID
-												INNER JOIN PhoneNumber
-													ON PersonPhoneNumberAssoc.PhoneNumberID = PhoneNumber.PhoneNumberID
-												INNER JOIN (
-													SELECT PERSON.DCID, PERSONID,
-													min(PersonPhoneNumberAssoc.PhoneNumberPriorityOrder) minPhoneNumberPriorityOrder
-													FROM PERSON
-													INNER JOIN PersonPhoneNumberAssoc
-														ON PERSON.ID = PersonPhoneNumberAssoc.PersonID
-													INNER JOIN PhoneNumber
-														ON PersonPhoneNumberAssoc.PhoneNumberID = PhoneNumber.PhoneNumberID
-													WHERE PersonPhoneNumberAssoc.PhoneTypeCodeSetID = 13
-													GROUP BY PERSON.DCID, PERSONID
-												) SINGLE_MOBILE_NUMBER
-												ON PERSON.DCID = SINGLE_MOBILE_NUMBER.DCID
-												AND SINGLE_MOBILE_NUMBER.minPhoneNumberPriorityOrder = PersonPhoneNumberAssoc.PhoneNumberPriorityOrder
-												AND PersonPhoneNumberAssoc.PhoneTypeCodeSetID = 13
-												) MOBILE_PHONE
-										ON PERSON.DCID = MOBILE_PHONE.DCID
-									LEFT JOIN
-											(
-											SELECT 
-												PERSON.DCID, 
-												PERSON.ID, 
-												PhoneNumber.PhoneNumber
-											FROM PERSON
-												INNER JOIN PersonPhoneNumberAssoc
-													ON PERSON.ID = PersonPhoneNumberAssoc.PersonID
-												INNER JOIN PhoneNumber
-													ON PersonPhoneNumberAssoc.PhoneNumberID = PhoneNumber.PhoneNumberID
-												INNER JOIN (
-													SELECT PERSON.DCID, PERSONID,
-													min(PersonPhoneNumberAssoc.PhoneNumberPriorityOrder) minPhoneNumberPriorityOrder
-													FROM PERSON
-													INNER JOIN PersonPhoneNumberAssoc
-														ON PERSON.ID = PersonPhoneNumberAssoc.PersonID
-													INNER JOIN PhoneNumber
-														ON PersonPhoneNumberAssoc.PhoneNumberID = PhoneNumber.PhoneNumberID
-													WHERE PersonPhoneNumberAssoc.PhoneTypeCodeSetID = 12
-													GROUP BY PERSON.DCID, PERSONID
-												) SINGLE_HOME_NUMBER
-												ON PERSON.DCID = SINGLE_HOME_NUMBER.DCID
-												AND SINGLE_HOME_NUMBER.minPhoneNumberPriorityOrder = PersonPhoneNumberAssoc.PhoneNumberPriorityOrder
-												AND PersonPhoneNumberAssoc.PhoneTypeCodeSetID = 12
-											) HOME_PHONE
-										ON PERSON.DCID = HOME_PHONE.DCID
-									LEFT JOIN 
-										( 
-											SELECT 
-											PERSON.DCID, 
-											PERSON.ID, 
-											EMAILADDRESS.EMAILADDRESS
-										FROM PERSON
-										INNER JOIN PERSONEMAILADDRESSASSOC
-											ON PERSON.ID = PERSONEMAILADDRESSASSOC.PERSONID
-										INNER JOIN EMAILADDRESS
-											ON PERSONEMAILADDRESSASSOC.EMAILADDRESSID = EMAILADDRESS.EMAILADDRESSID
-										INNER JOIN (SELECT PERSON.DCID, PERSONID, min(PERSONEMAILADDRESSASSOC.EMAILADDRESSPRIORITYORDER) EMAILPRIORITYORDER
-										FROM PERSON
-										INNER JOIN PERSONEMAILADDRESSASSOC
-											ON PERSON.ID = PERSONEMAILADDRESSASSOC.PERSONID
-										INNER JOIN EMAILADDRESS
-											ON PERSONEMAILADDRESSASSOC.EMAILADDRESSID = EMAILADDRESS.EMAILADDRESSID
-										GROUP BY PERSON.DCID, PERSONID) EMAIL
-										ON PERSON.DCID = EMAIL.DCID
-										AND EMAIL.EMAILPRIORITYORDER = PERSONEMAILADDRESSASSOC.EMAILADDRESSPRIORITYORDER) SINGLE_EMAIL
-										ON PERSON.DCID = SINGLE_EMAIL.DCID
-									) CONTACT_1
-                                    ON STD_CONTACT_ASSOC_1.PERSONDCID = CONTACT_1.PERSONDCID
-                                    AND STD_CONTACT_ASSOC_1.STU_CNT_INDEX <= 4
-                                    )
-			SELECT
-				CNT.STUDENTCONTACTDETAILID as "U_STUDENTCONTACTDETAIL_CDOL.StudentCSTUDENTCONTACTDETAILID",
-				1 as "U_STUDENTCONTACTDETAIL_CDOL.schoolmessengerflg"
-			FROM STUDENTS
-			INNER JOIN SCHOOLS
-				ON STUDENTS.SCHOOLID = SCHOOLS.SCHOOL_NUMBER
-			LEFT JOIN (select* from CNT) CNT 
-				ON (CNT.STUDENTDCID = STUDENTS.DCID)
-			LEFT JOIN U_STUDENT_ADDITIONAL_INFO
-				ON U_STUDENT_ADDITIONAL_INFO.STUDENTSDCID = STUDENTS.DCID
-			WHERE 
-				SCHOOLS.ABBREVIATION IN ('BNHO','CCEL','JHEB','JHEL','JHEY','JNEP','JNEW','LSEN','LSHN','MLEL','MYEL','PKEL','WSEO','JNEL','PKEM','VDES','PXHL','JSEC','AQHD','MYED','PREL','SHEL','BSCL')
-			AND 
-				(STUDENTS.ENROLL_STATUS = 0 OR STUDENTS.ENROLL_STATUS = -1)
-			AND 
-				CNT.STUDENTCONTACTDETAILID IS NOT NULL
-			ORDER BY 
-				CNT.STUDENTCONTACTDETAILID
+			WITH CNTCOUNT AS(
+SELECT 
+    STUDENTCONTACTASSOC.STUDENTDCID, 
+    PERSON.DCID PERSONDCID, 
+    STUDENTCONTACTDETAIL.STUDENTCONTACTDETAILID, 
+    ROW_NUMBER() OVER(PARTITION BY STUDENTDCID ORDER BY STUDENTDCID) as STU_CNT_INDEX
+FROM PERSON
+INNER JOIN STUDENTCONTACTASSOC
+    ON PERSON.ID = STUDENTCONTACTASSOC.PERSONID
+INNER JOIN STUDENTCONTACTDETAIL
+    ON STUDENTCONTACTASSOC.STUDENTCONTACTASSOCID = STUDENTCONTACTDETAIL.STUDENTCONTACTASSOCID
+LEFT JOIN OriginalContactMap
+    ON STUDENTCONTACTASSOC.STUDENTCONTACTASSOCID = OriginalContactMap.STUDENTCONTACTASSOCID
+WHERE STUDENTCONTACTDETAIL.ISCUSTODIAL = 1 OR STUDENTCONTACTDETAIL.LIVESWITHFLG = 1
+OR OriginalContactMap.ORIGINALCONTACTTYPE IN ('mother','father','guardian')
+OR studentcontactdetail.relationshiptypecodesetid IN (18200, --StepFather
+                                                        18201, --StepMother
+                                                        18202, --Host Parent
+                                                        18203, --Foster Parent
+                                                        26, --Father
+                                                        30 --Mother
+                                                        )
+ORDER BY STUDENTCONTACTASSOC.STUDENTDCID,STUDENTCONTACTASSOC.CONTACTPRIORITYORDER
+)
+SELECT
+CNTCOUNT.STUDENTCONTACTDETAILID as "U_STUDENTCONTACTDETAIL_CDOL.StudentCSTUDENTCONTACTDETAILID",
+1 as "U_STUDENTCONTACTDETAIL_CDOL.schoolmessengerflg"
+FROM STUDENTS
+INNER JOIN SCHOOLS
+  ON STUDENTS.SCHOOLID = SCHOOLS.SCHOOL_NUMBER
+LEFT JOIN (select* from CNTCOUNT) CNTCOUNT
+    ON (CNTCOUNT.STUDENTDCID = STUDENTS.DCID
+        AND CNTCOUNT.STU_CNT_INDEX <= 4)
+LEFT JOIN U_STUDENT_ADDITIONAL_INFO
+  ON U_STUDENT_ADDITIONAL_INFO.STUDENTSDCID = STUDENTS.DCID
+WHERE SCHOOLS.ABBREVIATION IN ('BNHO','CCEL','JHEB','JHEL','JHEY','JNEP','JNEW','LSEN','LSHN','MLEL','MYEL','PKEL','WSEO','JNEL','PKEM','VDES','PXHL','JSEC','AQHD','MYED','PREL','SHEL','BSCL')
+  AND (STUDENTS.ENROLL_STATUS = 0 OR STUDENTS.ENROLL_STATUS = -1)
+  AND CNTCOUNT.STUDENTCONTACTDETAILID IS NOT NULL
+ORDER BY CNTCOUNT.STUDENTCONTACTDETAILID
 		]]>
 	</sql>
 </query>
