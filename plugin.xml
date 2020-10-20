@@ -3,7 +3,7 @@
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd"
 name="CDOL Rest API"
-version="20.10.2.16"
+version="20.10.2.17"
 description="CDOL PowerSchool REST API inherited from Sean McCleery">
 	<oauth></oauth>
 		<access_request>
@@ -29,6 +29,7 @@ description="CDOL PowerSchool REST API inherited from Sean McCleery">
 			<field table="GUARDIANSTUDENT" field="STUDENTSDCID" access="FullAccess" />
 			<field table="ORIGINALCONTACTMAP" field="ORIGINALCONTACTTYPE" access="FullAccess" />
 			<field table="ORIGINALCONTACTMAP" field="STUDENTCONTACTASSOCID" access="FullAccess" />
+			<field table="PERSON" field="DCID" access="FullAccess" />
 			<field table="PERSON" field="EMPLOYER" access="FullAccess" />
 			<field table="PERSON" field="EXCLUDEFROMSTATEREPORTING" access="FullAccess" />
 			<field table="PERSON" field="FIRSTNAME" access="FullAccess" />
@@ -123,6 +124,7 @@ description="CDOL PowerSchool REST API inherited from Sean McCleery">
 			<field table="U_PERSON_ADDITIONAL_INFO" field="PERSON_PARISH_STATE" access="FullAccess" />
 			<field table="U_PERSON_ADDITIONAL_INFO" field="PERSON_RELIGION" access="FullAccess" />
 			<field table="U_PERSON_ADDITIONAL_INFO" field="PERSON_STATUS" access="FullAccess" />
+			<field table="U_STUDENT_ADDITIONAL_INFO" field="STUDENTSDCID" access="FullAccess" />
 			<field table="U_STUDENTCONTACTDETAIL_CDOL" field="STUDENTCSTUDENTCONTACTDETAILID" access="FullAccess" />
 			<field table="U_STUDENTCONTACTDETAIL_CDOL" field="SCHOOLMESSENGERFLG" access="FullAccess" />
 		</access_request>
