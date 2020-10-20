@@ -400,54 +400,92 @@
 		]]>
 	</sql>
 </query>
-<query name="net.cdolinc.cdolsm.contactsstudentdetail.schoolmessenger" flattened="true">
-	<summary>CDOL: School Messenger Contact Flag Update</summary>
-	<description>PowerQuery to identify contacts that need the SchoolMessgener flag</description>
-	<columns>
-		<column column="STUDENTCONTACTDETAIL.STUDENTCONTACTDETAILID">STUDENTCSTUDENTCONTACTDETAILID</column>
-		<column column="STUDENTCONTACTDETAIL.STUDENTCONTACTDETAILID">SCHOOLMESSENGERFLG</column>
-	</columns>
-	<sql>
-		<![CDATA[
-			WITH CNTCOUNT AS(
-    SELECT 
-        STUDENTCONTACTASSOC.STUDENTDCID, 
-        PERSON.DCID PERSONDCID, 
-        STUDENTCONTACTDETAIL.STUDENTCONTACTDETAILID, 
-        ROW_NUMBER() OVER(PARTITION BY STUDENTCONTACTASSOC.STUDENTDCID ORDER BY STUDENTCONTACTASSOC.STUDENTDCID) as STU_CNT_INDEX
-    FROM PERSON
-    INNER JOIN STUDENTCONTACTASSOC
-        ON PERSON.ID = STUDENTCONTACTASSOC.PERSONID
-    INNER JOIN STUDENTCONTACTDETAIL
-        ON STUDENTCONTACTASSOC.STUDENTCONTACTASSOCID = STUDENTCONTACTDETAIL.STUDENTCONTACTASSOCID
-    WHERE STUDENTCONTACTDETAIL.ISCUSTODIAL = 1 OR STUDENTCONTACTDETAIL.LIVESWITHFLG = 1
-    OR studentcontactdetail.relationshiptypecodesetid IN (18200, --StepFather
-                                                            18201, --StepMother
-                                                            18202, --Host Parent
-                                                            18203, --Foster Parent
-                                                            26, --Father
-                                                            30 --Mother
-                                                            )
-    ORDER BY STUDENTCONTACTASSOC.STUDENTDCID,STUDENTCONTACTASSOC.CONTACTPRIORITYORDER
-)
-SELECT
-CNTCOUNT.STUDENTCONTACTDETAILID,
-1 as schoolmessengerflg
-FROM STUDENTS
-INNER JOIN SCHOOLS
-  ON STUDENTS.SCHOOLID = SCHOOLS.SCHOOL_NUMBER
-LEFT JOIN (select* from CNTCOUNT) CNTCOUNT
-    ON (CNTCOUNT.STUDENTDCID = STUDENTS.DCID
-        AND CNTCOUNT.STU_CNT_INDEX <= 4)
-LEFT JOIN U_STUDENT_ADDITIONAL_INFO
-  ON U_STUDENT_ADDITIONAL_INFO.STUDENTSDCID = STUDENTS.DCID
-WHERE SCHOOLS.ABBREVIATION IN ('BNHO','CCEL','JHEB','JHEL','JHEY','JNEP','JNEW','LSEN','LSHN','MLEL','MYEL','PKEL','WSEO','JNEL','PKEM','VDES','PXHL','JSEC','AQHD','MYED','PREL','SHEL','BSCL')
-  AND (STUDENTS.ENROLL_STATUS = 0 OR STUDENTS.ENROLL_STATUS = -1)
-  AND CNTCOUNT.STUDENTCONTACTDETAILID IS NOT NULL
-ORDER BY CNTCOUNT.STUDENTCONTACTDETAILID
-		]]>
-	</sql>
-</query>
+<query name="net.cdolinc.contact.schoolmessenger.flat" flattened="true" tags="myPowerQuery">
+		<summary>CDOL: School Messenger Contact Flag Update - Flat</summary>
+		<description>PowerQuery to identify contacts that need the SchoolMessgener flag</description>
+		<columns>
+			<column column="PERSONPHONENUMBERASSOC.PERSONID">contactid</column>
+			<column column="PERSONPHONENUMBERASSOC.PERSONPHONENUMBERASSOCID">deleted</column>
+			<column column="PERSONPHONENUMBERASSOC.PERSONPHONENUMBERASSOCID">contactsPhoneId</column>
+			<column column="PERSONPHONENUMBERASSOC.PHONENUMBERPRIORITYORDER">sequence</column>
+			<column column="PERSONPHONENUMBERASSOC.ISPREFERRED">preferred</column>
+			<column column="PERSONPHONENUMBERASSOC.PHONETYPECODESETID">phoneType</column>
+			<column column="PERSONPHONENUMBERASSOC.PHONENUMBERID">phoneNumberId</column>
+			<column column="PERSONPHONENUMBERASSOC.PHONENUMBERASENTERED">phoneNumber</column>
+			<column column="PHONENUMBER.PHONENUMBEREXT">extension</column>
+			<column column="PHONENUMBER.ISSMS">sms</column>
+		</columns>
+		<sql>
+			<![CDATA[
+				SELECT 
+					"contactid",
+					"deleted",
+					"contactsPhoneId",
+					"sequence",
+					"preferred",
+					"phoneType",
+					"phoneNumberId",
+					"phoneNumber",
+					"extension",
+					"sms"
+				FROM
+					(
+						SELECT 
+						"contactid",
+						"deleted",
+						"contactsPhoneId",
+						"sequence",
+						"preferred",
+						"phoneType",
+						"phoneNumberId",
+						"phoneNumberAsEntered",
+						CASE
+							WHEN LENGTH(clean_phone) = 10
+							THEN SUBSTR(clean_phone, 1, 3)
+							|| '-'
+							|| SUBSTR(clean_phone, 4, 3)
+							|| '-'
+							|| SUBSTR(clean_phone, 7, 4)
+							ELSE NULL
+						END AS "phoneNumber",
+						"extension",
+						"sms"
+					FROM
+						(
+							SELECT 
+								personphonenumberassoc.PERSONID "contactid",
+								'false' AS "deleted",
+								personphonenumberassoc.PERSONPHONENUMBERASSOCID "contactsPhoneId",
+								personphonenumberassoc.PHONENUMBERPRIORITYORDER "sequence",
+								DECODE(personphonenumberassoc.ISPREFERRED, 0, 'false', 1, 'true') "preferred",
+								(
+									SELECT 
+										CODESET.CODE
+									FROM CODESET
+									WHERE CODESET.CODESETID = personphonenumberassoc.PHONETYPECODESETID
+								) "phoneType",
+								personphonenumberassoc.PHONENUMBERID "phoneNumberId",
+								personphonenumberassoc.PHONENUMBERASENTERED "phoneNumberAsEntered",
+								SUBSTR(TRANSLATE(personphonenumberassoc.PHONENUMBERASENTERED, '1234567890'
+								|| personphonenumberassoc.PHONENUMBERASENTERED, '1234567890'), 1, 10) AS clean_phone,
+								phonenumber.PHONENUMBEREXT "extension",
+								DECODE(phonenumber.ISSMS, 0, 'false', 1, 'true') "sms"
+							FROM person
+							INNER JOIN personphonenumberassoc
+								ON person.ID = personphonenumberassoc.PERSONID
+							LEFT OUTER JOIN phonenumber
+								ON personphonenumberassoc.PHONENUMBERID = phonenumber.PHONENUMBERID
+							LEFT OUTER JOIN students
+								ON person.ID         = students.PERSON_ID
+							WHERE students.DCID IS NULL
+						)
+					)
+				WHERE "phoneNumberAsEntered" != "phoneNumber"
+				AND "phoneNumberAsEntered" NOT LIKE '% x%'
+				ORDER BY "contactsPhoneId"
+			]]>
+		</sql>
+	</query>
 <query name="net.cdolinc.allDemoData.students.demographics" flattened="true">
 		<summary>CDOL: All Demo Data</summary>
 		<description>List all demographic data for students and their first 6 contacts</description>
