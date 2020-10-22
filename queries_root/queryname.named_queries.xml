@@ -404,9 +404,7 @@
 		<summary>CDOL: School Messenger Contact Flag Update</summary>
 		<description>PowerQuery to identify contacts that need the SchoolMessgener flag</description>
 		<columns>
-		<column column="students.id">client_uid</column>
 		<column column="STUDENTCONTACTDETAIL.STUDENTCONTACTDETAILID">STUDENTCSTUDENTCONTACTDETAILID</column>
-		<column column="students.enroll_status">action</column>
 		<column column="STUDENTCONTACTDETAIL.STUDENTCONTACTDETAILID">SCHOOLMESSENGERFLG</column>
 		</columns>
 		<sql>
