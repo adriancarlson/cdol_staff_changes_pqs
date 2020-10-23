@@ -633,7 +633,7 @@
 			<column column="studentcontactdetail.isemergency" description="Contact 3 Emergency Contact">Contact3.26_Contact_3_Emergency_Contact</column>
 			<column column="studentcontactdetail.schoolpickupflg" description="Contact 3 School Pickup">Contact3.27_Contact_3_School_Pickup</column>
 			<column column="studentcontactdetail.schoolpickupflg" description="Contact 3 School Messenger">Contact3.28_Contact_3_School_Messenger</column>
-			<column column="guardianstudent.studentsdcid" description="Contact 4 Parent Portal Account">Contact4.29_Contact_4_Parent_Portal_Account</column>
+			<column column="guardianstudent.studentsdcid" description="Contact 3 Parent Portal Account">Contact3.29_Contact_3_Parent_Portal_Account</column>
 			<column column="person.employer" description="Contact 3 Employer">Contact3.30_Contact_3_Employer</column>
 			<column column="person.employer" description="Contact 3 Position">Contact3.31_Contact_3_Position</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 3 Religion">Contact3.32_Contact_3_Religion</column>
