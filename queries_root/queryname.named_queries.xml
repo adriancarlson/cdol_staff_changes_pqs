@@ -701,7 +701,8 @@
 			<column column="studentcontactdetail.liveswithflg" description="Contact 5 Lives With">Contact5.24_Contact_5_Lives_With</column>
 			<column column="studentcontactdetail.receivesmailflg" description="Contact 5 Receives Mail">Contact5.25_Contact_5_Receives_Mail</column>
 			<column column="studentcontactdetail.isemergency" description="Contact 5 Emergency Contact">Contact5.26_Contact_5_Emergency_Contact</column>
-			<column column="studentcontactdetail.schoolpickupflg" description="Contact 5 School Pickup">Contact5.27_Contact_5_School_Pickup</column>Contact5.28_Contact_5_School_Messenger</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 5 School Pickup">Contact5.27_Contact_5_School_Pickup</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 5 School Messenger">Contact5.28_Contact_5_School_Messenger</column>
 			<column column="guardianstudent.studentsdcid" description="Contact 5 Parent Portal Account">Contact5.29_Contact_5_Parent_Portal_Account</column>
 			<column column="person.employer" description="Contact 5 Employer">Contact5.30_Contact_5_Employer</column>
 			<column column="person.employer" description="Contact 5 Position">Contact5.31Contact_5_Position</column>
