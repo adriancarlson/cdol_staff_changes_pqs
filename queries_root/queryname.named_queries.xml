@@ -564,6 +564,7 @@
 			<column column="studentcontactdetail.schoolpickupflg" description="Contact 1 School Pickup">Contact1.26_Contact_1_School_Pickup</column>
 			<column column="guardianstudent.studentsdcid" description="Contact 1 Parent Portal Account">Contact1.27_Contact_1_Parent_Portal_Account</column>
 			<column column="person.employer" description="Contact 1 Employer">Contact1.28_Contact_1_Employer</column>
+			<column column="person.employer" description="Contact 1 Position">Contact1.28_Contact_1_Position</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 1 Religion">Contact1.30_Contact_1_Religion</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 1 Parish">Contact1.31_Contact_1_Parish</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 1 Parish City">Contact1.32_Contact_1_Parish_City</column>
@@ -597,6 +598,7 @@
 			<column column="studentcontactdetail.schoolpickupflg" description="Contact 2 School Pickup">Contact2.26_Contact_2_School_Pickup</column>
 			<column column="guardianstudent.studentsdcid" description="Contact 2 Parent Portal Account">Contact2.27_Contact_2_Parent_Portal_Account</column>
 			<column column="person.employer" description="Contact 2 Employer">Contact2.28_Contact_2_Employer</column>
+			<column column="person.employer" description="Contact 2 Position">Contact2.28_Contact_2_Position</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 2 Religion">Contact2.30_Contact_2_Religion</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 2 Parish">Contact2.31_Contact_2_Parish</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 2 Parish City">Contact2.32_Contact_2_Parish_City</column>
@@ -630,6 +632,7 @@
 			<column column="studentcontactdetail.schoolpickupflg" description="Contact 3 School Pickup">Contact3.26_Contact_3_School_Pickup</column>
 			<column column="guardianstudent.studentsdcid" description="Contact 3 Parent Portal Account">Contact3.27_Contact_3_Parent_Portal_Account</column>
 			<column column="person.employer" description="Contact 3 Employer">Contact3.28_Contact_3_Employer</column>
+			<column column="person.employer" description="Contact 3 Position">Contact3.28_Contact_3_Position</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 3 Religion">Contact3.30_Contact_3_Religion</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 3 Parish">Contact3.31_Contact_3_Parish</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 3 Parish City">Contact3.32_Contact_3_Parish_City</column>
@@ -663,6 +666,7 @@
 			<column column="studentcontactdetail.schoolpickupflg" description="Contact 4 School Pickup">Contact4.26_Contact_4_School_Pickup</column>
 			<column column="guardianstudent.studentsdcid" description="Contact 4 Parent Portal Account">Contact4.27_Contact_4_Parent_Portal_Account</column>
 			<column column="person.employer" description="Contact 4 Employer">Contact4.28_Contact_4_Employer</column>
+			<column column="person.employer" description="Contact 4 Position">Contact4.28_Contact_4_Position</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 4 Religion">Contact4.30_Contact_4_Religion</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 4 Parish">Contact4.31_Contact_4_Parish</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 4 Parish City">Contact4.32_Contact_4_Parish_City</column>
@@ -696,6 +700,7 @@
 			<column column="studentcontactdetail.schoolpickupflg" description="Contact 5 School Pickup">Contact5.26_Contact_5_School_Pickup</column>
 			<column column="guardianstudent.studentsdcid" description="Contact 5 Parent Portal Account">Contact5.27_Contact_5_Parent_Portal_Account</column>
 			<column column="person.employer" description="Contact 5 Employer">Contact5.28_Contact_5_Employer</column>
+			<column column="person.employer" description="Contact 5 Position">Contact5.28_Contact_5_Position</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 5 Religion">Contact5.30_Contact_5_Religion</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 5 Parish">Contact5.31_Contact_5_Parish</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 5 Parish City">Contact5.32_Contact_5_Parish_City</column>
@@ -729,6 +734,7 @@
 			<column column="studentcontactdetail.schoolpickupflg" description="Contact 6 School Pickup">Contact6.26_Contact_6_School_Pickup</column>
 			<column column="guardianstudent.studentsdcid" description="Contact 6 Parent Portal Account">Contact6.27_Contact_6_Parent_Portal_Account</column>
 			<column column="person.employer" description="Contact 6 Employer">Contact6.28_Contact_6_Employer</column>
+			<column column="person.employer" description="Contact 6 Position">Contact6.28_Contact_6_Position</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 6 Religion">Contact6.30_Contact_6_Religion</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 6 Parish">Contact6.31_Contact_6_Parish</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 6 Parish City">Contact6.32_Contact_6_Parish_City</column>
@@ -809,6 +815,7 @@
 							cs.code Relationship, 
 							gcs.displayvalue Gender,
 							p.employer, 
+							u.PERSON_POSITION,
 							Decode(p.isActive, 1, 'Active', 'Inactive') isactive,
 							u.person_status,
 							u.PERSON_MAIDEN_NAME,
@@ -967,6 +974,7 @@
 							C1.SCHOOLPICKUPFLG as Contact_1_School_Pickup,
 							C1.DATAACCESS as Contact_1_Parent_Portal_Account,
 							C1.Employer as Contact_1_Employer, 
+							C1.PERSON_POSITION as Contact_1_Position,
 							C1.person_religion as Contact_1_Religion, 
 							C1.person_parish as Contact_1_Parish, 
 							C1.Person_parish_city as Contact_1_Parish_City, 
@@ -1000,6 +1008,7 @@
 							C2.SCHOOLPICKUPFLG as Contact_2_School_Pickup,
 							C2.DATAACCESS as Contact_2_Parent_Portal_Account,
 							C2.Employer as Contact_2_Employer,
+							C2.PERSON_POSITION as Contact_2_Position,
 							C2.person_religion as Contact_2_Religion, 
 							C2.person_parish as Contact_2_Parish, 
 							C2.Person_parish_city as Contact_2_Parish_City, 
@@ -1033,6 +1042,7 @@
 							C3.SCHOOLPICKUPFLG as Contact_3_School_Pickup,
 							C3.DATAACCESS as Contact_3_Parent_Portal_Account,
 							C3.Employer as Contact_3_Employer,
+							C3.PERSON_POSITION as Contact_3_Position,
 							C3.person_religion as Contact_3_Religion, 
 							C3.person_parish as Contact_3_Parish, 
 							C3.Person_parish_city as Contact_3_Parish_City, 
@@ -1066,6 +1076,7 @@
 							C4.SCHOOLPICKUPFLG as Contact_4_School_Pickup,
 							C4.DATAACCESS as Contact_4_Parent_Portal_Account,
 							C4.Employer as Contact_4_Employer, 
+							C4.PERSON_POSITION as Contact_4_Position,
 							C4.person_religion as Contact_4_Religion, 
 							C4.person_parish as Contact_4_Parish, 
 							C4.Person_parish_city as Contact_4_Parish_City, 
@@ -1099,6 +1110,7 @@
 							C5.SCHOOLPICKUPFLG as Contact_5_School_Pickup,
 							C5.DATAACCESS as Contact_5_Parent_Portal_Account,
 							C5.Employer as Contact_5_Employer, 
+							C5.PERSON_POSITION as Contact_5_Position,
 							C5.person_religion as Contact_5_Religion, 
 							C5.person_parish as Contact_5_Parish, 
 							C5.Person_parish_city as Contact_5_Parish_City, 
@@ -1132,6 +1144,7 @@
 							C6.SCHOOLPICKUPFLG as Contact_6_School_Pickup,
 							C6.DATAACCESS as Contact_6_Parent_Portal_Account,
 							C6.Employer as Contact_6_Employer,
+							C6.PERSON_POSITION as Contact_6_Position,
 							C6.person_religion as Contact_6_Religion, 
 							C6.person_parish as Contact_6_Parish, 
 							C6.Person_parish_city as Contact_6_Parish_City, 
