@@ -859,6 +859,7 @@
 							JOIN schools sch ON (s.schoolid = sch.school_number)
 							LEFT JOIN studentcontactassoc sca ON (s.dcid = sca.studentdcid)
 							LEFT JOIN studentcontactdetail scd  ON (sca.studentcontactassocid = scd.studentcontactassocid)
+							LEFT JOIN u_studentcontactdetail_cdol uscd ON scd.studentcontactdetailid = uscd.studentcstudentcontactdetailid
 							LEFT JOIN person p	ON  (sca.personid = p.ID)
 							LEFT JOIN codeset cs	ON (cs.codesetid = scd.relationshiptypecodesetid)
 							LEFT JOIN codeset precs	ON (precs.codesetid = p.PREFIXCODESETID)
