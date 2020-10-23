@@ -562,6 +562,7 @@
 			<column column="studentcontactdetail.receivesmailflg" description="Contact 1 Receives Mail">Contact1.24_Contact_1_Receives_Mail</column>
 			<column column="studentcontactdetail.isemergency" description="Contact 1 Emergency Contact">Contact1.25_Contact_1_Emergency_Contact</column>
 			<column column="studentcontactdetail.schoolpickupflg" description="Contact 1 School Pickup">Contact1.26_Contact_1_School_Pickup</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 1 School Messenger">Contact1.26_Contact_1_School_Messenger</column>
 			<column column="guardianstudent.studentsdcid" description="Contact 1 Parent Portal Account">Contact1.27_Contact_1_Parent_Portal_Account</column>
 			<column column="person.employer" description="Contact 1 Employer">Contact1.28_Contact_1_Employer</column>
 			<column column="person.employer" description="Contact 1 Position">Contact1.28_Contact_1_Position</column>
@@ -596,6 +597,7 @@
 			<column column="studentcontactdetail.receivesmailflg" description="Contact 2 Receives Mail">Contact2.24_Contact_2_Receives_Mail</column>
 			<column column="studentcontactdetail.isemergency" description="Contact 2 Emergency Contact">Contact2.25_Contact_2_Emergency_Contact</column>
 			<column column="studentcontactdetail.schoolpickupflg" description="Contact 2 School Pickup">Contact2.26_Contact_2_School_Pickup</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 2 School Messenger">Contact2.26_Contact_2_School_Messenger</column>
 			<column column="guardianstudent.studentsdcid" description="Contact 2 Parent Portal Account">Contact2.27_Contact_2_Parent_Portal_Account</column>
 			<column column="person.employer" description="Contact 2 Employer">Contact2.28_Contact_2_Employer</column>
 			<column column="person.employer" description="Contact 2 Position">Contact2.28_Contact_2_Position</column>
@@ -630,7 +632,8 @@
 			<column column="studentcontactdetail.receivesmailflg" description="Contact 3 Receives Mail">Contact3.24_Contact_3_Receives_Mail</column>
 			<column column="studentcontactdetail.isemergency" description="Contact 3 Emergency Contact">Contact3.25_Contact_3_Emergency_Contact</column>
 			<column column="studentcontactdetail.schoolpickupflg" description="Contact 3 School Pickup">Contact3.26_Contact_3_School_Pickup</column>
-			<column column="guardianstudent.studentsdcid" description="Contact 3 Parent Portal Account">Contact3.27_Contact_3_Parent_Portal_Account</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 3 School Messenger">Contact3.26_Contact_3_School_Messenger</column>
+			<column column="guardianstudent.studentsdcid" description="Contact 4 Parent Portal Account">Contact4.27_Contact_4_Parent_Portal_Account</column>
 			<column column="person.employer" description="Contact 3 Employer">Contact3.28_Contact_3_Employer</column>
 			<column column="person.employer" description="Contact 3 Position">Contact3.28_Contact_3_Position</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 3 Religion">Contact3.30_Contact_3_Religion</column>
@@ -664,6 +667,7 @@
 			<column column="studentcontactdetail.receivesmailflg" description="Contact 4 Receives Mail">Contact4.24_Contact_4_Receives_Mail</column>
 			<column column="studentcontactdetail.isemergency" description="Contact 4 Emergency Contact">Contact4.25_Contact_4_Emergency_Contact</column>
 			<column column="studentcontactdetail.schoolpickupflg" description="Contact 4 School Pickup">Contact4.26_Contact_4_School_Pickup</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 4 School Messenger">Contact4.26_Contact_4_School_Messenger</column>
 			<column column="guardianstudent.studentsdcid" description="Contact 4 Parent Portal Account">Contact4.27_Contact_4_Parent_Portal_Account</column>
 			<column column="person.employer" description="Contact 4 Employer">Contact4.28_Contact_4_Employer</column>
 			<column column="person.employer" description="Contact 4 Position">Contact4.28_Contact_4_Position</column>
@@ -698,6 +702,7 @@
 			<column column="studentcontactdetail.receivesmailflg" description="Contact 5 Receives Mail">Contact5.24_Contact_5_Receives_Mail</column>
 			<column column="studentcontactdetail.isemergency" description="Contact 5 Emergency Contact">Contact5.25_Contact_5_Emergency_Contact</column>
 			<column column="studentcontactdetail.schoolpickupflg" description="Contact 5 School Pickup">Contact5.26_Contact_5_School_Pickup</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 5 School Messenger">Contact5.26_Contact_5_School_Messenger</column>
 			<column column="guardianstudent.studentsdcid" description="Contact 5 Parent Portal Account">Contact5.27_Contact_5_Parent_Portal_Account</column>
 			<column column="person.employer" description="Contact 5 Employer">Contact5.28_Contact_5_Employer</column>
 			<column column="person.employer" description="Contact 5 Position">Contact5.28_Contact_5_Position</column>
@@ -732,6 +737,7 @@
 			<column column="studentcontactdetail.receivesmailflg" description="Contact 6 Receives Mail">Contact6.24_Contact_6_Receives_Mail</column>
 			<column column="studentcontactdetail.isemergency" description="Contact 6 Emergency Contact">Contact6.25_Contact_6_Emergency_Contact</column>
 			<column column="studentcontactdetail.schoolpickupflg" description="Contact 6 School Pickup">Contact6.26_Contact_6_School_Pickup</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 6 School Messenger">Contact6.26_Contact_6_School_Messenger</column>
 			<column column="guardianstudent.studentsdcid" description="Contact 6 Parent Portal Account">Contact6.27_Contact_6_Parent_Portal_Account</column>
 			<column column="person.employer" description="Contact 6 Employer">Contact6.28_Contact_6_Employer</column>
 			<column column="person.employer" description="Contact 6 Position">Contact6.28_Contact_6_Position</column>
@@ -851,6 +857,7 @@
 							DECODE(scd.receivesmailflg, 1, 'Yes','No') receivesmailflg,
 							DECODE(scd.isemergency, 1, 'Yes','No') isemergency,
 							DECODE(scd.schoolpickupflg, 1, 'Yes','No') schoolpickupflg,
+							DECODE(uscd.schoolmessengerflg, 1, 'Yes','No') schoolmessengerflg,
 							u.person_religion,
 							u.person_parish,
 							u.person_parish_city, 
@@ -973,6 +980,7 @@
 							C1.RECEIVESMAILFLG as Contact_1_Recieves_Mail,
 							C1.ISEMERGENCY as Contact_1_Emergency_Contact,
 							C1.SCHOOLPICKUPFLG as Contact_1_School_Pickup,
+							C1.schoolmessengerflg as Contact_1_School_Messenger,
 							C1.DATAACCESS as Contact_1_Parent_Portal_Account,
 							C1.Employer as Contact_1_Employer, 
 							C1.PERSON_POSITION as Contact_1_Position,
@@ -1007,6 +1015,7 @@
 							C2.RECEIVESMAILFLG as Contact_2_Recieves_Mail,
 							C2.ISEMERGENCY as Contact_2_Emergency_Contact,
 							C2.SCHOOLPICKUPFLG as Contact_2_School_Pickup,
+							C2.schoolmessengerflg as Contact_2_School_Messenger,
 							C2.DATAACCESS as Contact_2_Parent_Portal_Account,
 							C2.Employer as Contact_2_Employer,
 							C2.PERSON_POSITION as Contact_2_Position,
@@ -1041,6 +1050,7 @@
 							C3.RECEIVESMAILFLG as Contact_3_Recieves_Mail,
 							C3.ISEMERGENCY as Contact_3_Emergency_Contact,
 							C3.SCHOOLPICKUPFLG as Contact_3_School_Pickup,
+							C3.schoolmessengerflg as Contact_3_School_Messenger,
 							C3.DATAACCESS as Contact_3_Parent_Portal_Account,
 							C3.Employer as Contact_3_Employer,
 							C3.PERSON_POSITION as Contact_3_Position,
@@ -1075,6 +1085,7 @@
 							C4.RECEIVESMAILFLG as Contact_4_Recieves_Mail,
 							C4.ISEMERGENCY as Contact_4_Emergency_Contact,
 							C4.SCHOOLPICKUPFLG as Contact_4_School_Pickup,
+							C4.schoolmessengerflg as Contact_4_School_Messenger,
 							C4.DATAACCESS as Contact_4_Parent_Portal_Account,
 							C4.Employer as Contact_4_Employer, 
 							C4.PERSON_POSITION as Contact_4_Position,
@@ -1109,6 +1120,7 @@
 							C5.RECEIVESMAILFLG as Contact_5_Recieves_Mail,
 							C5.ISEMERGENCY as Contact_5_Emergency_Contact,
 							C5.SCHOOLPICKUPFLG as Contact_5_School_Pickup,
+							C5.schoolmessengerflg as Contact_5_School_Messenger,
 							C5.DATAACCESS as Contact_5_Parent_Portal_Account,
 							C5.Employer as Contact_5_Employer, 
 							C5.PERSON_POSITION as Contact_5_Position,
@@ -1143,6 +1155,7 @@
 							C6.RECEIVESMAILFLG as Contact_6_Recieves_Mail,
 							C6.ISEMERGENCY as Contact_6_Emergency_Contact,
 							C6.SCHOOLPICKUPFLG as Contact_6_School_Pickup,
+							C6.schoolmessengerflg as Contact_6_School_Messenger,
 							C6.DATAACCESS as Contact_6_Parent_Portal_Account,
 							C6.Employer as Contact_6_Employer,
 							C6.PERSON_POSITION as Contact_6_Position,
