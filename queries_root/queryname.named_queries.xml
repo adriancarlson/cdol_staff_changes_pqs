@@ -424,7 +424,7 @@
 					ON studentcontactdetail.studentcontactdetailid = u_studentcontactdetail_cdol.studentcstudentcontactdetailid
 					WHERE  studentcontactdetail.iscustodial = 1
 						OR studentcontactdetail.liveswithflg = 1
-						OR studentcontactdetail.relationshiptypecodesetid IN ( 19050 --Guardian
+						OR studentcontactdetail.relationshiptypecodesetid IN ( 19050, --Guardian
 																			18200,--StepFather
 																			18201,--StepMother
 																			18202,--Host Parent
