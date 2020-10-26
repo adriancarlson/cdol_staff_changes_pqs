@@ -424,7 +424,8 @@
 					ON studentcontactdetail.studentcontactdetailid = u_studentcontactdetail_cdol.studentcstudentcontactdetailid
 					WHERE  studentcontactdetail.iscustodial = 1
 						OR studentcontactdetail.liveswithflg = 1
-						OR studentcontactdetail.relationshiptypecodesetid IN ( 18200,--StepFather
+						OR studentcontactdetail.relationshiptypecodesetid IN ( 19050 --Guardian
+																			18200,--StepFather
 																			18201,--StepMother
 																			18202,--Host Parent
 																			18203,--Foster Parent
@@ -439,7 +440,7 @@
 				FROM   students
 				INNER JOIN schools
 					ON students.schoolid = schools.school_number
-				LEFT JOIN (SELECT* FROM   cntcount) CNTCOUNT
+				LEFT JOIN (SELECT* FROM  cntcount) CNTCOUNT
 					ON (CNTCOUNT.studentdcid = students.dcid
 						AND CNTCOUNT.stu_cnt_index <= 4)
 				LEFT JOIN u_student_additional_info
