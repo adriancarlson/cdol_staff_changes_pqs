@@ -748,6 +748,7 @@
 			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_state" description="Contact 6 Parish State">Contact6.35_Contact_6_Parish_State</column>			
 			<column column="students.Next_school" description="Next School">school.01_Next_School</column>
 			<column column="SCHOOLS.name" description="School">school.02_School</column>
+		</columns>
 		<sql>
 			<![CDATA[
 					WITH HA AS (
