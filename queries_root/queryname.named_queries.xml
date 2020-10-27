@@ -569,7 +569,7 @@
 			<column column="person.employer" description="Contact 1 Position">Contact1.31 Contact 1 Position</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 1 Religion">Contact1.32 Contact 1 Religion</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 1 Parish">Contact1.33 Contact 1 Parish</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish city" description="Contact 1 Parish City">Contact1.34 Contact 1 Parish City</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 1 Parish City">Contact1.34 Contact 1 Parish City</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_state" description="Contact 1 Parish State">Contact1.35 Contact 1 Parish State</column>
 			<column column="person.isActive" description="Contact 2 is Active">Contact2.01 Contact 2 is Active</column>
 			<column column="U_PERSON_ADDITIONAL_INFO.person_status" description="Contact 2 Living or Deceased">Contact2.02 Contact 2 Living or Deceased</column>
