@@ -466,288 +466,288 @@
 			<arg name="curSchoolID" column="students.schoolid" required="true" description="Current School ID" default="~(curschoolid)" />
 		</args>
 		<columns>
-			<column column="students.STATE_STUDENTNUMBER" description="State Number">students.01_State_Number</column>
-			<column column="StudentCoreFields.PrevStudentID" description="Old SMS Number">students.02_Old_SMS_Number</column>
-			<column column="students.STUDENT_NUMBER" description="Student Number">students.03_Student_Number</column>
-			<column column="students.FIRST_NAME" description="First Name">students.04_First_Name</column>
-			<column column="students.MIDDLE_NAME" description="Middle Name">students.05_Middle_Name</column>
-			<column column="students.LAST_NAME" description="Last Name">students.06_Last_Name</column>
-			<column column="StudentCoreFields.PSCORE_LEGAL_SUFFIX" description="Suffix">students.07_Suffix</column>
-			<column column="students.LASTFIRST" description="Last First">students.08_Last_First</column>
-			<column column="U_STUDENT_ADDITIONAL_INFO.STUDENT_PREFERRED_NAME" description="Preferend Name">students.09_Preferred_Name</column>
-			<column column="U_STUDENT_ADDITIONAL_INFO.PHONETIC_PRONUNCIATION" description="Phonetic Pronunciation">students.10_Phonetic_Pronunciation</column>
-			<column column="students.GENDER" description="Gender">students.11_Gender</column>
-			<column column="students.dob" description="DoB">students.12_DoB</column>
-			<column column="students.GRADE_LEVEL" description="Grade">students.13_Grade_Level</column>
-			<column column="students.HOME_ROOM" description="Home Room">students.14_Home_Room</column>
-			<column column="students.CLASSOF" description="Class Of">students.15_Class_of</column>
-			<column column="students.FEDETHNICITY" description="Ethnicity">students.16_Ethnicity</column>
-			<column column="STUDENTRACE.RACECD" description="Race">students.17_race</column>
-			<column column="Gen.name" description="District of Residence">students.18_District_of_Residence</column>
-			<column column="StudentCoreFields.FAMILY_REP" description="Family Rep">students.19_Family_Rep</column>
-			<column column="students.MAILING_STREET" description="Mailing Street">students.20_Mailing_Street</column>
-			<column column="students.MAILING_CITY" description="Mailing City">students.21_Mailing_City</column>
-			<column column="students.MAILING_STATE" description="Mailing State">students.22_Mailing_State</column>
-			<column column="students.MAILING_ZIP" description="Mailing Zip">students.23_Mailing_Zip</column>
-			<column column="students.STREET" description="Street">students.24_Street</column>
-			<column column="students.CITY" description="City">students.25_City</column>
-			<column column="students.STATE" description="State">students.26_State</column>
-			<column column="students.ZIP" description="Zip">students.27_Zip</column>
-			<column column="students.HOME_PHONE" description="Home Phone">students.28_Home_Phone</column>
-			<column column="U_STUDENT_ADDITIONAL_INFO.LOCKER_LOCATION" description="Locker Location">students.29_Locker_Location</column>
-			<column column="students.LOCKER_NUMBER" description="Locker Number">students.30_Locker_Number</column>
-			<column column="students.LOCKER_COMBINATION" description="Locker Combo">students.31_Locker_Combo</column>
-			<column column="S_STU_NCEA_X.TITLEI_TF" description="Title 1">students.32_Title_1</column>
-			<column column="S_STU_NCEA_X.DIAGNOSEDDISABILITY_TF" description="Disability">students.33_Disability</column>
-			<column column="S_STU_NCEA_X.UNGRADED_TF" description="Ungraded">students.34_Ungraded</column>
-			<column column="S_STU_NCEA_X.FEDERALNUTRITION" description="Free Reduced">students.35_Free_Reduced</column>
-			<column column="S_STU_NCEA_X.SUBSIDIZEDTRANS_TF" description="Sub Transportation">students.36_Sub_Transportation</column>
-			<column column="S_STU_NCEA_X.RELIGIOUSAFFILIATION" description="Religion">students.37_Religion</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_PARISH" description="Parish">students.38_Student_Parish</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_PARISH_CITY" description="Parish City">students.39_Student_Parish_City</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_PARISH_STATE" description="Parish State">students.40_Student_Parish_State</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_DATE" description="Baptism Date">students.41_Baptism_Date</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_PARISH" description="Baptism Parish">students.42_Baptism_Parish</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_CITY" description="Baptism City">students.43_Baptism_City</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_STATE" description="Baptism State">students.44_Baptism_State</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_DATE" description="Confession Date">students.45_Confession_Date</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_PARISH" description="Confession Parish">students.46_Confession_Parish</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_CITY" description="Confession City">students.47_Confession_City</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_STATE" description="Confession State">students.48_Confession_State</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_DATE" description="Communion Date">students.49_Communion_Date</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_PARISH" description="Communion Parish">students.50_Communion_Parish</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_CITY" description="Communion City">students.51_Communion_City</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_STATE" description="Communion State">students.52_Communion_State</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_DATE" description="Confirmation Date">students.53_Confirmation_Date</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_PARISH" description="Confirmation Parish">students.54_Confirmation_Parish</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_CITY" description="Confirmation City">students.55_Confirmation_City</column>
-			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_STATE" description="Confirmation State">students.56_Confirmation_State</column>
-			<column column="students.DOCTOR_NAME" description="Doctor Name">students.57_Doctor_Name</column>
-			<column column="students.DOCTOR_PHONE" description="Doctor Phone">students.58_Doctor_Phone</column>
-			<column column="StudentCoreFields.Dentist_Name" description="Dentist Name">students.59_Dentist_Name</column>
-			<column column="StudentCoreFields.dentist_phone" description="Dentist Phone">students.60_Dentist_Phone</column>
-			<column column="students.ALERT_MEDICAL" description="Medical Alert">students.61_Medical_Alert</column>
-			<column column="StudentCoreFields.ALLERGIES" description="Allergies">students.62_Allergies</column>
-			<column column="students.ALERT_DISCIPLINE" description="Discipline Alert">students.63_Discipline_Alert</column>
-			<column column="students.ALERT_OTHER" description="Other Alert">students.64_Other_Alert</column>
-			<column column="students.LDAPENABLED" description="LDAP Enabled">students.65_LDAP_Enabled</column>
-			<column column="students.STUDENT_ALLOWWEBACCESS" description="Student Web Access">students.66_Student_Web_Access</column>
-			<column column="students.STUDENT_WEB_ID" description="Student Username">students.67_Student_Username</column>
-			<column column="students.ALLOWWEBACCESS" description="Parent Web Access">students.68_Parent_Web_Access</column>
-			<column column="students.WEB_ID" description="Parent Access ID">students.69_Parent_Access_ID</column>
-			<column column="StudentCoreFields.SINGLEPARENTHSHLDFLAG" description="Single Parent Household">Students.70_Single_Parent_Household</column>
-			<column column="person.isActive" description="Contact 1 is Active">Contact1.01_Contact_1_is_Active</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_status" description="Contact 1 Living or Deceased">Contact1.02_Contact_1_Living_or_Deceased</column>
-			<column column="codeset.code" description="Contact 1 Relationship">Contact1.03_Contact_1_Relationship</column>
-			<column column="codeset.code" description="Contact 1 Prefix">Contact1.04_Contact_1_Prefix</column>
-			<column column="person.firstname" description="Contact 1 First Name">Contact1.05_Contact_1_First_Name</column>
-			<column column="person.middlename" description="Contact 1 Middle Name">Contact1.06_Contact_1_Middle_Name</column>
-			<column column="person.lastname" description="Contact 1 Last Name">Contact1.07_Contact_1_Last_Name</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME" description="Contact 1 Maiden Name">Contact1.08_Contact_1_Maiden_Name</column>
-			<column column="codeset.code" description="Contact 1 Suffix">Contact1.09_Contact_1_Suffix</column>
-			<column column="person.firstname" description="Contact 1 First Last">Contact1.10_Contact_1_First_Last</column>
-			<column column="person.firstname" description="Contact 1 Phonetic_Pronunciation">Contact1.11_Contact_1_Phonetic_Pronunciation</column>
-			<column column="codeset.code" description="Contact 1 Gender">Contact1.12_Contact_1_Gender</column>
-			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 1 Phone Numbers">Contact1.13_Contact_1_Phone_Numbers</column>
-			<column column="person.firstname" description="Contact 1 Email Adresses">Contact1.14_Contact_1_Email_Adresses</column>
-			<column column="personaddress.street" description="Contact 1 Home Street">Contact1.15_Contact_1_Home_Street</column>
-			<column column="personaddress.city" description="Contact 1 Home City">Contact1.16_Contact_1_Home_City</column>
-			<column column="codeset.code" description="Contact 1 Home State">Contact1.17_Contact_1_Home_State</column>
-			<column column="personaddress.postalcode" description="Contact 1 Home Zip">Contact1.18_Contact_1_Home_Zip</column>
-			<column column="personaddress.street" description="Contact 1 Mailing Street">Contact1.19_Contact_1_Mailing_Street</column>
-			<column column="personaddress.city" description="Contact 1 Mailing City">Contact1.20_Contact_1_Mailing_City</column>
-			<column column="codeset.code" description="Contact 1 Mailing State">Contact1.21_Contact_1_Mailing_State</column>
-			<column column="personaddress.postalcode" description="Contact 1 Mailing Zip">Contact1.22_Contact_1_Mailing_Zip</column>
-			<column column="studentcontactdetail.iscustodial" description="Contact 1 Has Custody">Contact1.23_Contact_1_Has_Custody</column>
-			<column column="studentcontactdetail.liveswithflg" description="Contact 1 Lives With">Contact1.24_Contact_1_Lives_With</column>
-			<column column="studentcontactdetail.receivesmailflg" description="Contact 1 Receives Mail">Contact1.25_Contact_1_Receives_Mail</column>
-			<column column="studentcontactdetail.isemergency" description="Contact 1 Emergency Contact">Contact1.26_Contact_1_Emergency_Contact</column>
-			<column column="studentcontactdetail.schoolpickupflg" description="Contact 1 School Pickup">Contact1.27_Contact_1_School_Pickup</column>
-			<column column="studentcontactdetail.schoolpickupflg" description="Contact 1 School Messenger">Contact1.28_Contact_1_School_Messenger</column>
-			<column column="guardianstudent.studentsdcid" description="Contact 1 Parent Portal Account">Contact1.29_Contact_1_Parent_Portal_Account</column>
-			<column column="person.employer" description="Contact 1 Employer">Contact1.30_Contact_1_Employer</column>
-			<column column="person.employer" description="Contact 1 Position">Contact1.31_Contact_1_Position</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 1 Religion">Contact1.32_Contact_1_Religion</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 1 Parish">Contact1.33_Contact_1_Parish</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 1 Parish City">Contact1.34_Contact_1_Parish_City</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_state" description="Contact 1 Parish State">Contact1.35_Contact_1_Parish_State</column>
-			<column column="person.isActive" description="Contact 2 is Active">Contact2.01_Contact_2_is_Active</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_status" description="Contact 2 Living or Deceased">Contact2.02_Contact_2_Living_or_Deceased</column>
-			<column column="codeset.code" description="Contact 2 Relationship">Contact2.03_Contact_2_Relationship</column>
-			<column column="codeset.code" description="Contact 2 Prefix">Contact2.04_Contact_2_Prefix</column>
-			<column column="person.firstname" description="Contact 2 First Name">Contact2.05_Contact_2_First_Name</column>
-			<column column="person.middlename" description="Contact 2 Middle Name">Contact2.06_Contact_2_Middle_Name</column>
-			<column column="person.lastname" description="Contact 2 Last Name">Contact2.07_Contact_2_Last_Name</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME" description="Contact 2 Maiden Name">Contact2.08_Contact_2_Maiden_Name</column>
-			<column column="codeset.code" description="Contact 2 Suffix">Contact2.09_Contact_2_Suffix</column>
-			<column column="person.firstname" description="Contact 2 First Last">Contact2.10_Contact_2_First_Last</column>
-			<column column="person.firstname" description="Contact 2 Phonetic_Pronunciation">Contact2.11_Contact_2_Phonetic_Pronunciation</column>
-			<column column="codeset.code" description="Contact 2 Gender">Contact2.12_Contact_2_Gender</column>
-			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 2 Phone Numbers">Contact2.13_Contact_2_Phone_Numbers</column>
-			<column column="person.firstname" description="Contact 2 Email Adresses">Contact2.14_Contact_2_Email_Adresses</column>
-			<column column="personaddress.street" description="Contact 2 Home Street">Contact2.15_Contact_2_Home_Street</column>
-			<column column="personaddress.city" description="Contact 2 Home City">Contact2.16_Contact_2_Home_City</column>
-			<column column="codeset.code" description="Contact 2 Home State">Contact2.17_Contact_2_Home_State</column>
-			<column column="personaddress.postalcode" description="Contact 2 Home Zip">Contact2.18_Contact_2_Home_Zip</column>
-			<column column="personaddress.street" description="Contact 2 Mailing Street">Contact2.19_Contact_2_Mailing_Street</column>
-			<column column="personaddress.city" description="Contact 2 Mailing City">Contact2.20_Contact_2_Mailing_City</column>
-			<column column="codeset.code" description="Contact 2 Mailing State">Contact2.21_Contact_2_Mailing_State</column>
-			<column column="personaddress.postalcode" description="Contact 2 Mailing Zip">Contact2.22_Contact_2_Mailing_Zip</column>
-			<column column="studentcontactdetail.iscustodial" description="Contact 2 Has Custody">Contact2.23_Contact_2_Has_Custody</column>
-			<column column="studentcontactdetail.liveswithflg" description="Contact 2 Lives With">Contact2.24_Contact_2_Lives_With</column>
-			<column column="studentcontactdetail.receivesmailflg" description="Contact 2 Receives Mail">Contact2.25_Contact_2_Receives_Mail</column>
-			<column column="studentcontactdetail.isemergency" description="Contact 2 Emergency Contact">Contact2.26_Contact_2_Emergency_Contact</column>
-			<column column="studentcontactdetail.schoolpickupflg" description="Contact 2 School Pickup">Contact2.27_Contact_2_School_Pickup</column>
-			<column column="studentcontactdetail.schoolpickupflg" description="Contact 2 School Messenger">Contact2.28_Contact_2_School_Messenger</column>
-			<column column="guardianstudent.studentsdcid" description="Contact 2 Parent Portal Account">Contact2.29_Contact_2_Parent_Portal_Account</column>
-			<column column="person.employer" description="Contact 2 Employer">Contact2.30_Contact_2_Employer</column>
-			<column column="person.employer" description="Contact 2 Position">Contact2.31_Contact_2_Position</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 2 Religion">Contact2.32_Contact_2_Religion</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 2 Parish">Contact2.33_Contact_2_Parish</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 2 Parish City">Contact2.34_Contact_2_Parish_City</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_state" description="Contact 2 Parish State">Contact2.35_Contact_2_Parish_State</column>
-			<column column="person.isActive" description="Contact 3 is Active">Contact3.01_Contact_3_is_Active</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_status" description="Contact 3 Living or Deceased">Contact3.02_Contact_3_Living_or_Deceased</column>
-			<column column="codeset.code" description="Contact 3 Relationship">Contact3.03_Contact_3_Relationship</column>
-			<column column="codeset.code" description="Contact 3 Prefix">Contact3.04_Contact_3_Prefix</column>
-			<column column="person.firstname" description="Contact 3 First Name">Contact3.05_Contact_3_First_Name</column>
-			<column column="person.middlename" description="Contact 3 Middle Name">Contact3.06_Contact_3_Middle_Name</column>
-			<column column="person.lastname" description="Contact 3 Last Name">Contact3.07_Contact_3_Last_Name</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME" description="Contact 3 Maiden Name">Contact3.08_Contact_3_Maiden_Name</column>
-			<column column="codeset.code" description="Contact 3 Suffix">Contact3.09_Contact_3_Suffix</column>
-			<column column="person.firstname" description="Contact 3 First Last">Contact3.10_Contact_3_First_Last</column>
-			<column column="person.firstname" description="Contact 3 Phonetic_Pronunciation">Contact3.11_Contact_3_Phonetic_Pronunciation</column>
-			<column column="codeset.code" description="Contact 3 Gender">Contact3.12_Contact_3_Gender</column>
-			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 3 Phone Numbers">Contact3.13_Contact_3_Phone_Numbers</column>
-			<column column="person.firstname" description="Contact 3 Email Adresses">Contact3.14_Contact_3_Email_Adresses</column>
-			<column column="personaddress.street" description="Contact 3 Home Street">Contact3.15_Contact_3_Home_Street</column>
-			<column column="personaddress.city" description="Contact 3 Home City">Contact3.16_Contact_3_Home_City</column>
-			<column column="codeset.code" description="Contact 3 Home State">Contact3.17_Contact_3_Home_State</column>
-			<column column="personaddress.postalcode" description="Contact 3 Home Zip">Contact3.18_Contact_3_Home_Zip</column>
-			<column column="personaddress.street" description="Contact 3 Mailing Street">Contact3.19_Contact_3_Mailing_Street</column>
-			<column column="personaddress.city" description="Contact 3 Mailing City">Contact3.20_Contact_3_Mailing_City</column>
-			<column column="codeset.code" description="Contact 3 Mailing State">Contact3.21_Contact_3_Mailing_State</column>
-			<column column="personaddress.postalcode" description="Contact 3 Mailing Zip">Contact3.22_Contact_3_Mailing_Zip</column>
-			<column column="studentcontactdetail.iscustodial" description="Contact 3 Has Custody">Contact3.23_Contact_3_Has_Custody</column>
-			<column column="studentcontactdetail.liveswithflg" description="Contact 3 Lives With">Contact3.24_Contact_3_Lives_With</column>
-			<column column="studentcontactdetail.receivesmailflg" description="Contact 3 Receives Mail">Contact3.25_Contact_3_Receives_Mail</column>
-			<column column="studentcontactdetail.isemergency" description="Contact 3 Emergency Contact">Contact3.26_Contact_3_Emergency_Contact</column>
-			<column column="studentcontactdetail.schoolpickupflg" description="Contact 3 School Pickup">Contact3.27_Contact_3_School_Pickup</column>
-			<column column="studentcontactdetail.schoolpickupflg" description="Contact 3 School Messenger">Contact3.28_Contact_3_School_Messenger</column>
-			<column column="guardianstudent.studentsdcid" description="Contact 3 Parent Portal Account">Contact3.29_Contact_3_Parent_Portal_Account</column>
-			<column column="person.employer" description="Contact 3 Employer">Contact3.30_Contact_3_Employer</column>
-			<column column="person.employer" description="Contact 3 Position">Contact3.31_Contact_3_Position</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 3 Religion">Contact3.32_Contact_3_Religion</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 3 Parish">Contact3.33_Contact_3_Parish</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 3 Parish City">Contact3.34_Contact_3_Parish_City</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_state" description="Contact 3 Parish State">Contact3.35_Contact_3_Parish_State</column>
-			<column column="person.isActive" description="Contact 4 is Active">Contact4.01_Contact_4_is_Active</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_status" description="Contact 4 Living or Deceased">Contact4.02_Contact_4_Living_or_Deceased</column>
-			<column column="codeset.code" description="Contact 4 Relationship">Contact4.03_Contact_4_Relationship</column>
-			<column column="codeset.code" description="Contact 4 Prefix">Contact4.04_Contact_4_Prefix</column>
-			<column column="person.firstname" description="Contact 4 First Name">Contact4.05_Contact_4_First_Name</column>
-			<column column="person.middlename" description="Contact 4 Middle Name">Contact4.06_Contact_4_Middle_Name</column>
-			<column column="person.lastname" description="Contact 4 Last Name">Contact4.07_Contact_4_Last_Name</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME" description="Contact 4 Maiden Name">Contact4.08_Contact_4_Maiden_Name</column>
-			<column column="codeset.code" description="Contact 4 Suffix">Contact4.09_Contact_4_Suffix</column>
-			<column column="person.firstname" description="Contact 4 First Last">Contact4.10_Contact_4_First_Last</column>
-			<column column="person.firstname" description="Contact 4 Phonetic_Pronunciation">Contact4.11_Contact_4_Phonetic_Pronunciation</column>
-			<column column="codeset.code" description="Contact 4 Gender">Contact4.12_Contact_4_Gender</column>
-			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 4 Phone Numbers">Contact4.13_Contact_4_Phone_Numbers</column>
-			<column column="person.firstname" description="Contact 4 Email Adresses">Contact4.14_Contact_4_Email_Adresses</column>
-			<column column="personaddress.street" description="Contact 4 Home Street">Contact4.15_Contact_4_Home_Street</column>
-			<column column="personaddress.city" description="Contact 4 Home City">Contact4.16_Contact_4_Home_City</column>
-			<column column="codeset.code" description="Contact 4 Home State">Contact4.17_Contact_4_Home_State</column>
-			<column column="personaddress.postalcode" description="Contact 4 Home Zip">Contact4.18_Contact_4_Home_Zip</column>
-			<column column="personaddress.street" description="Contact 4 Mailing Street">Contact4.19_Contact_4_Mailing_Street</column>
-			<column column="personaddress.city" description="Contact 4 Mailing City">Contact4.20_Contact_4_Mailing_City</column>
-			<column column="codeset.code" description="Contact 4 Mailing State">Contact4.21_Contact_4_Mailing_State</column>
-			<column column="personaddress.postalcode" description="Contact 4 Mailing Zip">Contact4.22_Contact_4_Mailing_Zip</column>
-			<column column="studentcontactdetail.iscustodial" description="Contact 4 Has Custody">Contact4.23_Contact_4_Has_Custody</column>
-			<column column="studentcontactdetail.liveswithflg" description="Contact 4 Lives With">Contact4.24_Contact_4_Lives_With</column>
-			<column column="studentcontactdetail.receivesmailflg" description="Contact 4 Receives Mail">Contact4.25_Contact_4_Receives_Mail</column>
-			<column column="studentcontactdetail.isemergency" description="Contact 4 Emergency Contact">Contact4.26_Contact_4_Emergency_Contact</column>
-			<column column="studentcontactdetail.schoolpickupflg" description="Contact 4 School Pickup">Contact4.27_Contact_4_School_Pickup</column>
-			<column column="studentcontactdetail.schoolpickupflg" description="Contact 4 School Messenger">Contact4.28_Contact_4_School_Messenger</column>
-			<column column="guardianstudent.studentsdcid" description="Contact 4 Parent Portal Account">Contact4.29_Contact_4_Parent_Portal_Account</column>
-			<column column="person.employer" description="Contact 4 Employer">Contact4.30_Contact_4_Employer</column>
-			<column column="person.employer" description="Contact 4 Position">Contact4.31_Contact_4_Position</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 4 Religion">Contact4.32_Contact_4_Religion</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 4 Parish">Contact4.33_Contact_4_Parish</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 4 Parish City">Contact4.34_Contact_4_Parish_City</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_state" description="Contact 4 Parish State">Contact4.35_Contact_4_Parish_State</column>
-			<column column="person.isActive" description="Contact 5 is Active">Contact5.01_Contact_5_is_Active</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_status" description="Contact 5 Living or Deceased">Contact5.02_Contact_5_Living_or_Deceased</column>
-			<column column="codeset.code" description="Contact 5 Relationship">Contact5.03_Contact_5_Relationship</column>
-			<column column="codeset.code" description="Contact 5 Prefix">Contact5.04_Contact_5_Prefix</column>
-			<column column="person.firstname" description="Contact 5 First Name">Contact5.05_Contact_5_First_Name</column>
-			<column column="person.middlename" description="Contact 5 Middle Name">Contact5.06_Contact_5_Middle_Name</column>
-			<column column="person.lastname" description="Contact 5 Last Name">Contact5.07_Contact_5_Last_Name</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME" description="Contact 5 Maiden Name">Contact5.08_Contact_5_Maiden_Name</column>
-			<column column="codeset.code" description="Contact 5 Suffix">Contact5.09_Contact_5_Suffix</column>
-			<column column="person.firstname" description="Contact 5 First Last">Contact5.10_Contact_5_First_Last</column>
-			<column column="person.firstname" description="Contact 5 Phonetic_Pronunciation">Contact5.11_Contact_5_Phonetic_Pronunciation</column>
-			<column column="codeset.code" description="Contact 5 Gender">Contact5.12_Contact_5_Gender</column>
-			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 5 Phone Numbers">Contact5.13_Contact_5_Phone_Numbers</column>
-			<column column="person.firstname" description="Contact 5 Email Adresses">Contact5.14_Contact_5_Email_Adresses</column>
-			<column column="personaddress.street" description="Contact 5 Home Street">Contact5.15_Contact_5_Home_Street</column>
-			<column column="personaddress.city" description="Contact 5 Home City">Contact5.16_Contact_5_Home_City</column>
-			<column column="codeset.code" description="Contact 5 Home State">Contact5.17_Contact_5_Home_State</column>
-			<column column="personaddress.postalcode" description="Contact 5 Home Zip">Contact5.18_Contact_5_Home_Zip</column>
-			<column column="personaddress.street" description="Contact 5 Mailing Street">Contact5.19_Contact_5_Mailing_Street</column>
-			<column column="personaddress.city" description="Contact 5 Mailing City">Contact5.20_Contact_5_Mailing_City</column>
-			<column column="codeset.code" description="Contact 5 Mailing State">Contact5.21_Contact_5_Mailing_State</column>
-			<column column="personaddress.postalcode" description="Contact 5 Mailing Zip">Contact5.22_Contact_5_Mailing_Zip</column>
-			<column column="studentcontactdetail.iscustodial" description="Contact 5 Has Custody">Contact5.23_Contact_5_Has_Custody</column>
-			<column column="studentcontactdetail.liveswithflg" description="Contact 5 Lives With">Contact5.24_Contact_5_Lives_With</column>
-			<column column="studentcontactdetail.receivesmailflg" description="Contact 5 Receives Mail">Contact5.25_Contact_5_Receives_Mail</column>
-			<column column="studentcontactdetail.isemergency" description="Contact 5 Emergency Contact">Contact5.26_Contact_5_Emergency_Contact</column>
-			<column column="studentcontactdetail.schoolpickupflg" description="Contact 5 School Pickup">Contact5.27_Contact_5_School_Pickup</column>
-			<column column="studentcontactdetail.schoolpickupflg" description="Contact 5 School Messenger">Contact5.28_Contact_5_School_Messenger</column>
-			<column column="guardianstudent.studentsdcid" description="Contact 5 Parent Portal Account">Contact5.29_Contact_5_Parent_Portal_Account</column>
-			<column column="person.employer" description="Contact 5 Employer">Contact5.30_Contact_5_Employer</column>
-			<column column="person.employer" description="Contact 5 Position">Contact5.31_Contact_5_Position</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 5 Religion">Contact5.32_Contact_5_Religion</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 5 Parish">Contact5.33_Contact_5_Parish</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 5 Parish City">Contact5.34_Contact_5_Parish_City</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_state" description="Contact 5 Parish State">Contact5.35_Contact_5_Parish_State</column>
-			<column column="person.isActive" description="Contact 6 is Active">Contact6.01_Contact_6_is_Active</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_status" description="Contact 6 Living or Deceased">Contact6.02_Contact_6_Living_or_Deceased</column>
-			<column column="codeset.code" description="Contact 6 Relationship">Contact6.03_Contact_6_Relationship</column>
-			<column column="codeset.code" description="Contact 6 Prefix">Contact6.04_Contact_6_Prefix</column>
-			<column column="person.firstname" description="Contact 6 First Name">Contact6.05_Contact_6_First_Name</column>
-			<column column="person.middlename" description="Contact 6 Middle Name">Contact6.06_Contact_6_Middle_Name</column>
-			<column column="person.lastname" description="Contact 6 Last Name">Contact6.07_Contact_6_Last_Name</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME" description="Contact 6 Maiden Name">Contact6.08_Contact_6_Maiden_Name</column>
-			<column column="codeset.code" description="Contact 6 Suffix">Contact6.09_Contact_6_Suffix</column>
-			<column column="person.firstname" description="Contact 6 First Last">Contact6.10_Contact_6_First_Last</column>
-			<column column="person.firstname" description="Contact 6 Phonetic_Pronunciation">Contact6.11_Contact_6_Phonetic_Pronunciation</column>
-			<column column="codeset.code" description="Contact 6 Gender">Contact6.12_Contact_6_Gender</column>
-			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 6 Phone Numbers">Contact6.13_Contact_6_Phone_Numbers</column>
-			<column column="person.firstname" description="Contact 6 Email Adresses">Contact6.14_Contact_6_Email_Adresses</column>
-			<column column="personaddress.street" description="Contact 6 Home Street">Contact6.15_Contact_6_Home_Street</column>
-			<column column="personaddress.city" description="Contact 6 Home City">Contact6.16_Contact_6_Home_City</column>
-			<column column="codeset.code" description="Contact 6 Home State">Contact6.17_Contact_6_Home_State</column>
-			<column column="personaddress.postalcode" description="Contact 6 Home Zip">Contact6.18_Contact_6_Home_Zip</column>
-			<column column="personaddress.street" description="Contact 6 Mailing Street">Contact6.19_Contact_6_Mailing_Street</column>
-			<column column="personaddress.city" description="Contact 6 Mailing City">Contact6.20_Contact_6_Mailing_City</column>
-			<column column="codeset.code" description="Contact 6 Mailing State">Contact6.21_Contact_6_Mailing_State</column>
-			<column column="personaddress.postalcode" description="Contact 6 Mailing Zip">Contact6.22_Contact_6_Mailing_Zip</column>
-			<column column="studentcontactdetail.iscustodial" description="Contact 6 Has Custody">Contact6.23_Contact_6_Has_Custody</column>
-			<column column="studentcontactdetail.liveswithflg" description="Contact 6 Lives With">Contact6.24_Contact_6_Lives_With</column>
-			<column column="studentcontactdetail.receivesmailflg" description="Contact 6 Receives Mail">Contact6.25_Contact_6_Receives_Mail</column>
-			<column column="studentcontactdetail.isemergency" description="Contact 6 Emergency Contact">Contact6.26_Contact_6_Emergency_Contact</column>
-			<column column="studentcontactdetail.schoolpickupflg" description="Contact 6 School Pickup">Contact6.27_Contact_6_School_Pickup</column>
-			<column column="studentcontactdetail.schoolpickupflg" description="Contact 6 School Messenger">Contact6.28_Contact_6_School_Messenger</column>
-			<column column="guardianstudent.studentsdcid" description="Contact 6 Parent Portal Account">Contact6.29_Contact_6_Parent_Portal_Account</column>
-			<column column="person.employer" description="Contact 6 Employer">Contact6.30_Contact_6_Employer</column>
-			<column column="person.employer" description="Contact 6 Position">Contact6.31_Contact_6_Position</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 6 Religion">Contact6.32_Contact_6_Religion</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 6 Parish">Contact6.33_Contact_6_Parish</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 6 Parish City">Contact6.34_Contact_6_Parish_City</column>
-			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_state" description="Contact 6 Parish State">Contact6.35_Contact_6_Parish_State</column>			
-			<column column="students.Next_school" description="Next School">school.01_Next_School</column>
-			<column column="SCHOOLS.name" description="School">school.02_School</column>
+			<column column="students.STATE_STUDENTNUMBER" description="State Number">students.01 State Number</column>
+			<column column="StudentCoreFields.PrevStudentID" description="Old SMS Number">students.02 Old SMS Number</column>
+			<column column="students.STUDENT_NUMBER" description="Student Number">students.03 Student Number</column>
+			<column column="students.FIRST_NAME" description="First Name">students.04 First Name</column>
+			<column column="students.MIDDLE_NAME" description="Middle Name">students.05 Middle Name</column>
+			<column column="students.LAST_NAME" description="Last Name">students.06 Last Name</column>
+			<column column="StudentCoreFields.PSCORE_LEGAL_SUFFIX" description="Suffix">students.07 Suffix</column>
+			<column column="students.LASTFIRST" description="Last First">students.08 Last First</column>
+			<column column="U_STUDENT_ADDITIONAL_INFO.STUDENT_PREFERRED_NAME" description="Preferend Name">students.09 Preferred Name</column>
+			<column column="U_STUDENT_ADDITIONAL_INFO.PHONETIC_PRONUNCIATION" description="Phonetic Pronunciation">students.10 Phonetic Pronunciation</column>
+			<column column="students.GENDER" description="Gender">students.11 Gender</column>
+			<column column="students.dob" description="DoB">students.12 DoB</column>
+			<column column="students.GRADE_LEVEL" description="Grade">students.13 Grade Level</column>
+			<column column="students.HOME_ROOM" description="Home Room">students.14 Home Room</column>
+			<column column="students.CLASSOF" description="Class Of">students.15 Class of</column>
+			<column column="students.FEDETHNICITY" description="Ethnicity">students.16 Ethnicity</column>
+			<column column="STUDENTRACE.RACECD" description="Race">students.17 Race</column>
+			<column column="Gen.name" description="District of Residence">students.18 District of Residence</column>
+			<column column="StudentCoreFields.FAMILY_REP" description="Family Rep">students.19 Family Rep</column>
+			<column column="students.MAILING_STREET" description="Mailing Street">students.20 Mailing Street</column>
+			<column column="students.MAILING_CITY" description="Mailing City">students.21 Mailing City</column>
+			<column column="students.MAILING_STATE" description="Mailing State">students.22 Mailing State</column>
+			<column column="students.MAILING_ZIP" description="Mailing Zip">students.23 Mailing Zip</column>
+			<column column="students.STREET" description="Street">students.24 Street</column>
+			<column column="students.CITY" description="City">students.25 City</column>
+			<column column="students.STATE" description="State">students.26 State</column>
+			<column column="students.ZIP" description="Zip">students.27 Zip</column>
+			<column column="students.HOME_PHONE" description="Home Phone">students.28 Home Phone</column>
+			<column column="U_STUDENT_ADDITIONAL_INFO.LOCKER_LOCATION" description="Locker Location">students.29 Locker Location</column>
+			<column column="students.LOCKER_NUMBER" description="Locker Number">students.30 Locker Number</column>
+			<column column="students.LOCKER_COMBINATION" description="Locker Combo">students.31 Locker Combo</column>
+			<column column="S_STU_NCEA_X.TITLEI_TF" description="Title 1">students.32 Title 1</column>
+			<column column="S_STU_NCEA_X.DIAGNOSEDDISABILITY_TF" description="Disability">students.33 Disability</column>
+			<column column="S_STU_NCEA_X.UNGRADED_TF" description="Ungraded">students.34 Ungraded</column>
+			<column column="S_STU_NCEA_X.FEDERALNUTRITION" description="Free Reduced">students.35 Free Reduced</column>
+			<column column="S_STU_NCEA_X.SUBSIDIZEDTRANS_TF" description="Sub Transportation">students.36 Sub Transportation</column>
+			<column column="S_STU_NCEA_X.RELIGIOUSAFFILIATION" description="Religion">students.37 Religion</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_PARISH" description="Parish">students.38 Student Parish</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_PARISH_CITY" description="Parish City">students.39 Student Parish City</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_PARISH_STATE" description="Parish State">students.40 Student Parish State</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_DATE" description="Baptism Date">students.41 Baptism Date</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_PARISH" description="Baptism Parish">students.42 Baptism Parish</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_CITY" description="Baptism City">students.43 Baptism City</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_BAPTISM_STATE" description="Baptism State">students.44 Baptism State</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_DATE" description="Confession Date">students.45 Confession Date</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_PARISH" description="Confession Parish">students.46 Confession Parish</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_CITY" description="Confession City">students.47 Confession City</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFESSION_STATE" description="Confession State">students.48 Confession State</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_DATE" description="Communion Date">students.49 Communion Date</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_PARISH" description="Communion Parish">students.50 Communion Parish</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_CITY" description="Communion City">students.51 Communion City</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_COMMUNION_STATE" description="Communion State">students.52 Communion State</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_DATE" description="Confirmation Date">students.53 Confirmation Date</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_PARISH" description="Confirmation Parish">students.54 Confirmation Parish</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_CITY" description="Confirmation City">students.55 Confirmation City</column>
+			<column column="U_STUDENT_SACRAMENTAL.STUDENT_CONFIRMATION_STATE" description="Confirmation State">students.56 Confirmation State</column>
+			<column column="students.DOCTOR_NAME" description="Doctor Name">students.57 Doctor Name</column>
+			<column column="students.DOCTOR_PHONE" description="Doctor Phone">students.58 Doctor Phone</column>
+			<column column="StudentCoreFields.Dentist_Name" description="Dentist Name">students.59 Dentist Name</column>
+			<column column="StudentCoreFields.dentist_phone" description="Dentist Phone">students.60 Dentist Phone</column>
+			<column column="students.ALERT_MEDICAL" description="Medical Alert">students.61 Medical Alert</column>
+			<column column="StudentCoreFields.ALLERGIES" description="Allergies">students.62 Allergies</column>
+			<column column="students.ALERT_DISCIPLINE" description="Discipline Alert">students.63 Discipline Alert</column>
+			<column column="students.ALERT_OTHER" description="Other Alert">students.64 Other Alert</column>
+			<column column="students.LDAPENABLED" description="LDAP Enabled">students.65 LDAP Enabled</column>
+			<column column="students.STUDENT_ALLOWWEBACCESS" description="Student Web Access">students.66 Student Web Access</column>
+			<column column="students.STUDENT_WEB_ID" description="Student Username">students.67 Student Username</column>
+			<column column="students.ALLOWWEBACCESS" description="Parent Web Access">students.68 Parent Web Access</column>
+			<column column="students.WEB_ID" description="Parent Access ID">students.69 Parent Access ID</column>
+			<column column="StudentCoreFields.SINGLEPARENTHSHLDFLAG" description="Single Parent Household">Students.70 Single Parent Household</column>
+			<column column="person.isActive" description="Contact 1 is Active">Contact1.01 Contact 1 is Active</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_status" description="Contact 1 Living or Deceased">Contact1.02 Contact 1 Living or Deceased</column>
+			<column column="codeset.code" description="Contact 1 Relationship">Contact1.03 Contact 1 Relationship</column>
+			<column column="codeset.code" description="Contact 1 Prefix">Contact1.04 Contact 1 Prefix</column>
+			<column column="person.firstname" description="Contact 1 First Name">Contact1.05 Contact 1 First Name</column>
+			<column column="person.middlename" description="Contact 1 Middle Name">Contact1.06 Contact 1 Middle Name</column>
+			<column column="person.lastname" description="Contact 1 Last Name">Contact1.07 Contact 1 Last Name</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME" description="Contact 1 Maiden Name">Contact1.08 Contact 1 Maiden Name</column>
+			<column column="codeset.code" description="Contact 1 Suffix">Contact1.09 Contact 1 Suffix</column>
+			<column column="person.firstname" description="Contact 1 First Last">Contact1.10 Contact 1 First Last</column>
+			<column column="person.firstname" description="Contact 1 Phonetic_Pronunciation">Contact1.11 Contact 1 Phonetic Pronunciation</column>
+			<column column="codeset.code" description="Contact 1 Gender">Contact1.12 Contact 1 Gender</column>
+			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 1 Phone Numbers">Contact1.13 Contact 1 Phone Numbers</column>
+			<column column="person.firstname" description="Contact 1 Email Adresses">Contact1.14 Contact 1 Email Adresses</column>
+			<column column="personaddress.street" description="Contact 1 Home Street">Contact1.15 Contact 1 Home Street</column>
+			<column column="personaddress.city" description="Contact 1 Home City">Contact1.16 Contact 1 Home City</column>
+			<column column="codeset.code" description="Contact 1 Home State">Contact1.17 Contact 1 Home State</column>
+			<column column="personaddress.postalcode" description="Contact 1 Home Zip">Contact1.18 Contact 1 Home Zip</column>
+			<column column="personaddress.street" description="Contact 1 Mailing Street">Contact1.19 Contact 1 Mailing Street</column>
+			<column column="personaddress.city" description="Contact 1 Mailing City">Contact1.20 Contact 1 Mailing City</column>
+			<column column="codeset.code" description="Contact 1 Mailing State">Contact1.21 Contact 1 Mailing State</column>
+			<column column="personaddress.postalcode" description="Contact 1 Mailing Zip">Contact1.22 Contact 1 Mailing Zip</column>
+			<column column="studentcontactdetail.iscustodial" description="Contact 1 Has Custody">Contact1.23 Contact 1 Has Custody</column>
+			<column column="studentcontactdetail.liveswithflg" description="Contact 1 Lives With">Contact1.24 Contact 1 Lives With</column>
+			<column column="studentcontactdetail.receivesmailflg" description="Contact 1 Receives Mail">Contact1.25 Contact 1 Receives Mail</column>
+			<column column="studentcontactdetail.isemergency" description="Contact 1 Emergency Contact">Contact1.26 Contact 1 Emergency Contact</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 1 School Pickup">Contact1.27 Contact 1 School Pickup</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 1 School Messenger">Contact1.28 Contact 1 School Messenger</column>
+			<column column="guardianstudent.studentsdcid" description="Contact 1 Parent Portal Account">Contact1.29 Contact 1 Parent Portal Account</column>
+			<column column="person.employer" description="Contact 1 Employer">Contact1.30 Contact 1 Employer</column>
+			<column column="person.employer" description="Contact 1 Position">Contact1.31 Contact 1 Position</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 1 Religion">Contact1.32 Contact 1 Religion</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 1 Parish">Contact1.33 Contact 1 Parish</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish city" description="Contact 1 Parish City">Contact1.34 Contact 1 Parish City</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_state" description="Contact 1 Parish State">Contact1.35 Contact 1 Parish State</column>
+			<column column="person.isActive" description="Contact 2 is Active">Contact2.01 Contact 2 is Active</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_status" description="Contact 2 Living or Deceased">Contact2.02 Contact 2 Living or Deceased</column>
+			<column column="codeset.code" description="Contact 2 Relationship">Contact2.03 Contact 2 Relationship</column>
+			<column column="codeset.code" description="Contact 2 Prefix">Contact2.04 Contact 2 Prefix</column>
+			<column column="person.firstname" description="Contact 2 First Name">Contact2.05 Contact 2 First Name</column>
+			<column column="person.middlename" description="Contact 2 Middle Name">Contact2.06 Contact 2 Middle Name</column>
+			<column column="person.lastname" description="Contact 2 Last Name">Contact2.07 Contact 2 Last Name</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME" description="Contact 2 Maiden Name">Contact2.08 Contact 2 Maiden Name</column>
+			<column column="codeset.code" description="Contact 2 Suffix">Contact2.09 Contact 2 Suffix</column>
+			<column column="person.firstname" description="Contact 2 First Last">Contact2.10 Contact 2 First Last</column>
+			<column column="person.firstname" description="Contact 2 Phonetic_Pronunciation">Contact2.11 Contact 2 Phonetic Pronunciation</column>
+			<column column="codeset.code" description="Contact 2 Gender">Contact2.12 Contact 2 Gender</column>
+			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 2 Phone Numbers">Contact2.13 Contact 2 Phone Numbers</column>
+			<column column="person.firstname" description="Contact 2 Email Adresses">Contact2.14 Contact 2 Email Adresses</column>
+			<column column="personaddress.street" description="Contact 2 Home Street">Contact2.15 Contact 2 Home Street</column>
+			<column column="personaddress.city" description="Contact 2 Home City">Contact2.16 Contact 2 Home City</column>
+			<column column="codeset.code" description="Contact 2 Home State">Contact2.17 Contact 2 Home State</column>
+			<column column="personaddress.postalcode" description="Contact 2 Home Zip">Contact2.18 Contact 2 Home Zip</column>
+			<column column="personaddress.street" description="Contact 2 Mailing Street">Contact2.19 Contact 2 Mailing Street</column>
+			<column column="personaddress.city" description="Contact 2 Mailing City">Contact2.20 Contact 2 Mailing City</column>
+			<column column="codeset.code" description="Contact 2 Mailing State">Contact2.21 Contact 2 Mailing State</column>
+			<column column="personaddress.postalcode" description="Contact 2 Mailing Zip">Contact2.22 Contact 2 Mailing Zip</column>
+			<column column="studentcontactdetail.iscustodial" description="Contact 2 Has Custody">Contact2.23 Contact 2 Has Custody</column>
+			<column column="studentcontactdetail.liveswithflg" description="Contact 2 Lives With">Contact2.24 Contact 2 Lives With</column>
+			<column column="studentcontactdetail.receivesmailflg" description="Contact 2 Receives Mail">Contact2.25 Contact 2 Receives Mail</column>
+			<column column="studentcontactdetail.isemergency" description="Contact 2 Emergency Contact">Contact2.26 Contact 2 Emergency Contact</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 2 School Pickup">Contact2.27 Contact 2 School Pickup</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 2 School Messenger">Contact2.28 Contact 2 School Messenger</column>
+			<column column="guardianstudent.studentsdcid" description="Contact 2 Parent Portal Account">Contact2.29 Contact 2 Parent Portal Account</column>
+			<column column="person.employer" description="Contact 2 Employer">Contact2.30 Contact 2 Employer</column>
+			<column column="person.employer" description="Contact 2 Position">Contact2.31 Contact 2 Position</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 2 Religion">Contact2.32 Contact 2 Religion</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 2 Parish">Contact2.33 Contact 2 Parish</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 2 Parish City">Contact2.34 Contact 2 Parish City</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_state" description="Contact 2 Parish State">Contact2.35 Contact 2 Parish State</column>
+			<column column="person.isActive" description="Contact 3 is Active">Contact3.01 Contact 3 is Active</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_status" description="Contact 3 Living or Deceased">Contact3.02 Contact 3 Living or Deceased</column>
+			<column column="codeset.code" description="Contact 3 Relationship">Contact3.03 Contact 3 Relationship</column>
+			<column column="codeset.code" description="Contact 3 Prefix">Contact3.04 Contact 3 Prefix</column>
+			<column column="person.firstname" description="Contact 3 First Name">Contact3.05 Contact 3 First Name</column>
+			<column column="person.middlename" description="Contact 3 Middle Name">Contact3.06 Contact 3 Middle Name</column>
+			<column column="person.lastname" description="Contact 3 Last Name">Contact3.07 Contact 3 Last Name</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME" description="Contact 3 Maiden Name">Contact3.08 Contact 3 Maiden Name</column>
+			<column column="codeset.code" description="Contact 3 Suffix">Contact3.09 Contact 3 Suffix</column>
+			<column column="person.firstname" description="Contact 3 First Last">Contact3.10 Contact 3 First Last</column>
+			<column column="person.firstname" description="Contact 3 Phonetic_Pronunciation">Contact3.11 Contact 3 Phonetic Pronunciation</column>
+			<column column="codeset.code" description="Contact 3 Gender">Contact3.12 Contact 3 Gender</column>
+			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 3 Phone Numbers">Contact3.13 Contact 3 Phone Numbers</column>
+			<column column="person.firstname" description="Contact 3 Email Adresses">Contact3.14 Contact 3 Email Adresses</column>
+			<column column="personaddress.street" description="Contact 3 Home Street">Contact3.15 Contact 3 Home Street</column>
+			<column column="personaddress.city" description="Contact 3 Home City">Contact3.16 Contact 3 Home City</column>
+			<column column="codeset.code" description="Contact 3 Home State">Contact3.17 Contact 3 Home State</column>
+			<column column="personaddress.postalcode" description="Contact 3 Home Zip">Contact3.18 Contact 3 Home Zip</column>
+			<column column="personaddress.street" description="Contact 3 Mailing Street">Contact3.19 Contact 3 Mailing Street</column>
+			<column column="personaddress.city" description="Contact 3 Mailing City">Contact3.20 Contact 3 Mailing City</column>
+			<column column="codeset.code" description="Contact 3 Mailing State">Contact3.21 Contact 3 Mailing State</column>
+			<column column="personaddress.postalcode" description="Contact 3 Mailing Zip">Contact3.22 Contact 3 Mailing Zip</column>
+			<column column="studentcontactdetail.iscustodial" description="Contact 3 Has Custody">Contact3.23 Contact 3 Has Custody</column>
+			<column column="studentcontactdetail.liveswithflg" description="Contact 3 Lives With">Contact3.24 Contact 3 Lives With</column>
+			<column column="studentcontactdetail.receivesmailflg" description="Contact 3 Receives Mail">Contact3.25 Contact 3 Receives Mail</column>
+			<column column="studentcontactdetail.isemergency" description="Contact 3 Emergency Contact">Contact3.26 Contact 3 Emergency Contact</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 3 School Pickup">Contact3.27 Contact 3 School Pickup</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 3 School Messenger">Contact3.28 Contact 3 School Messenger</column>
+			<column column="guardianstudent.studentsdcid" description="Contact 3 Parent Portal Account">Contact3.29 Contact 3 Parent Portal Account</column>
+			<column column="person.employer" description="Contact 3 Employer">Contact3.30 Contact 3 Employer</column>
+			<column column="person.employer" description="Contact 3 Position">Contact3.31 Contact 3 Position</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 3 Religion">Contact3.32 Contact 3 Religion</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 3 Parish">Contact3.33 Contact 3 Parish</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 3 Parish City">Contact3.34 Contact 3 Parish City</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_state" description="Contact 3 Parish State">Contact3.35 Contact 3 Parish State</column>
+			<column column="person.isActive" description="Contact 4 is Active">Contact4.01 Contact 4 is Active</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_status" description="Contact 4 Living or Deceased">Contact4.02 Contact 4 Living or Deceased</column>
+			<column column="codeset.code" description="Contact 4 Relationship">Contact4.03 Contact 4 Relationship</column>
+			<column column="codeset.code" description="Contact 4 Prefix">Contact4.04 Contact 4 Prefix</column>
+			<column column="person.firstname" description="Contact 4 First Name">Contact4.05 Contact 4 First Name</column>
+			<column column="person.middlename" description="Contact 4 Middle Name">Contact4.06 Contact 4 Middle Name</column>
+			<column column="person.lastname" description="Contact 4 Last Name">Contact4.07 Contact 4 Last Name</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME" description="Contact 4 Maiden Name">Contact4.08 Contact 4 Maiden Name</column>
+			<column column="codeset.code" description="Contact 4 Suffix">Contact4.09 Contact 4 Suffix</column>
+			<column column="person.firstname" description="Contact 4 First Last">Contact4.10 Contact 4 First Last</column>
+			<column column="person.firstname" description="Contact 4 Phonetic_Pronunciation">Contact4.11 Contact 4 Phonetic Pronunciation</column>
+			<column column="codeset.code" description="Contact 4 Gender">Contact4.12 Contact 4 Gender</column>
+			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 4 Phone Numbers">Contact4.13 Contact 4 Phone Numbers</column>
+			<column column="person.firstname" description="Contact 4 Email Adresses">Contact4.14 Contact 4 Email Adresses</column>
+			<column column="personaddress.street" description="Contact 4 Home Street">Contact4.15 Contact 4 Home Street</column>
+			<column column="personaddress.city" description="Contact 4 Home City">Contact4.16 Contact 4 Home City</column>
+			<column column="codeset.code" description="Contact 4 Home State">Contact4.17 Contact 4 Home State</column>
+			<column column="personaddress.postalcode" description="Contact 4 Home Zip">Contact4.18 Contact 4 Home Zip</column>
+			<column column="personaddress.street" description="Contact 4 Mailing Street">Contact4.19 Contact 4 Mailing Street</column>
+			<column column="personaddress.city" description="Contact 4 Mailing City">Contact4.20 Contact 4 Mailing City</column>
+			<column column="codeset.code" description="Contact 4 Mailing State">Contact4.21 Contact 4 Mailing State</column>
+			<column column="personaddress.postalcode" description="Contact 4 Mailing Zip">Contact4.22 Contact 4 Mailing Zip</column>
+			<column column="studentcontactdetail.iscustodial" description="Contact 4 Has Custody">Contact4.23 Contact 4 Has Custody</column>
+			<column column="studentcontactdetail.liveswithflg" description="Contact 4 Lives With">Contact4.24 Contact 4 Lives With</column>
+			<column column="studentcontactdetail.receivesmailflg" description="Contact 4 Receives Mail">Contact4.25 Contact 4 Receives Mail</column>
+			<column column="studentcontactdetail.isemergency" description="Contact 4 Emergency Contact">Contact4.26 Contact 4 Emergency Contact</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 4 School Pickup">Contact4.27 Contact 4 School Pickup</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 4 School Messenger">Contact4.28 Contact 4 School Messenger</column>
+			<column column="guardianstudent.studentsdcid" description="Contact 4 Parent Portal Account">Contact4.29 Contact 4 Parent Portal Account</column>
+			<column column="person.employer" description="Contact 4 Employer">Contact4.30 Contact 4 Employer</column>
+			<column column="person.employer" description="Contact 4 Position">Contact4.31 Contact 4 Position</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 4 Religion">Contact4.32 Contact 4 Religion</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 4 Parish">Contact4.33 Contact 4 Parish</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 4 Parish City">Contact4.34 Contact 4 Parish City</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_state" description="Contact 4 Parish State">Contact4.35 Contact 4 Parish State</column>
+			<column column="person.isActive" description="Contact 5 is Active">Contact5.01 Contact 5 is Active</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_status" description="Contact 5 Living or Deceased">Contact5.02 Contact 5 Living or Deceased</column>
+			<column column="codeset.code" description="Contact 5 Relationship">Contact5.03 Contact 5 Relationship</column>
+			<column column="codeset.code" description="Contact 5 Prefix">Contact5.04 Contact 5 Prefix</column>
+			<column column="person.firstname" description="Contact 5 First Name">Contact5.05 Contact 5 First Name</column>
+			<column column="person.middlename" description="Contact 5 Middle Name">Contact5.06 Contact 5 Middle Name</column>
+			<column column="person.lastname" description="Contact 5 Last Name">Contact5.07 Contact 5 Last Name</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME" description="Contact 5 Maiden Name">Contact5.08 Contact 5 Maiden Name</column>
+			<column column="codeset.code" description="Contact 5 Suffix">Contact5.09 Contact 5 Suffix</column>
+			<column column="person.firstname" description="Contact 5 First Last">Contact5.10 Contact 5 First Last</column>
+			<column column="person.firstname" description="Contact 5 Phonetic_Pronunciation">Contact5.11 Contact 5 Phonetic Pronunciation</column>
+			<column column="codeset.code" description="Contact 5 Gender">Contact5.12 Contact 5 Gender</column>
+			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 5 Phone Numbers">Contact5.13 Contact 5 Phone Numbers</column>
+			<column column="person.firstname" description="Contact 5 Email Adresses">Contact5.14 Contact 5 Email Adresses</column>
+			<column column="personaddress.street" description="Contact 5 Home Street">Contact5.15 Contact 5 Home Street</column>
+			<column column="personaddress.city" description="Contact 5 Home City">Contact5.16 Contact 5 Home City</column>
+			<column column="codeset.code" description="Contact 5 Home State">Contact5.17 Contact 5 Home State</column>
+			<column column="personaddress.postalcode" description="Contact 5 Home Zip">Contact5.18 Contact 5 Home Zip</column>
+			<column column="personaddress.street" description="Contact 5 Mailing Street">Contact5.19 Contact 5 Mailing Street</column>
+			<column column="personaddress.city" description="Contact 5 Mailing City">Contact5.20 Contact 5 Mailing City</column>
+			<column column="codeset.code" description="Contact 5 Mailing State">Contact5.21 Contact 5 Mailing State</column>
+			<column column="personaddress.postalcode" description="Contact 5 Mailing Zip">Contact5.22 Contact 5 Mailing Zip</column>
+			<column column="studentcontactdetail.iscustodial" description="Contact 5 Has Custody">Contact5.23 Contact 5 Has Custody</column>
+			<column column="studentcontactdetail.liveswithflg" description="Contact 5 Lives With">Contact5.24 Contact 5 Lives With</column>
+			<column column="studentcontactdetail.receivesmailflg" description="Contact 5 Receives Mail">Contact5.25 Contact 5 Receives Mail</column>
+			<column column="studentcontactdetail.isemergency" description="Contact 5 Emergency Contact">Contact5.26 Contact 5 Emergency Contact</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 5 School Pickup">Contact5.27 Contact 5 School Pickup</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 5 School Messenger">Contact5.28 Contact 5 School Messenger</column>
+			<column column="guardianstudent.studentsdcid" description="Contact 5 Parent Portal Account">Contact5.29 Contact 5 Parent Portal Account</column>
+			<column column="person.employer" description="Contact 5 Employer">Contact5.30 Contact 5 Employer</column>
+			<column column="person.employer" description="Contact 5 Position">Contact5.31 Contact 5 Position</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 5 Religion">Contact5.32 Contact 5 Religion</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 5 Parish">Contact5.33 Contact 5 Parish</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 5 Parish City">Contact5.34 Contact 5 Parish City</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_state" description="Contact 5 Parish State">Contact5.35 Contact 5 Parish State</column>
+			<column column="person.isActive" description="Contact 6 is Active">Contact6.01 Contact 6 is Active</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_status" description="Contact 6 Living or Deceased">Contact6.02 Contact 6 Living or Deceased</column>
+			<column column="codeset.code" description="Contact 6 Relationship">Contact6.03 Contact 6 Relationship</column>
+			<column column="codeset.code" description="Contact 6 Prefix">Contact6.04 Contact 6 Prefix</column>
+			<column column="person.firstname" description="Contact 6 First Name">Contact6.05 Contact 6 First Name</column>
+			<column column="person.middlename" description="Contact 6 Middle Name">Contact6.06 Contact 6 Middle Name</column>
+			<column column="person.lastname" description="Contact 6 Last Name">Contact6.07 Contact 6 Last Name</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.PERSON_MAIDEN_NAME" description="Contact 6 Maiden Name">Contact6.08 Contact 6 Maiden Name</column>
+			<column column="codeset.code" description="Contact 6 Suffix">Contact6.09 Contact 6 Suffix</column>
+			<column column="person.firstname" description="Contact 6 First Last">Contact6.10 Contact 6 First Last</column>
+			<column column="person.firstname" description="Contact 6 Phonetic_Pronunciation">Contact6.11 Contact 6 Phonetic Pronunciation</column>
+			<column column="codeset.code" description="Contact 6 Gender">Contact6.12 Contact 6 Gender</column>
+			<column column="personphonenumberassoc.phonenumberasentered" description="Contact 6 Phone Numbers">Contact6.13 Contact 6 Phone Numbers</column>
+			<column column="person.firstname" description="Contact 6 Email Adresses">Contact6.14 Contact 6 Email Adresses</column>
+			<column column="personaddress.street" description="Contact 6 Home Street">Contact6.15 Contact 6 Home Street</column>
+			<column column="personaddress.city" description="Contact 6 Home City">Contact6.16 Contact 6 Home City</column>
+			<column column="codeset.code" description="Contact 6 Home State">Contact6.17 Contact 6 Home State</column>
+			<column column="personaddress.postalcode" description="Contact 6 Home Zip">Contact6.18 Contact 6 Home Zip</column>
+			<column column="personaddress.street" description="Contact 6 Mailing Street">Contact6.19 Contact 6 Mailing Street</column>
+			<column column="personaddress.city" description="Contact 6 Mailing City">Contact6.20 Contact 6 Mailing City</column>
+			<column column="codeset.code" description="Contact 6 Mailing State">Contact6.21 Contact 6 Mailing State</column>
+			<column column="personaddress.postalcode" description="Contact 6 Mailing Zip">Contact6.22 Contact 6 Mailing Zip</column>
+			<column column="studentcontactdetail.iscustodial" description="Contact 6 Has Custody">Contact6.23 Contact 6 Has Custody</column>
+			<column column="studentcontactdetail.liveswithflg" description="Contact 6 Lives With">Contact6.24 Contact 6 Lives With</column>
+			<column column="studentcontactdetail.receivesmailflg" description="Contact 6 Receives Mail">Contact6.25 Contact 6 Receives Mail</column>
+			<column column="studentcontactdetail.isemergency" description="Contact 6 Emergency Contact">Contact6.26 Contact 6 Emergency Contact</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 6 School Pickup">Contact6.27 Contact 6 School Pickup</column>
+			<column column="studentcontactdetail.schoolpickupflg" description="Contact 6 School Messenger">Contact6.28 Contact 6 School Messenger</column>
+			<column column="guardianstudent.studentsdcid" description="Contact 6 Parent Portal Account">Contact6.29 Contact 6 Parent Portal Account</column>
+			<column column="person.employer" description="Contact 6 Employer">Contact6.30 Contact 6 Employer</column>
+			<column column="person.employer" description="Contact 6 Position">Contact6.31 Contact 6 Position</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_religion" description="Contact 6 Religion">Contact6.32 Contact 6 Religion</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish" description="Contact 6 Parish">Contact6.33 Contact 6 Parish</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_city" description="Contact 6 Parish City">Contact6.34 Contact 6 Parish City</column>
+			<column column="U_PERSON_ADDITIONAL_INFO.person_parish_state" description="Contact 6 Parish State">Contact6.35 Contact 6 Parish State</column>			
+			<column column="students.Next_school" description="Next School">school.01 Next School</column>
+			<column column="SCHOOLS.name" description="School">school.02 School</column>
 		</columns>
 		<sql>
 			<![CDATA[
