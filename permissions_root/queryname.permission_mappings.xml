@@ -31,4 +31,12 @@
 			<implies allow="get">/ws/schema/table/U_STUDENTCONTACTDETAIL_CDOL/count</implies>
 			<implies allow="get">/ws/schema/table/U_STUDENTCONTACTDETAIL_CDOL</implies>
 	</permission>
+	<permission name='/admin/cdol/staffchange/cdol_staff_change.html'>
+			<implies allow="post">/ws/schema/table/U_CDOL_STAFF_CHANGES</implies>
+			<implies allow="put">/ws/schema/table/U_CDOL_STAFF_CHANGES/#</implies>
+			<implies allow="delete">/ws/schema/table/U_CDOL_STAFF_CHANGES/#</implies>
+			<implies allow="get">/ws/schema/table/U_CDOL_STAFF_CHANGES/#</implies>
+			<implies allow="get">/ws/schema/table/U_CDOL_STAFF_CHANGES/count</implies>
+			<implies allow="get">/ws/schema/table/U_CDOL_STAFF_CHANGES</implies>
+	</permission>
 </permission_mappings>
