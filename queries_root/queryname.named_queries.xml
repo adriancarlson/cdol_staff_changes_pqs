@@ -528,7 +528,7 @@
 				to_char(replaced.DCID) = to_char(U_CDOL_STAFF_CHANGES.replacing)
 				LEFT OUTER JOIN USERS submitted ON
 				to_char(submitted.DCID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
-				WHERE U_CDOL_STAFF_CHANGES.schoolid =  (U_CDOL_STAFF_CHANGES.schoolid = :curSchoolID
+				WHERE (U_CDOL_STAFF_CHANGES.schoolid = :curSchoolID
 								or 
 							:curSchoolID = 0)
 				ORDER BY U_CDOL_STAFF_CHANGES.submission_date DESC, U_CDOL_STAFF_CHANGES.last_name	
