@@ -462,6 +462,9 @@
 	<query name="net.cdolinc.staffChanges.staff.changes" flattened="true">
 		<summary>CDOL: Staff Changes</summary>
 		<description>List all Submitted Staff Changes</description>
+		<args>
+			<arg name="curSchoolID" column="U_CDOL_STAFF_CHANGES.schoolid" required="true" description="Current School ID" default="~(curschoolid)" />
+		</args>
 		<columns>
 			<column column="U_CDOL_STAFF_CHANGES.id" description="State Number">students.01_State_Number</column>
 			<column column="U_CDOL_STAFF_CHANGES.schoolid" description="Old SMS Number">students.02_Old_SMS_Number</column>
@@ -525,6 +528,9 @@
 				to_char(replaced.DCID) = to_char(U_CDOL_STAFF_CHANGES.replacing)
 				LEFT OUTER JOIN USERS submitted ON
 				to_char(submitted.DCID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
+				WHERE U_CDOL_STAFF_CHANGES.yearid =  (U_CDOL_STAFF_CHANGES.yearid = :curSchoolID
+								or 
+							:curSchoolID = 0)
 				ORDER BY U_CDOL_STAFF_CHANGES.submission_date DESC, U_CDOL_STAFF_CHANGES.last_name	
         ]]>
 		</sql>
