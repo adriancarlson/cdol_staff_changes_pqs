@@ -1228,4 +1228,82 @@
         ]]>
 		</sql>
 	</query>
+
+<query name="net.cdolinc.staffChanges.staff.changes" flattened="true">
+		<summary>CDOL: Staff Changes</summary>
+		<description>List Staff Change From Submissions</description>
+		<args>
+			<arg name="curSchoolID" column="U_CDOL_STAFF_CHANGES.schoolid" required="true" description="Current School ID" default="~(curschoolid)" />
+			<arg name="curYearID" column="U_CDOL_STAFF_CHANGES.yearid" required="true" description="Current Year ID" default="~(curyearid)" />
+		</args>
+		<columns>
+			<column column="U_CDOL_STAFF_CHANGES.id" description="Staff Change ID">ID</column>
+			<column column="U_CDOL_STAFF_CHANGES.schoolid" description="Staff Change SchoolID">SchoolID</column>
+			<column column="SCHOOLS.NAME" description="School Name">School Name</column>
+			<column column="U_CDOL_STAFF_CHANGES.yearid" description="Staff Change yearID">YearID</column>
+			<column column="U_CDOL_STAFF_CHANGES.title" description="Staff Change Title">Title</column>
+			<column column="U_CDOL_STAFF_CHANGES.first_name" description="Staff Change First Name">First Name</column>	
+			<column column="U_CDOL_STAFF_CHANGES.middle_name" description="Staff Change Middle Name">Middle Name</column>	
+			<column column="U_CDOL_STAFF_CHANGES.last_name" description="Staff Change Last Name">Last Name</column>	
+			<column column="U_CDOL_STAFF_CHANGES.preferred_name" description="Staff Change Preferred Name">Preferred Name</column>	
+			<column column="U_CDOL_STAFF_CHANGES.maiden_name" description="Staff Change Maiden Name">Maiden Name</column>	
+			<column column="U_CDOL_STAFF_CHANGES.gender" description="Staff Change Gender">Gender</column>	
+			<column column="U_CDOL_STAFF_CHANGES.personal_email" description="Staff Change Personal Email">Personal Email</column>	
+			<column column="U_CDOL_STAFF_CHANGES.staff_type" description="Staff Change Staff Type">Staff Type</column>	
+			<column column="U_CDOL_STAFF_CHANGES.position" description="Staff Change Position">Position</column>	
+			<column column="U_CDOL_STAFF_CHANGES.replacing" description="Staff Change Replacing">ReplacingID</column>	
+			<column column="U_CDOL_STAFF_CHANGES.first_name" description="Staff Change Replacing">Replacing Name</column>	
+			<column column="U_CDOL_STAFF_CHANGES.start_date" description="Staff Change Start Date">Start Date</column>	
+			<column column="U_CDOL_STAFF_CHANGES.previous" description="Staff Change Previous">Previous</column>	
+			<column column="U_CDOL_STAFF_CHANGES.previous_employer" description="Staff Change Previous Employer">Previous Employer</column>	
+			<column column="U_CDOL_STAFF_CHANGES.previous_employer_other" description="Staff Change Previous Employer Other">Previous Employer Other</column>	
+			<column column="U_CDOL_STAFF_CHANGES.submission_date" description="Staff Change Submision">Submission Date</column>	
+			<column column="U_CDOL_STAFF_CHANGES.who_submitted" description="Staff Change Who Submitted">Who SubmittedID</column>	
+			<column column="U_CDOL_STAFF_CHANGES.first_name" description="Staff Change Who Submitted">Who SubmittedID Name</column>	
+			<column column="U_CDOL_STAFF_CHANGES.ps_created" description="Staff Change PS Created">PS Created</column>	
+			<column column="U_CDOL_STAFF_CHANGES.ad_created" description="Staff Change AD Created">AD Created</column>	
+		</columns>
+		<sql>
+			<![CDATA[
+				SELECT 
+					U_CDOL_STAFF_CHANGES.id,
+					U_CDOL_STAFF_CHANGES.schoolid,
+					SCHOOLS.NAME, 
+					U_CDOL_STAFF_CHANGES.yearid,
+					U_CDOL_STAFF_CHANGES.title, 
+					U_CDOL_STAFF_CHANGES.first_name, 
+					U_CDOL_STAFF_CHANGES.middle_name, 
+					U_CDOL_STAFF_CHANGES.last_name,
+					U_CDOL_STAFF_CHANGES.preferred_name,
+					U_CDOL_STAFF_CHANGES.maiden_name,
+					U_CDOL_STAFF_CHANGES.gender,
+					U_CDOL_STAFF_CHANGES.personal_email,
+					U_CDOL_STAFF_CHANGES.staff_type,
+					U_CDOL_STAFF_CHANGES.position,
+					U_CDOL_STAFF_CHANGES.replacing,
+					replaced.last_name ||', ' || replaced.first_name as replacedstaff,
+					U_CDOL_STAFF_CHANGES.start_date,
+					U_CDOL_STAFF_CHANGES.previous,
+					U_CDOL_STAFF_CHANGES.previous_employer,
+					U_CDOL_STAFF_CHANGES.previous_employer_other,
+					U_CDOL_STAFF_CHANGES.submission_date,
+					U_CDOL_STAFF_CHANGES.who_submitted,
+					submitted.last_name ||', ' || submitted.first_name as submittedstaff,
+					U_CDOL_STAFF_CHANGES.ps_created,
+					U_CDOL_STAFF_CHANGES.ad_created
+				FROM U_CDOL_STAFF_CHANGES
+				LEFT OUTER JOIN SCHOOLS ON 
+				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
+				LEFT OUTER JOIN USERS replaced ON
+				to_char(replaced.DCID) = to_char(U_CDOL_STAFF_CHANGES.replacing)
+				LEFT OUTER JOIN USERS submitted ON
+				to_char(submitted.DCID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
+				WHERE U_CDOL_STAFF_CHANGES.yearid = :curYearId
+				(U_CDOL_STAFF_CHANGES.schoolid = :curSchoolID
+								or 
+							:curSchoolID = 0)
+				ORDER BY U_CDOL_STAFF_CHANGES.submission_date DESC, U_CDOL_STAFF_CHANGES.last_name
+			]]>
+		</sql>
+	</query>
 </queries>
