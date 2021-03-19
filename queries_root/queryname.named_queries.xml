@@ -467,26 +467,26 @@
 			<arg name="curYearID" column="U_CDOL_STAFF_CHANGES.yearid" required="true" description="Current Year ID" default="~(curyearid)" />
 		</args>
 		<columns>
-			<column column="U_CDOL_STAFF_CHANGES.id" description="State Number">users.01_State_Number</column>
-			<column column="U_CDOL_STAFF_CHANGES.schoolid" description="Old SMS Number">users.02_Old_SMS_Number</column>
-			<column column="SCHOOLS.NAME" description="Student Number">users.03_Student_Number</column>
-			<column column="U_CDOL_STAFF_CHANGES.yearid" description="First Name">users.04_First_Name</column>
-			<column column="U_CDOL_STAFF_CHANGES.title" description="Middle Name">users.05_Middle_Name</column>
-			<column column="U_CDOL_STAFF_CHANGES.first_name" description="Last Name">users.06_Last_Name</column>
-			<column column="U_CDOL_STAFF_CHANGES.middle_name" description="Suffix">users.07_Suffix</column>
-			<column column="U_CDOL_STAFF_CHANGES.last_name" description="Last First">users.08_Last_First</column>
-			<column column="U_CDOL_STAFF_CHANGES.preferred_name" description="Preferend Name">users.09_Preferred_Name</column>
-			<column column="U_CDOL_STAFF_CHANGES.maiden_name" description="Phonetic Pronunciation">users.10_Phonetic_Pronunciation</column>
-			<column column="U_CDOL_STAFF_CHANGES.gender" description="Gender">users.11_Gender</column>
-			<column column="U_CDOL_STAFF_CHANGES.personal_email" description="DoB">users.12_DoB</column>
-			<column column="U_CDOL_STAFF_CHANGES.staff_type" description="Grade">users.13_Grade_Level</column>
-			<column column="U_CDOL_STAFF_CHANGES.position" description="Home Room">users.14_Home_Room</column>
-			<column column="U_CDOL_STAFF_CHANGES.replacing" description="Class Of">users.15_Class_of</column>
-			<column column="U_CDOL_STAFF_CHANGES.replacing" description="Ethnicity">users.16_Ethnicity</column>
-			<column column="U_CDOL_STAFF_CHANGES.start_date" description="Race">users.17_race</column>
-			<column column="U_CDOL_STAFF_CHANGES.previous" description="District of Residence">users.18_District_of_Residence</column>
-			<column column="U_CDOL_STAFF_CHANGES.previous_employer" description="Family Rep">users.19_Family_Rep</column>
-			<column column="U_CDOL_STAFF_CHANGES.previous_employer_other" description="Mailing Street">users.20_Mailing_Street</column>
+			<column column="U_CDOL_STAFF_CHANGES.id" description="Change ID">users.01_id</column>
+			<column column="U_CDOL_STAFF_CHANGES.schoolid" description="School ID">users.02_school_id</column>
+			<column column="SCHOOLS.NAME" description="School Name">users.03_school_name</column>
+			<column column="U_CDOL_STAFF_CHANGES.yearid" description="Year ID">users.04_year_id</column>
+			<column column="U_CDOL_STAFF_CHANGES.title" description="Title">users.05_title</column>
+			<column column="U_CDOL_STAFF_CHANGES.first_name" description="First Name">users.06_first_name</column>
+			<column column="U_CDOL_STAFF_CHANGES.middle_name" description="Middle Name">users.07_middle_name</column>
+			<column column="U_CDOL_STAFF_CHANGES.last_name" description="Last Name">users.08_last_name</column>
+			<column column="U_CDOL_STAFF_CHANGES.preferred_name" description="Preferend Name">users.09_preferred_name</column>
+			<column column="U_CDOL_STAFF_CHANGES.maiden_name" description="Maiden Name">users.10_maiden_name</column>
+			<column column="U_CDOL_STAFF_CHANGES.gender" description="Gender">users.11_gender</column>
+			<column column="U_CDOL_STAFF_CHANGES.personal_email" description="Personal email">users.12_personal_email</column>
+			<column column="U_CDOL_STAFF_CHANGES.staff_type" description="Staff Type">users.13_staff_type</column>
+			<column column="U_CDOL_STAFF_CHANGES.position" description="Position">users.14_position</column>
+			<column column="U_CDOL_STAFF_CHANGES.replacing" description="Replacing Id">users.15_replacing_id</column>
+			<column column="U_CDOL_STAFF_CHANGES.replacing" description="Replacing Name">users.16_replacing_name</column>
+			<column column="U_CDOL_STAFF_CHANGES.start_date" description="Start Date">users.17_start_date</column>
+			<column column="U_CDOL_STAFF_CHANGES.previous" description="Previously employed by CDOL">users.18_previous</column>
+			<column column="U_CDOL_STAFF_CHANGES.previous_employer" description="Previous Employer">users.19_previous_employer</column>
+			<column column="U_CDOL_STAFF_CHANGES.previous_employer_other" description="Other Previous Employer description">users.20_previous_employer_other</column>
 			<column column="U_CDOL_STAFF_CHANGES.submission_date" description="Submission Date">users.22_submission_date</column>
 			<column column="U_CDOL_STAFF_CHANGES.who_submitted" description="Who Submitted">users.23_who_submitted</column>
 			<column column="U_CDOL_STAFF_CHANGES.who_submitted" description="Who Submitted Name">users.24_who_submitted_name</column>
