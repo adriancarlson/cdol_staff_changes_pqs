@@ -502,7 +502,7 @@
 					CASE 
 						WHEN U_CDOL_STAFF_CHANGES.schoolid = 0 THEN 'Diocesan Office' 
 						ELSE SCHOOLS.NAME
-					END,  
+					END as schoolName,  
 					U_CDOL_STAFF_CHANGES.yearid,
 					U_CDOL_STAFF_CHANGES.title, 
 					U_CDOL_STAFF_CHANGES.first_name, 
