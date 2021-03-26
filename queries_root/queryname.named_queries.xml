@@ -459,6 +459,40 @@
 			]]>
 		</sql>
 	</query>
+	<query name="net.cdolinc.staffChanges.staff.duplicates" flattened="true">
+		<summary>CDOL: Staff Duplicate Search</summary>
+		<description>Search for Duplicate Staff Members</description>
+		<args>
+			<arg name="lastName" column="USERS.LAST_NAME" required="false" description="User Last Name" default="" />
+			<arg name="maidenName" column="USERS.LAST_NAME" required="false" description="User Maiden Name" default="" />
+			<arg name="firstNameSubString" column="USERS.FIRST_NAME" required="false" description="User First Name" default="" />
+		</args>
+		<columns>
+			<column column="USERS.FIRST_NAME" description="Users First Name">users.first_name</column>
+			<column column="USERS.LAST_NAME" description="Users Last Name">users.last_name</column>
+			<column column="SCHOOLS.NAME" description="School Name">schools.name</column>			
+		</columns>
+		<sql>
+			<![CDATA[
+				SELECT
+					users.first_name,
+					users.last_name,
+					CASE
+						WHEN users.homeschoolid = 0 THEN
+							'Diocesan Office'
+						ELSE
+							schools.name
+					END AS schoolname
+				FROM
+					users
+					LEFT OUTER JOIN schools ON users.homeschoolid = schools.school_number
+				WHERE
+					( lower(users.last_name) LIKE ':lastName%'
+					OR lower(users.last_name) LIKE ':maidenName%' )
+					AND lower(users.first_name) LIKE ':firstNameSubString%'
+        ]]>
+		</sql>
+	</query>
 	<query name="net.cdolinc.staffChanges.staff.changes" flattened="true">
 		<summary>CDOL: Staff Changes</summary>
 		<description>List all Submitted Staff Changes</description>
