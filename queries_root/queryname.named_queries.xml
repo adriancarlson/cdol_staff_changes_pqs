@@ -487,9 +487,9 @@
 					users
 					LEFT OUTER JOIN schools ON users.homeschoolid = schools.school_number
 				WHERE
-					( lower(users.last_name) LIKE ':lastName%'
-					OR lower(users.last_name) LIKE ':maidenName%' )
-					AND lower(users.first_name) LIKE ':firstNameSubString%'
+					( lower(users.last_name) LIKE '' || :lastName || '%'
+					OR lower(users.last_name) LIKE '' || :maidenName|| '%')
+					AND lower(users.first_name) LIKE '' ||:firstNameSubString || '%'
         ]]>
 		</sql>
 	</query>
