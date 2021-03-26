@@ -35,7 +35,7 @@
 		<implies allow="post">/ws/schema/query/net.cdolinc.staffChanges.staff.changes</implies>
 	</permission>
 	<permission name="/admin/cdol/staffchange/cdol_staff_change.html">
-		<implies allow="post">net.cdolinc.staffChanges.staff.duplicates</implies>
+		<implies allow="post">/ws/schema/query/net.cdolinc.staffChanges.staff.duplicates</implies>
 	</permission>
 	<permission name='/admin/cdol/staffchange/cdol_staff_change.html'>
 			<implies allow="post">/ws/schema/table/U_CDOL_STAFF_CHANGES</implies>
