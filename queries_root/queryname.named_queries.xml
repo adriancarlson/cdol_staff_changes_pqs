@@ -531,6 +531,7 @@
 			<column column="U_CDOL_STAFF_CHANGES.previous_employer" description="Previous Employer">staff.previous_employer</column>
 			<column column="U_CDOL_STAFF_CHANGES.previous_employer_other" description="Other Previous Employer description">staff.previous_employer_other</column>
 			<column column="U_CDOL_STAFF_CHANGES.submission_date" description="Submission Date">staff.submission_date</column>
+			<column column="U_CDOL_STAFF_CHANGES.submission_time" description="Submission Time">staff.submission_time</column>
 			<column column="U_CDOL_STAFF_CHANGES.who_submitted" description="Who Submitted">staff.who_submitted</column>
 			<column column="U_CDOL_STAFF_CHANGES.who_submitted" description="Who Submitted Name">staff.submittedstaff</column>
 			<column column="U_CDOL_STAFF_CHANGES.ps_created" description="PS created">staff.ps_created</column>
@@ -564,16 +565,20 @@
 					U_CDOL_STAFF_CHANGES.position, 
 					U_CDOL_STAFF_CHANGES.fte, 
 					U_CDOL_STAFF_CHANGES.replacing,
-					replaced.last_name ||', ' || replaced.first_name as replacedstaff,
+					replaced.first_name || ' ' || replaced.last_name as replacedstaff,
 					U_CDOL_STAFF_CHANGES.start_date,
 					U_CDOL_STAFF_CHANGES.early_setup,
 					U_CDOL_STAFF_CHANGES.deadline,
+                    CASE WHEN U_CDOL_STAFF_CHANGES.deadline is NULL THEN U_CDOL_STAFF_CHANGES.start_date
+                    ELSE U_CDOL_STAFF_CHANGES.deadline 
+                    END as completion_date,
 					U_CDOL_STAFF_CHANGES.previous,
 					U_CDOL_STAFF_CHANGES.previous_employer,
 					U_CDOL_STAFF_CHANGES.previous_employer_other,
 					U_CDOL_STAFF_CHANGES.submission_date,
+					U_CDOL_STAFF_CHANGES.submission_time,
 					U_CDOL_STAFF_CHANGES.who_submitted,
-					submitted.last_name ||', ' || submitted.first_name as submittedstaff,
+					submitted.first_name  || ' ' ||  submitted.last_name as submittedstaff,
 					U_CDOL_STAFF_CHANGES.ps_created,
 					U_CDOL_STAFF_CHANGES.ad_created,
 					U_CDOL_STAFF_CHANGES.lms_created,
