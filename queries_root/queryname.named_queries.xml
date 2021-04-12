@@ -520,6 +520,7 @@
 			<column column="U_CDOL_STAFF_CHANGES.religiousclergylay" description="religiousclergylay">staff.religiousclergylay</column>
 			<column column="U_CDOL_STAFF_CHANGES.personal_email" description="Personal email">staff.personal_email</column>
 			<column column="U_CDOL_STAFF_CHANGES.staff_type" description="Staff Type">staff.staff_type</column>
+			<column column="U_CDOL_STAFF_CHANGES.staff_type" description="Staff Type Description">staff.staff_type_desc</column>
 			<column column="U_CDOL_STAFF_CHANGES.position" description="Position">staff.position</column>
 			<column column="U_CDOL_STAFF_CHANGES.fte" description="fte">staff.fte</column>
 			<column column="U_CDOL_STAFF_CHANGES.replacing" description="Replacing Id">staff.replacingid</column>
@@ -563,6 +564,14 @@
 					U_CDOL_STAFF_CHANGES.religiousclergylay,
 					U_CDOL_STAFF_CHANGES.personal_email,
 					U_CDOL_STAFF_CHANGES.staff_type,
+					CASE 
+                        WHEN U_CDOL_STAFF_CHANGES.staff_type = 0 THEN 'Not Assigned'
+                        WHEN U_CDOL_STAFF_CHANGES.staff_type = 1 THEN 'Teacher'
+                        WHEN U_CDOL_STAFF_CHANGES.staff_type = 2 THEN 'Staff'
+                        WHEN U_CDOL_STAFF_CHANGES.staff_type = 3 THEN 'Lunch Staff'
+                        WHEN U_CDOL_STAFF_CHANGES.staff_type = 4 THEN 'Substitute'
+                        Else 'Unknown' 
+                    END as staff_type_desc,
 					U_CDOL_STAFF_CHANGES.position, 
 					U_CDOL_STAFF_CHANGES.fte, 
 					U_CDOL_STAFF_CHANGES.replacing,
