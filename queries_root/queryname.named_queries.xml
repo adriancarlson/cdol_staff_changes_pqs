@@ -570,7 +570,7 @@
                         WHEN U_CDOL_STAFF_CHANGES.staff_type = 2 THEN 'Staff'
                         WHEN U_CDOL_STAFF_CHANGES.staff_type = 3 THEN 'Lunch Staff'
                         WHEN U_CDOL_STAFF_CHANGES.staff_type = 4 THEN 'Substitute'
-                        Else 'Unknown' 
+                        Else '' 
                     END as staff_type_desc,
 					U_CDOL_STAFF_CHANGES.position, 
 					U_CDOL_STAFF_CHANGES.fte, 
