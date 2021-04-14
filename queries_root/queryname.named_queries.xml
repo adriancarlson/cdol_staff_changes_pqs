@@ -536,6 +536,7 @@
 			<column column="U_CDOL_STAFF_CHANGES.submission_time" description="Submission Time">staff.submission_time</column>
 			<column column="U_CDOL_STAFF_CHANGES.who_submitted" description="Who Submitted">staff.who_submitted</column>
 			<column column="U_CDOL_STAFF_CHANGES.who_submitted" description="Who Submitted Name">staff.submittedstaff</column>
+			<column column="U_CDOL_STAFF_CHANGES.final_completion_date" description="Final Completion Date">staff.final_completion_date</column>
 			<column column="U_CDOL_STAFF_CHANGES.ps_created" description="PS created">staff.ps_created</column>
 			<column column="U_CDOL_STAFF_CHANGES.ad_created" description="AD created">staff.ad_created</column>
 			<column column="U_CDOL_STAFF_CHANGES.lms_created" description="LMS created">staff.lms_created</column>
@@ -589,6 +590,7 @@
 					U_CDOL_STAFF_CHANGES.submission_time,
 					U_CDOL_STAFF_CHANGES.who_submitted,
 					submitted.first_name  || ' ' ||  submitted.last_name as submittedstaff,
+					U_CDOL_STAFF_CHANGES.final_completion_date,
 					U_CDOL_STAFF_CHANGES.ps_created,
 					U_CDOL_STAFF_CHANGES.ad_created,
 					U_CDOL_STAFF_CHANGES.lms_created,
