@@ -598,7 +598,7 @@
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
-				LEFT OUTER JOIN TEACHERS replaced ON
+				LEFT OUTER JOIN USERS replaced ON
 				to_char(replaced.DCID) = to_char(U_CDOL_STAFF_CHANGES.replacing)
 				LEFT OUTER JOIN TEACHERS submitted ON
 				to_char(submitted.DCID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
@@ -714,7 +714,7 @@
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
-				LEFT OUTER JOIN TEACHERS replaced ON
+				LEFT OUTER JOIN USERS replaced ON
 				to_char(replaced.DCID) = to_char(U_CDOL_STAFF_CHANGES.replacing)
 				LEFT OUTER JOIN TEACHERS submitted ON
 				to_char(submitted.DCID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
