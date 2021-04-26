@@ -598,10 +598,10 @@
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
-				LEFT OUTER JOIN USERS replaced ON
-				to_char(replaced.DCID) = to_char(U_CDOL_STAFF_CHANGES.replacing)
+				LEFT OUTER JOIN TEACHERS replaced ON
+				to_char(replaced.ID) = to_char(U_CDOL_STAFF_CHANGES.replacing)
 				LEFT OUTER JOIN TEACHERS submitted ON
-				to_char(submitted.DCID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
+				to_char(submitted.ID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
 				WHERE U_CDOL_STAFF_CHANGES.yearid = :curYearID
 				AND (U_CDOL_STAFF_CHANGES.schoolid = :curSchoolID
 								or 
@@ -714,10 +714,10 @@
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
-				LEFT OUTER JOIN USERS replaced ON
-				to_char(replaced.DCID) = to_char(U_CDOL_STAFF_CHANGES.replacing)
+				LEFT OUTER JOIN TEACHERS replaced ON
+				to_char(replaced.ID) = to_char(U_CDOL_STAFF_CHANGES.replacing)
 				LEFT OUTER JOIN TEACHERS submitted ON
-				to_char(submitted.DCID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
+				to_char(submitted.ID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
 				WHERE U_CDOL_STAFF_CHANGES.yearid = :curYearID
 				AND (U_CDOL_STAFF_CHANGES.schoolid = :curSchoolID
 								or 
