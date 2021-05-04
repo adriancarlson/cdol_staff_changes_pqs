@@ -468,11 +468,11 @@
 			<arg name="firstNameSubString" column="USERS.FIRST_NAME" required="false" description="User First Name" default="" />
 		</args>
 		<columns>
-			<column column="USERS.DCID" description="Users First Name">users.dcid</column>
-			<column column="USERS.LAST_NAME" description="Users First Name">users.first_name</column>
-			<column column="USERS.LAST_NAME" description="Users Last Name">users.last_name</column>
-			<column column="SCHOOLSTAFF.STATUS" description="School Staff Status">schoolstaff.status</column>
-			<column column="SCHOOLS.NAME" description="School Name">schools.name</column>			
+			<column column="SCHOOLSTAFF.DCID" description="Users First Name">dcid</column>
+			<column column="USERS.LAST_NAME" description="Users First Name">firstname</column>
+			<column column="USERS.LAST_NAME" description="Users Last Name">lastname</column>
+			<column column="USERS.LAST_NAME" description="School Staff Status">status</column>
+			<column column="SCHOOLS.NAME" description="School Name">schoolname</column>			
 		</columns>
 		<sql>
 			<![CDATA[
