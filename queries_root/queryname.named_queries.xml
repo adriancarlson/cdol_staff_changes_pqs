@@ -471,27 +471,36 @@
 			<column column="USERS.DCID" description="Users First Name">users.dcid</column>
 			<column column="USERS.FIRST_NAME" description="Users First Name">users.first_name</column>
 			<column column="USERS.LAST_NAME" description="Users Last Name">users.last_name</column>
+			<column column="SCHOOLSTAFF.STATUS" description="School Staff Status">schoolstaff.status</column>
 			<column column="SCHOOLS.NAME" description="School Name">schools.name</column>			
 		</columns>
 		<sql>
 			<![CDATA[
-				SELECT
-					users.dcid,
+				SELECT 
+					schoolstaff.dcid,
 					users.first_name,
 					users.last_name,
-					CASE
-						WHEN users.homeschoolid = 0 THEN
-							'Diocesan Office'
-						ELSE
-							schools.name
-					END AS schoolname
-				FROM
-					users
-					LEFT OUTER JOIN schools ON users.homeschoolid = schools.school_number
+				CASE
+					WHEN schoolstaff.status = 1 
+					THEN 'Active'
+					ELSE
+						'Inactive'
+				END AS Status,
+				CASE
+					WHEN users.homeschoolid = 0 THEN
+						'Diocesan Office'
+					ELSE
+						schools.name
+				END AS schoolname
+				FROM schoolstaff 
+
+				INNER JOIN users ON schoolstaff.users_dcid = users.dcid
+				and schoolstaff.schoolid = users.homeschoolid
+				LEFT OUTER JOIN schools ON users.homeschoolid = schools.school_number
 				WHERE
-					( lower(users.last_name) LIKE '' || :lastName || '%'
-					OR lower(users.last_name) LIKE '' || :maidenName|| '%')
-					AND lower(users.first_name) LIKE '' ||:firstNameSubString || '%'
+				(lower(users.last_name) LIKE '' || :lastName || '%'
+				OR lower(users.last_name) LIKE '' || :maidenName|| '%')
+				AND lower(TRIM(SUBSTR(users.first_name,INSTR(users.first_name,'.')+1,LENGTH(users.first_name)+1-INSTR(users.first_name,' ')))) LIKE '' ||:firstNameSubString || '%'
         ]]>
 		</sql>
 	</query>
