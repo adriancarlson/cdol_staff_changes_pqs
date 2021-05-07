@@ -459,50 +459,6 @@
 			]]>
 		</sql>
 	</query>
-	<query name="net.cdolinc.staffChanges.staff.duplicates" flattened="true">
-		<summary>CDOL: Staff Duplicate Search</summary>
-		<description>Search for Duplicate Staff Members</description>
-		<args>
-			<arg name="lastName" column="TEACHERS.LAST_NAME" required="false" description="User Last Name" default="" />
-			<arg name="maidenName" column="TEACHERS.LAST_NAME" required="false" description="User Maiden Name" default="" />
-			<arg name="firstNameSubString" column="TEACHERS.FIRST_NAME" required="false" description="User First Name" default="" />
-		</args>
-		<columns>
-			<column column="TEACHERS.DCID" description="Users First Name">TEACHERS.dcid</column>
-			<column column="TEACHERS.FIRST_NAME" description="Users First Name">TEACHERS.first_name</column>
-			<column column="TEACHERS.LAST_NAME" description="Users Last Name">TEACHERS.last_name</column>
-			<column column="SCHOOLSTAFF.STATUS" description="School Staff Status">schoolstaff.status</column>
-			<column column="SCHOOLS.NAME" description="School Name">schools.name</column>			
-		</columns>
-		<sql>
-			<![CDATA[
-				SELECT 
-					schoolstaff.dcid,               
-					teachers.first_name,
-					teachers.last_name,
-					CASE
-						WHEN schoolstaff.status = 1 
-						THEN 'Active'
-						ELSE
-							'Inactive'
-					END AS Status,
-					CASE
-						WHEN teachers.homeschoolid = 0 THEN
-							'Diocesan Office'
-						ELSE
-							schools.name
-					END AS schoolname
-				FROM schoolstaff 
-				INNER JOIN teachers ON schoolstaff.dcid = teachers.dcid
-				and schoolstaff.schoolid = teachers.homeschoolid
-				LEFT OUTER JOIN schools ON teachers.homeschoolid = schools.school_number
-				WHERE
-				(lower(teachers.last_name) LIKE '' || :lastName || '%'
-				OR lower(teachers.last_name) LIKE '' || :maidenName|| '%')
-				AND lower(TRIM(SUBSTR(teachers.first_name,INSTR(teachers.first_name,'.')+1,LENGTH(teachers.first_name)+1-INSTR(teachers.first_name,' ')))) LIKE '' ||:firstNameSubString || '%'
-        ]]>
-		</sql>
-	</query>
 	<query name="net.cdolinc.staffChanges.staff.changes" flattened="true">
 		<summary>CDOL: Staff Changes</summary>
 		<description>List all Submitted Staff Changes</description>
