@@ -464,7 +464,6 @@
 		<description>List all Submitted Staff Changes</description>
 		<args>
 			<arg name="curSchoolID" column="U_CDOL_STAFF_CHANGES.schoolid" required="true" description="Current School ID" default="~(curschoolid)" />
-			<arg name="curYearID" column="U_CDOL_STAFF_CHANGES.yearid" required="true" description="Current Year ID" default="~(curyearid)" />
 		</args>
 		<columns>
 			<column column="U_CDOL_STAFF_CHANGES.id" description="Change ID">staff.staffid</column>
@@ -566,7 +565,7 @@
 				to_char(replaced.ID) = to_char(U_CDOL_STAFF_CHANGES.replacing)
 				LEFT OUTER JOIN TEACHERS submitted ON
 				to_char(submitted.ID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
-				WHERE U_CDOL_STAFF_CHANGES.yearid = :curYearID
+				WHERE U_CDOL_STAFF_CHANGES.yearid = (EXTRACT(YEAR FROM CURRENT_DATE)-1991)
 				AND (U_CDOL_STAFF_CHANGES.schoolid = :curSchoolID
 								or 
 							:curSchoolID = 0)
@@ -580,7 +579,6 @@
 		<description>List all Submitted Staff Removals</description>
 		<args>
 			<arg name="curSchoolID" column="U_CDOL_STAFF_CHANGES.schoolid" required="true" description="Current School ID" default="~(curschoolid)" />
-			<arg name="curYearID" column="U_CDOL_STAFF_CHANGES.yearid" required="true" description="Current Year ID" default="~(curyearid)" />
 		</args>
 		<columns>
 			<column column="U_CDOL_STAFF_CHANGES.id" description="Change ID">staff.staffid</column>
@@ -682,7 +680,7 @@
 				to_char(replaced.DCID) = to_char(U_CDOL_STAFF_CHANGES.replacing)
 				LEFT OUTER JOIN TEACHERS submitted ON
 				to_char(submitted.ID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
-				WHERE U_CDOL_STAFF_CHANGES.yearid = :curYearID
+				WHERE U_CDOL_STAFF_CHANGES.yearid = (EXTRACT(YEAR FROM CURRENT_DATE)-1991)
 				AND (U_CDOL_STAFF_CHANGES.schoolid = :curSchoolID
 								or 
 							:curSchoolID = 0)
