@@ -504,7 +504,9 @@
 			<column column="U_CDOL_STAFF_CHANGES.ps_created" description="PS created">staff.ps_created</column>
 			<column column="U_CDOL_STAFF_CHANGES.ad_created" description="AD created">staff.ad_created</column>
 			<column column="U_CDOL_STAFF_CHANGES.lms_created" description="LMS created">staff.lms_created</column>
+			<column column="U_CDOL_STAFF_CHANGES.o365_created" description="o365 created">staff.o365_created</column>
 			<column column="U_CDOL_STAFF_CHANGES.notes" description="Notes">staff.notes</column>
+			<column column="U_CDOL_STAFF_CHANGES.suggestions" description="Suggestions">staff.suggestions</column>
 		</columns>
 		<sql>
 			<![CDATA[
@@ -558,7 +560,9 @@
 					U_CDOL_STAFF_CHANGES.ps_created,
 					U_CDOL_STAFF_CHANGES.ad_created,
 					U_CDOL_STAFF_CHANGES.lms_created,
-					U_CDOL_STAFF_CHANGES.notes
+					U_CDOL_STAFF_CHANGES.o365_created,
+					U_CDOL_STAFF_CHANGES.notes,
+					U_CDOL_STAFF_CHANGES.suggestions
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
@@ -620,7 +624,9 @@
 			<column column="U_CDOL_STAFF_CHANGES.ps_created" description="PS created">staff.ps_created</column>
 			<column column="U_CDOL_STAFF_CHANGES.ad_created" description="AD created">staff.ad_created</column>
 			<column column="U_CDOL_STAFF_CHANGES.lms_created" description="LMS created">staff.lms_created</column>
+			<column column="U_CDOL_STAFF_CHANGES.o365_created" description="o365 created">staff.o365_created</column>
 			<column column="U_CDOL_STAFF_CHANGES.notes" description="Notes">staff.notes</column>
+			<column column="U_CDOL_STAFF_CHANGES.suggestions" description="Suggestions">staff.suggestions</column>
 		</columns>
 		<sql>
 			<![CDATA[
@@ -674,7 +680,9 @@
 					U_CDOL_STAFF_CHANGES.ps_created,
 					U_CDOL_STAFF_CHANGES.ad_created,
 					U_CDOL_STAFF_CHANGES.lms_created,
-					U_CDOL_STAFF_CHANGES.notes
+					U_CDOL_STAFF_CHANGES.o365_created,
+					U_CDOL_STAFF_CHANGES.notes,
+					U_CDOL_STAFF_CHANGES.suggestions
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
