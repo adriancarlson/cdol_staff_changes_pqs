@@ -503,8 +503,10 @@
 			<column column="U_CDOL_STAFF_CHANGES.final_completion_date" description="Final Completion Date">staff.final_completion_date</column>
 			<column column="U_CDOL_STAFF_CHANGES.ps_created" description="PS created">staff.ps_created</column>
 			<column column="U_CDOL_STAFF_CHANGES.ad_created" description="AD created">staff.ad_created</column>
+			<column column="U_CDOL_STAFF_CHANGES.ad_ignored" description="AD ignored">staff.ad_ignored</column>
 			<column column="U_CDOL_STAFF_CHANGES.lms_created" description="LMS created">staff.lms_created</column>
 			<column column="U_CDOL_STAFF_CHANGES.o365_created" description="o365 created">staff.o365_created</column>
+			<column column="U_CDOL_STAFF_CHANGES.o365_ignored" description="o365 ignored">staff.o365_ignored</column>
 			<column column="U_CDOL_STAFF_CHANGES.notes" description="Notes">staff.notes</column>
 			<column column="U_CDOL_STAFF_CHANGES.suggestions" description="Suggestions">staff.suggestions</column>
 		</columns>
@@ -559,8 +561,10 @@
 					U_CDOL_STAFF_CHANGES.final_completion_date,
 					U_CDOL_STAFF_CHANGES.ps_created,
 					U_CDOL_STAFF_CHANGES.ad_created,
+					U_CDOL_STAFF_CHANGES.ad_ignored,
 					U_CDOL_STAFF_CHANGES.lms_created,
 					U_CDOL_STAFF_CHANGES.o365_created,
+					U_CDOL_STAFF_CHANGES.o365_ignored,
 					U_CDOL_STAFF_CHANGES.notes,
 					U_CDOL_STAFF_CHANGES.suggestions
 				FROM U_CDOL_STAFF_CHANGES
@@ -623,8 +627,10 @@
 			<column column="U_CDOL_STAFF_CHANGES.final_completion_date" description="Final Completion Date">staff.final_completion_date</column>
 			<column column="U_CDOL_STAFF_CHANGES.ps_created" description="PS created">staff.ps_created</column>
 			<column column="U_CDOL_STAFF_CHANGES.ad_created" description="AD created">staff.ad_created</column>
+			<column column="U_CDOL_STAFF_CHANGES.ad_ignored" description="AD ignored">staff.ad_ignored</column>
 			<column column="U_CDOL_STAFF_CHANGES.lms_created" description="LMS created">staff.lms_created</column>
 			<column column="U_CDOL_STAFF_CHANGES.o365_created" description="o365 created">staff.o365_created</column>
+			<column column="U_CDOL_STAFF_CHANGES.o365_ignored" description="o365 ignored">staff.o365_ignored</column>
 			<column column="U_CDOL_STAFF_CHANGES.notes" description="Notes">staff.notes</column>
 			<column column="U_CDOL_STAFF_CHANGES.suggestions" description="Suggestions">staff.suggestions</column>
 		</columns>
@@ -679,8 +685,10 @@
 					U_CDOL_STAFF_CHANGES.final_completion_date,
 					U_CDOL_STAFF_CHANGES.ps_created,
 					U_CDOL_STAFF_CHANGES.ad_created,
+					U_CDOL_STAFF_CHANGES.ad_ignored,
 					U_CDOL_STAFF_CHANGES.lms_created,
 					U_CDOL_STAFF_CHANGES.o365_created,
+					U_CDOL_STAFF_CHANGES.o365_ignored,
 					U_CDOL_STAFF_CHANGES.notes,
 					U_CDOL_STAFF_CHANGES.suggestions
 				FROM U_CDOL_STAFF_CHANGES
