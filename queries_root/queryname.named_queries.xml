@@ -450,7 +450,7 @@
 												'LSHN', 'MLEL', 'MYEL', 'PKEL',
 												'WSEO', 'JNEL', 'PKEM', 'VDES',
 												'PXHL', 'JSEC', 'AQHD', 'MYED',
-												'PREL', 'SHEL', 'BSCL' )
+												'PREL', 'SHEL', 'BSCL' ,'TAEL')
 				AND ( students.enroll_status = 0
 						OR students.enroll_status = -1 )
 				AND CNTCOUNT.studentcontactdetailid IS NOT NULL
