@@ -489,7 +489,7 @@
 				FROM students stu
 				LEFT JOIN U_student_additional_info ad 
 					ON stu.dcid = ad.studentsdcid
-				INNER JOIN TeacherConstructor tc
+				INNER JOIN (SELECT* FROM TeacherConstructor) tc
 					ON stu.dcid = tc.dcid
 				WHERE ad.homeroom_teacher IS NULL
 					OR tc.homeroomteacher <> ad.homeroom_teacher
