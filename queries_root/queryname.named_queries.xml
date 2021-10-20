@@ -471,14 +471,12 @@
 				WITH TeacherConstructor as (
 					SELECT 
 						stu.dcid, 
-						u.title || ' ' || u.last_name as HomeroomTeacher
+						t.title || ' ' || t.last_name as HomeroomTeacher
 					FROM cc
 					INNER JOIN students stu
 						ON cc.studentid = stu.id
-					INNER JOIN schoolstaff ss
-						ON cc.teacherid = ss.id
-					INNER JOIN users u
-						ON ss.users_dcid = u.dcid
+					INNER JOIN teachers t
+						ON cc.teacherid = t.id
 					WHERE cc.course_number LIKE '541%'
 						AND cc.dateenrolled <=  trunc(sysdate)
 						AND cc.dateleft >  trunc(sysdate)
