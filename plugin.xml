@@ -3,10 +3,15 @@
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd"
 name="CDOL Rest API"
-version="21.9.2"
+version="21.10.0.0"
 description="CDOL PowerSchool REST API inherited from Sean McCleery">
 	<oauth></oauth>
 		<access_request>
+			<field table="CC" field="STUDENTID" access="FullAccess" />
+			<field table="CC" field="TEACHERID" access="FullAccess" />
+			<field table="CC" field="COURSE_NUMBER" access="FullAccess" />
+			<field table="CC" field="DATEENROLLED" access="FullAccess" />
+			<field table="CC" field="DATELEFT" access="FullAccess" />
 			<field table="CODESET" field="CODE" access="FullAccess" />
 			<field table="CODESET" field="CODESETID" access="FullAccess" />
 			<field table="CODESET" field="CODETYPE" access="FullAccess" />
@@ -83,6 +88,8 @@ description="CDOL PowerSchool REST API inherited from Sean McCleery">
 			<field table="PSM_STUDENTCONTACTTYPE" field="NAME" access="FullAccess" />
 			<field table="SCHOOLS" field="ABBREVIATION" access="FullAccess" />
 			<field table="SCHOOLS" field="SCHOOL_NUMBER" access="FullAccess" />
+			<field table="SCHOOLSSTAFF" field="id" access="FullAccess" />
+			<field table="SCHOOLSSTAFF" field="USERS_CDID" access="FullAccess" />
 			<field table="STUDENTCONTACTASSOC" field="CONTACTPRIORITYORDER" access="FullAccess" />
 			<field table="STUDENTCONTACTASSOC" field="CURRRELTYPECODESETID" access="FullAccess" />
 			<field table="STUDENTCONTACTASSOC" field="PERSONID" access="FullAccess" />
@@ -117,6 +124,9 @@ description="CDOL PowerSchool REST API inherited from Sean McCleery">
 			<field table="STUDENTS" field="HOME_ROOM" access="FullAccess" />
 			<field table="SYNC_STUDENTMAP" field="STUDENTID" access="FullAccess" />
 			<field table="SYNC_STUDENTMAP" field="STUDENTSDCID" access="FullAccess" />
+			<field table="USERS" field="DCID" access="FullAccess" />
+			<field table="USERS" field="TITLE" access="FullAccess" />
+			<field table="USERS" field="LAST_NAME" access="FullAccess" />
 			<field table="U_PERSON_ADDITIONAL_INFO" field="PERSONID" access="FullAccess" />
 			<field table="U_PERSON_ADDITIONAL_INFO" field="PERSON_MAIDEN_NAME" access="FullAccess" />
 			<field table="U_PERSON_ADDITIONAL_INFO" field="PERSON_PARISH" access="FullAccess" />
@@ -127,6 +137,7 @@ description="CDOL PowerSchool REST API inherited from Sean McCleery">
 			<field table="U_PERSON_ADDITIONAL_INFO" field="PERSON_PHONETIC_PRONUNCIATION" access="FullAccess" />
 			<field table="U_PERSON_ADDITIONAL_INFO" field="PERSON_POSITION" access="FullAccess" />
 			<field table="U_STUDENT_ADDITIONAL_INFO" field="STUDENTSDCID" access="FullAccess" />
+			<field table="U_STUDENT_ADDITIONAL_INFO" field="HOMEROOM_TEACHER" access="FullAccess" />
 			<field table="U_STUDENTCONTACTDETAIL_CDOL" field="STUDENTCSTUDENTCONTACTDETAILID" access="FullAccess" />
 			<field table="U_STUDENTCONTACTDETAIL_CDOL" field="SCHOOLMESSENGERFLG" access="FullAccess" />
 			<field table="U_CDOL_STAFF_CHANGES" field="id" access="FullAccess" />

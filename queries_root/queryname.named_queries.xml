@@ -459,6 +459,43 @@
 			]]>
 		</sql>
 	</query>
+	<query name="net.cdolinc.student.homeroomteacher.flat" flattened="true" tags="myPowerQuery">
+		<summary>CDOL: Student Homeroom Teacher Update</summary>
+		<description>PowerQuery to identify students that have inforrect homroom teacher field</description>
+		<columns>
+		<column column="students.id">studentDcid</column>
+		<column column="students.id">homeRoomTeacher</column>
+		</columns>
+		<sql>
+			<![CDATA[
+				WITH TeacherConstructor as (
+					SELECT 
+						stu.dcid, 
+						u.title || ' ' || u.last_name as HomeroomTeacher
+					FROM cc
+					INNER JOIN students stu
+						ON cc.studentid = stu.id
+					INNER JOIN schoolstaff ss
+						ON cc.teacherid = ss.id
+					INNER JOIN users u
+						ON ss.users_dcid = u.dcid
+					WHERE cc.course_number LIKE '541%'
+						AND cc.dateenrolled <=  trunc(sysdate)
+						AND cc.dateleft >  trunc(sysdate)
+				)
+				SELECT 
+					stu.dcid, 
+					tc.homeroomteacher
+				FROM students stu
+				LEFT JOIN U_student_additional_info ad 
+					ON stu.dcid = ad.studentsdcid
+				INNER JOIN TeacherConstructor tc
+					ON stu.dcid = tc.dcid
+				WHERE ad.homeroom_teacher IS NULL
+					OR tc.homeroomteacher <> ad.homeroom_teacher
+			]]>
+		</sql>
+	</query>
 	<query name="net.cdolinc.staffChanges.staff.changes" flattened="true">
 		<summary>CDOL: Staff Changes</summary>
 		<description>List all Submitted Staff Changes</description>
