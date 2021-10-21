@@ -477,7 +477,7 @@
 						ON cc.studentid = stu.id
 					INNER JOIN teachers t
 						ON cc.teacherid = t.id
-					WHERE cc.course_number LIKE '541%'
+					WHERE cc.course_number LIKE '541__1'
 						AND cc.dateenrolled <=  trunc(sysdate)
 						AND cc.dateleft >  trunc(sysdate)
 				)
