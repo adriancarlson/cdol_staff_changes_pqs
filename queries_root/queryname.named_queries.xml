@@ -464,6 +464,8 @@
 		<description>PowerQuery to identify students that have inforrect homroom teacher field</description>
 		<columns>
 		<column column="students.id">studentDcid</column>
+		<column column="students.id">studentNumber</column>
+		<column column="students.id">studentName</column>
 		<column column="students.id">homeRoomTeacher</column>
 		</columns>
 		<sql>
