@@ -480,17 +480,36 @@
 					WHERE cc.course_number LIKE '541__1'
 						AND cc.dateenrolled <=  trunc(sysdate)
 						AND cc.dateleft >  trunc(sysdate)
+				), hrTeacherCount as (
+					SELECT 
+						cc.studentid,
+						count(cc.course_number) as hrcount
+					FROM cc
+					INNER JOIN students stu
+						ON cc.studentid = stu.id
+					INNER JOIN teachers t
+						ON cc.teacherid = t.id
+					WHERE cc.course_number LIKE '541__1'
+						AND cc.dateenrolled <=  trunc(sysdate)
+						AND cc.dateleft >  trunc(sysdate)
+					GROUP BY 
+						cc.studentid
 				)
 				SELECT 
-					stu.dcid, 
+					stu.dcid,
+					stu.student_number,
+					stu.lastfirst,
 					tc.homeroomteacher
 				FROM students stu
 				LEFT JOIN U_student_additional_info ad 
 					ON stu.dcid = ad.studentsdcid
 				INNER JOIN (SELECT* FROM TeacherConstructor) tc
 					ON stu.dcid = tc.dcid
-				WHERE ad.homeroom_teacher IS NULL
-					OR tc.homeroomteacher <> ad.homeroom_teacher
+				INNER JOIN (SELECT* FROM hrTeacherCount) hrtc
+					ON stu.dcid = hrtc.studentid
+				WHERE 
+					hrtc.hrcount = 1 
+					AND (ad.homeroom_teacher IS NULL OR tc.homeroomteacher <> ad.homeroom_teacher)
 			]]>
 		</sql>
 	</query>
