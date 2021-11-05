@@ -459,62 +459,6 @@
 			]]>
 		</sql>
 	</query>
-	<query name="net.cdolinc.student.homeroomteacher.flat" flattened="true" tags="myPowerQuery">
-		<summary>CDOL: Student Homeroom Teacher Update</summary>
-		<description>PowerQuery to identify students that have inforrect homroom teacher field</description>
-		<columns>
-		<column column="students.id">studentDcid</column>
-		<column column="students.id">studentNumber</column>
-		<column column="students.id">studentName</column>
-		<column column="students.id">homeRoomTeacher</column>
-		</columns>
-		<sql>
-			<![CDATA[
-				WITH TeacherConstructor as (
-					SELECT 
-						stu.dcid, 
-						t.title || ' ' || t.last_name as HomeroomTeacher
-					FROM cc
-					INNER JOIN students stu
-						ON cc.studentid = stu.id
-					INNER JOIN teachers t
-						ON cc.teacherid = t.id
-					WHERE cc.course_number LIKE '541__1'
-						AND cc.dateenrolled <=  trunc(sysdate)
-						AND cc.dateleft >  trunc(sysdate)
-				), hrTeacherCount as (
-					SELECT 
-						cc.studentid,
-						count(cc.course_number) as hrcount
-					FROM cc
-					INNER JOIN students stu
-						ON cc.studentid = stu.id
-					INNER JOIN teachers t
-						ON cc.teacherid = t.id
-					WHERE cc.course_number LIKE '541__1'
-						AND cc.dateenrolled <=  trunc(sysdate)
-						AND cc.dateleft >  trunc(sysdate)
-					GROUP BY 
-						cc.studentid
-				)
-				SELECT 
-					stu.dcid,
-					stu.student_number,
-					stu.lastfirst,
-					tc.homeroomteacher
-				FROM students stu
-				LEFT JOIN U_student_additional_info ad 
-					ON stu.dcid = ad.studentsdcid
-				INNER JOIN (SELECT* FROM TeacherConstructor) tc
-					ON stu.dcid = tc.dcid
-				INNER JOIN (SELECT* FROM hrTeacherCount) hrtc
-					ON stu.dcid = hrtc.studentid
-				WHERE 
-					hrtc.hrcount = 1 
-					AND (ad.homeroom_teacher IS NULL OR tc.homeroomteacher <> ad.homeroom_teacher)
-			]]>
-		</sql>
-	</query>
 	<query name="net.cdolinc.staffChanges.staff.changes" flattened="true">
 		<summary>CDOL: Staff Changes</summary>
 		<description>List all Submitted Staff Changes</description>
