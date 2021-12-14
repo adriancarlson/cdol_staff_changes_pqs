@@ -35,7 +35,7 @@
 				std_email.email           IS NULL
 				OR std_email.email NOT LIKE '%@365.cdolinc.net'
 			)
-        AND students.enroll_status = 0 AND students.student_web_id IS NOT NULL
+        AND (students.enroll_status in (-1,0)) AND students.student_web_id IS NOT NULL
         ORDER BY students.last_name
         ]]>
 		</sql>
