@@ -423,7 +423,7 @@
 					LEFT JOIN u_studentcontactdetail_cdol
 					ON studentcontactdetail.studentcontactdetailid = u_studentcontactdetail_cdol.studentcstudentcontactdetailid
 					WHERE  studentcontactdetail.iscustodial = 1
-						OR studentcontactdetail.liveswithflg = 1
+						--OR studentcontactdetail.liveswithflg = 1
 						OR studentcontactdetail.relationshiptypecodesetid IN ( 19050, --Guardian
 																			18200,--StepFather
 																			18201,--StepMother
