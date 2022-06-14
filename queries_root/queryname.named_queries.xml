@@ -613,6 +613,7 @@
 			<column column="U_CDOL_STAFF_CHANGES.fte" description="fte">staff.fte</column>
 			<column column="U_CDOL_STAFF_CHANGES.replacing" description="Replacing Id">staff.replacingid</column>
 			<column column="U_CDOL_STAFF_CHANGES.replacing" description="Replacing Name">staff.replacedstaff</column>
+			<column column="U_CDOL_STAFF_CHANGES.replacing_other" description="Replacing Other">staff.replaced_other</column>
 			<column column="U_CDOL_STAFF_CHANGES.start_date" description="Start Date">staff.start_date</column>
 			<column column="U_CDOL_STAFF_CHANGES.early_setup" description="Early Setup?">staff.early_setup</column>
 			<column column="U_CDOL_STAFF_CHANGES.deadline" description="Deadline">staff.deadline</column>
