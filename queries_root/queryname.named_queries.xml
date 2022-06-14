@@ -670,6 +670,7 @@
 					U_CDOL_STAFF_CHANGES.fte, 
 					U_CDOL_STAFF_CHANGES.replacing,
 					replaced.first_name || ' ' || replaced.last_name as replacedstaff,
+					U_CDOL_STAFF_CHANGES.replacing_other,
 					U_CDOL_STAFF_CHANGES.start_date,
 					U_CDOL_STAFF_CHANGES.early_setup,
 					U_CDOL_STAFF_CHANGES.deadline,
