@@ -578,7 +578,7 @@
 				AND (U_CDOL_STAFF_CHANGES.schoolid = :curSchoolID
 								or 
 							:curSchoolID = 0)
-				AND U_CDOL_STAFF_CHANGES.name_change == 'New Staff'
+				AND U_CDOL_STAFF_CHANGES.name_change = 'New Staff'
 				ORDER BY U_CDOL_STAFF_CHANGES.submission_date DESC, U_CDOL_STAFF_CHANGES.last_name	
         ]]>
 		</sql>
