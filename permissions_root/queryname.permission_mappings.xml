@@ -37,6 +37,12 @@
 	<permission name="/admin/cdol/staffchange/cdol_staff_change.html">
 		<implies allow="post">/ws/schema/query/net.cdolinc.staffChanges.staff.exits</implies>
 	</permission>
+	<permission name="/admin/cdol/staffchange/cdol_staff_change.html">
+		<implies allow="post">/ws/schema/query/net.cdolinc.staffChanges.staff.namechange</implies>
+	</permission>
+	<permission name="/admin/cdol/staffchange/cdol_staff_change.html">
+		<implies allow="post">/ws/schema/query/net.cdolinc.staffChanges.staff.transfer</implies>
+	</permission>
 	<permission name='/admin/cdol/staffchange/cdol_staff_change.html'>
 			<implies allow="post">/ws/schema/table/U_CDOL_STAFF_CHANGES</implies>
 			<implies allow="put">/ws/schema/table/U_CDOL_STAFF_CHANGES/#</implies>
