@@ -459,9 +459,9 @@
 			]]>
 		</sql>
 	</query>
-	<query name="net.cdolinc.staffChanges.staff.changes" flattened="true">
-		<summary>CDOL: Staff Changes</summary>
-		<description>List all Submitted Staff Changes</description>
+	<query name="net.cdolinc.staffChanges.staff.new" flattened="true">
+		<summary>CDOL: New Staff Records</summary>
+		<description>List all new staff records</description>
 		<args>
 			<arg name="curSchoolID" column="U_CDOL_STAFF_CHANGES.schoolid" required="true" description="Current School ID" default="~(curschoolid)" />
 			<arg name="curYearID" column="U_CDOL_STAFF_CHANGES.yearid" required="true" description="Current Year ID" default="~(curyearid)" />
@@ -583,9 +583,9 @@
         ]]>
 		</sql>
 	</query>
-	<query name="net.cdolinc.staffChanges.staff.removals" flattened="true">
-		<summary>CDOL: Staff Removals</summary>
-		<description>List all Submitted Staff Removals</description>
+	<query name="net.cdolinc.staffChanges.staff.exits" flattened="true">
+		<summary>CDOL: Exiting Staff Records</summary>
+		<description>List exiting staff records</description>
 		<args>
 			<arg name="curSchoolID" column="U_CDOL_STAFF_CHANGES.schoolid" required="true" description="Current School ID" default="~(curschoolid)" />
 			<arg name="curYearID" column="U_CDOL_STAFF_CHANGES.yearid" required="true" description="Current Year ID" default="~(curyearid)" />
