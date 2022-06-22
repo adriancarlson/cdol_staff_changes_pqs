@@ -746,7 +746,7 @@
 			<column column="U_CDOL_STAFF_CHANGES.deadline" description="Completion Date">staff.completion_date</column>
 			<column column="U_CDOL_STAFF_CHANGES.previous" description="Previously employed by CDOL">staff.previous</column>
 			<column column="U_CDOL_STAFF_CHANGES.previous_employer" description="Previous Employer">staff.previous_employer</column>
-			<column column="U_CDOL_STAFF_CHANGES.previous_combined" description="Previous Combined">staff.previous_combined</column>
+			<column column="U_CDOL_STAFF_CHANGES.previous_employer" description="Previous Combined">staff.previous_combined</column>
 			<column column="U_CDOL_STAFF_CHANGES.previous_employer_other" description="Other Previous Employer description">staff.previous_employer_other</column>
 			<column column="U_CDOL_STAFF_CHANGES.submission_date" description="Submission Date">staff.submission_date</column>
 			<column column="U_CDOL_STAFF_CHANGES.submission_time" description="Submission Time">staff.submission_time</column>
