@@ -1030,7 +1030,7 @@
 		</columns>
 		<sql>
 			<![CDATA[
-				SELECT
+				SELECT DISTINCT
     (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -2185,7 +2185,7 @@
         )
     ) AS total_exit_ad_remaining
 FROM
-    dual	
+    u_cdol_staff_changes	
         ]]>
 		</sql>
 	</query>
