@@ -509,6 +509,7 @@
 			<column column="U_CDOL_STAFF_CHANGES.o365_ignored" description="o365 ignored">staff.o365_ignored</column>
 			<column column="U_CDOL_STAFF_CHANGES.notes" description="Notes">staff.notes</column>
 			<column column="U_CDOL_STAFF_CHANGES.suggestions" description="Suggestions">staff.suggestions</column>
+			<column column="U_CDOL_STAFF_CHANGES.exit_date_radio" description="Exit Date Radio">staff.exit_date_radio</column>
 		</columns>
 		<sql>
 			<![CDATA[
@@ -566,7 +567,8 @@
 					U_CDOL_STAFF_CHANGES.o365_created,
 					U_CDOL_STAFF_CHANGES.o365_ignored,
 					U_CDOL_STAFF_CHANGES.notes,
-					U_CDOL_STAFF_CHANGES.suggestions
+					U_CDOL_STAFF_CHANGES.suggestions,
+					U_CDOL_STAFF_CHANGES.exit_date_radio
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
@@ -634,6 +636,7 @@
 			<column column="U_CDOL_STAFF_CHANGES.o365_ignored" description="o365 ignored">staff.o365_ignored</column>
 			<column column="U_CDOL_STAFF_CHANGES.notes" description="Notes">staff.notes</column>
 			<column column="U_CDOL_STAFF_CHANGES.suggestions" description="Suggestions">staff.suggestions</column>
+			<column column="U_CDOL_STAFF_CHANGES.exit_date_radio" description="Exit Date Radio">staff.exit_date_radio</column>
 		</columns>
 		<sql>
 			<![CDATA[
@@ -692,7 +695,8 @@
 					U_CDOL_STAFF_CHANGES.o365_created,
 					U_CDOL_STAFF_CHANGES.o365_ignored,
 					U_CDOL_STAFF_CHANGES.notes,
-					U_CDOL_STAFF_CHANGES.suggestions
+					U_CDOL_STAFF_CHANGES.suggestions,
+					U_CDOL_STAFF_CHANGES.exit_date_radio
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
@@ -761,6 +765,7 @@
 			<column column="U_CDOL_STAFF_CHANGES.o365_ignored" description="o365 ignored">staff.o365_ignored</column>
 			<column column="U_CDOL_STAFF_CHANGES.notes" description="Notes">staff.notes</column>
 			<column column="U_CDOL_STAFF_CHANGES.suggestions" description="Suggestions">staff.suggestions</column>
+			<column column="U_CDOL_STAFF_CHANGES.exit_date_radio" description="Exit Date Radio">staff.exit_date_radio</column>
 		</columns>
 		<sql>
 			<![CDATA[
@@ -823,7 +828,8 @@
 					U_CDOL_STAFF_CHANGES.o365_created,
 					U_CDOL_STAFF_CHANGES.o365_ignored,
 					U_CDOL_STAFF_CHANGES.notes,
-					U_CDOL_STAFF_CHANGES.suggestions
+					U_CDOL_STAFF_CHANGES.suggestions,
+					U_CDOL_STAFF_CHANGES.exit_date_radio
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
@@ -893,6 +899,7 @@
 			<column column="U_CDOL_STAFF_CHANGES.o365_ignored" description="o365 ignored">staff.o365_ignored</column>
 			<column column="U_CDOL_STAFF_CHANGES.notes" description="Notes">staff.notes</column>
 			<column column="U_CDOL_STAFF_CHANGES.suggestions" description="Suggestions">staff.suggestions</column>
+			<column column="U_CDOL_STAFF_CHANGES.exit_date_radio" description="Exit Date Radio">staff.exit_date_radio</column>
 		</columns>
 		<sql>
 			<![CDATA[
@@ -951,7 +958,8 @@
 					U_CDOL_STAFF_CHANGES.o365_created,
 					U_CDOL_STAFF_CHANGES.o365_ignored,
 					U_CDOL_STAFF_CHANGES.notes,
-					U_CDOL_STAFF_CHANGES.suggestions
+					U_CDOL_STAFF_CHANGES.suggestions,
+					U_CDOL_STAFF_CHANGES.exit_date_radio
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
