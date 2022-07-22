@@ -510,7 +510,11 @@
 			<column column="U_CDOL_STAFF_CHANGES.notes" description="Notes">staff.notes</column>
 			<column column="U_CDOL_STAFF_CHANGES.suggestions" description="Suggestions">staff.suggestions</column>
 			<column column="U_CDOL_STAFF_CHANGES.exit_date_radio" description="Exit Date Radio">staff.exit_date_radio</column>
-			<column column="U_CDOL_STAFF_CHANGES.exit_radio" description="Exit  Radio">staff.exit_radio</column>
+			<column column="U_CDOL_STAFF_CHANGES.exit_radio" description="Exit Radio">staff.exit_radio</column>
+			<column column="U_CDOL_STAFF_CHANGES.position_radio" description="Position Radio">staff.position_radio</column>
+			<column column="U_CDOL_STAFF_CHANGES.leaving_radio" description="Leaving Radio">staff.leaving_radio</column>
+			<column column="U_CDOL_STAFF_CHANGES.previous_position" description="Previous Radio">staff.previous_position</column>
+			<column column="U_CDOL_STAFF_CHANGES.new_position" description="New Radio">staff.new_position</column>
 		</columns>
 		<sql>
 			<![CDATA[
@@ -570,7 +574,11 @@
 					U_CDOL_STAFF_CHANGES.notes,
 					U_CDOL_STAFF_CHANGES.suggestions,
 					U_CDOL_STAFF_CHANGES.exit_date_radio,
-					U_CDOL_STAFF_CHANGES.exit_radio
+					U_CDOL_STAFF_CHANGES.exit_radio,
+					U_CDOL_STAFF_CHANGES.position_radio,
+					U_CDOL_STAFF_CHANGES.leaving_radio,
+					U_CDOL_STAFF_CHANGES.previous_position
+					U_CDOL_STAFF_CHANGES.new_position
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
@@ -640,6 +648,10 @@
 			<column column="U_CDOL_STAFF_CHANGES.suggestions" description="Suggestions">staff.suggestions</column>
 			<column column="U_CDOL_STAFF_CHANGES.exit_date_radio" description="Exit Date Radio">staff.exit_date_radio</column>
 			<column column="U_CDOL_STAFF_CHANGES.exit_radio" description="Exit Radio">staff.exit_radio</column>
+			<column column="U_CDOL_STAFF_CHANGES.position_radio" description="Position Radio">staff.position_radio</column>
+			<column column="U_CDOL_STAFF_CHANGES.leaving_radio" description="Leaving Radio">staff.leaving_radio</column>
+			<column column="U_CDOL_STAFF_CHANGES.previous_position" description="Previous Radio">staff.previous_position</column>
+			<column column="U_CDOL_STAFF_CHANGES.new_position" description="New Radio">staff.new_position</column>
 		</columns>
 		<sql>
 			<![CDATA[
@@ -700,7 +712,11 @@
 					U_CDOL_STAFF_CHANGES.notes,
 					U_CDOL_STAFF_CHANGES.suggestions,
 					U_CDOL_STAFF_CHANGES.exit_date_radio,
-					U_CDOL_STAFF_CHANGES.exit_radio
+					U_CDOL_STAFF_CHANGES.exit_radio,
+					U_CDOL_STAFF_CHANGES.position_radio,
+					U_CDOL_STAFF_CHANGES.leaving_radio,
+					U_CDOL_STAFF_CHANGES.previous_position
+					U_CDOL_STAFF_CHANGES.new_position
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
@@ -771,6 +787,10 @@
 			<column column="U_CDOL_STAFF_CHANGES.suggestions" description="Suggestions">staff.suggestions</column>
 			<column column="U_CDOL_STAFF_CHANGES.exit_date_radio" description="Exit Date Radio">staff.exit_date_radio</column>
 			<column column="U_CDOL_STAFF_CHANGES.exit_radio" description="Exit Radio">staff.exit_radio</column>
+			<column column="U_CDOL_STAFF_CHANGES.position_radio" description="Position Radio">staff.position_radio</column>
+			<column column="U_CDOL_STAFF_CHANGES.leaving_radio" description="Leaving Radio">staff.leaving_radio</column>
+			<column column="U_CDOL_STAFF_CHANGES.previous_position" description="Previous Radio">staff.previous_position</column>
+			<column column="U_CDOL_STAFF_CHANGES.new_position" description="New Radio">staff.new_position</column>
 		</columns>
 		<sql>
 			<![CDATA[
@@ -835,7 +855,11 @@
 					U_CDOL_STAFF_CHANGES.notes,
 					U_CDOL_STAFF_CHANGES.suggestions,
 					U_CDOL_STAFF_CHANGES.exit_date_radio,
-					U_CDOL_STAFF_CHANGES.exit_radio
+					U_CDOL_STAFF_CHANGES.exit_radio,
+					U_CDOL_STAFF_CHANGES.position_radio,
+					U_CDOL_STAFF_CHANGES.leaving_radio,
+					U_CDOL_STAFF_CHANGES.previous_position
+					U_CDOL_STAFF_CHANGES.new_position
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
@@ -906,7 +930,11 @@
 			<column column="U_CDOL_STAFF_CHANGES.notes" description="Notes">staff.notes</column>
 			<column column="U_CDOL_STAFF_CHANGES.suggestions" description="Suggestions">staff.suggestions</column>
 			<column column="U_CDOL_STAFF_CHANGES.exit_date_radio" description="Exit Date Radio">staff.exit_date_radio</column>
-			<column column="U_CDOL_STAFF_CHANGES.exit_radio" description="ExitRadio">staff.exit_radio</column>
+			<column column="U_CDOL_STAFF_CHANGES.exit_radio" description="Exit Radio">staff.exit_radio</column>
+			<column column="U_CDOL_STAFF_CHANGES.position_radio" description="Position Radio">staff.position_radio</column>
+			<column column="U_CDOL_STAFF_CHANGES.leaving_radio" description="Leaving Radio">staff.leaving_radio</column>
+			<column column="U_CDOL_STAFF_CHANGES.previous_position" description="Previous Radio">staff.previous_position</column>
+			<column column="U_CDOL_STAFF_CHANGES.new_position" description="New Radio">staff.new_position</column>
 		</columns>
 		<sql>
 			<![CDATA[
@@ -967,7 +995,11 @@
 					U_CDOL_STAFF_CHANGES.notes,
 					U_CDOL_STAFF_CHANGES.suggestions,
 					U_CDOL_STAFF_CHANGES.exit_date_radio,
-					U_CDOL_STAFF_CHANGES.exit_radio
+					U_CDOL_STAFF_CHANGES.exit_radio,
+					U_CDOL_STAFF_CHANGES.position_radio,
+					U_CDOL_STAFF_CHANGES.leaving_radio,
+					U_CDOL_STAFF_CHANGES.previous_position
+					U_CDOL_STAFF_CHANGES.new_position
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
