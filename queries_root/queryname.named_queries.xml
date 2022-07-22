@@ -577,7 +577,7 @@
 					U_CDOL_STAFF_CHANGES.exit_radio,
 					U_CDOL_STAFF_CHANGES.position_radio,
 					U_CDOL_STAFF_CHANGES.leaving_radio,
-					U_CDOL_STAFF_CHANGES.previous_position
+					U_CDOL_STAFF_CHANGES.previous_position,
 					U_CDOL_STAFF_CHANGES.new_position
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
@@ -715,7 +715,7 @@
 					U_CDOL_STAFF_CHANGES.exit_radio,
 					U_CDOL_STAFF_CHANGES.position_radio,
 					U_CDOL_STAFF_CHANGES.leaving_radio,
-					U_CDOL_STAFF_CHANGES.previous_position
+					U_CDOL_STAFF_CHANGES.previous_position,
 					U_CDOL_STAFF_CHANGES.new_position
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
@@ -858,7 +858,7 @@
 					U_CDOL_STAFF_CHANGES.exit_radio,
 					U_CDOL_STAFF_CHANGES.position_radio,
 					U_CDOL_STAFF_CHANGES.leaving_radio,
-					U_CDOL_STAFF_CHANGES.previous_position
+					U_CDOL_STAFF_CHANGES.previous_position,
 					U_CDOL_STAFF_CHANGES.new_position
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
@@ -998,7 +998,7 @@
 					U_CDOL_STAFF_CHANGES.exit_radio,
 					U_CDOL_STAFF_CHANGES.position_radio,
 					U_CDOL_STAFF_CHANGES.leaving_radio,
-					U_CDOL_STAFF_CHANGES.previous_position
+					U_CDOL_STAFF_CHANGES.previous_position,
 					U_CDOL_STAFF_CHANGES.new_position
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
