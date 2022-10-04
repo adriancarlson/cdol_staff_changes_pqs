@@ -1068,6 +1068,17 @@
 			<column column="U_CDOL_STAFF_CHANGES.id" description="total_name_change_o365_remaining">staff.total_name_change_o365_remaining</column>
 			<column column="U_CDOL_STAFF_CHANGES.id" description="total_name_change_lms_complete">staff.total_name_change_lms_complete</column>
 			<column column="U_CDOL_STAFF_CHANGES.id" description="total_name_change_lms_remaining">staff.total_name_change_lms_remaining</column>
+			<column column="U_CDOL_STAFF_CHANGES.id" description="total_job_change_submissions">staff.total_job_change_submissions</column>
+			<column column="U_CDOL_STAFF_CHANGES.id" description="total_job_change_complete">staff.total_job_change_complete</column>
+			<column column="U_CDOL_STAFF_CHANGES.id" description="total_job_change_remaining">staff.total_job_change_remaining</column>
+			<column column="U_CDOL_STAFF_CHANGES.id" description="total_job_change_ps_complete">staff.total_job_change_ps_complete</column>
+			<column column="U_CDOL_STAFF_CHANGES.id" description="total_job_change_ps_remaining">staff.total_job_change_ps_remaining</column>
+			<column column="U_CDOL_STAFF_CHANGES.id" description="total_job_change_ad_complete">staff.total_job_change_ad_complete</column>
+			<column column="U_CDOL_STAFF_CHANGES.id" description="total_job_change_ad_remaining">staff.total_job_change_ad_remaining</column>
+			<column column="U_CDOL_STAFF_CHANGES.id" description="total_job_change_o365_complete">staff.total_job_change_o365_complete</column>
+			<column column="U_CDOL_STAFF_CHANGES.id" description="total_job_change_o365_remaining">staff.total_job_change_o365_remaining</column>
+			<column column="U_CDOL_STAFF_CHANGES.id" description="total_job_change_lms_complete">staff.total_job_change_lms_complete</column>
+			<column column="U_CDOL_STAFF_CHANGES.id" description="total_job_change_lms_remaining">staff.total_job_change_lms_remaining</column>
 			<column column="U_CDOL_STAFF_CHANGES.id" description="total_exit_submissions">staff.total_exit_submissions</column>
 			<column column="U_CDOL_STAFF_CHANGES.id" description="total_exit_complete">staff.total_exit_complete</column>
 			<column column="U_CDOL_STAFF_CHANGES.id" description="total_exit_remaining">staff.total_exit_remaining</column>
@@ -2072,7 +2083,218 @@
             )
             AND u_cdol_staff_changes.name_change = 'Name Change'
             AND u_cdol_staff_changes.lms_created = 1
-    ) AS total_name_change_lms_remaining,         
+    ) AS total_name_change_lms_remaining,   
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE
+            u_cdol_staff_changes.yearid = :curYearID
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.name_change = 'Job Change'
+    ) total_job_change_submissions,
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.final_completion_date)
+        FROM
+            u_cdol_staff_changes
+        WHERE
+            u_cdol_staff_changes.yearid = :curYearID
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.name_change = 'Job Change'
+    ) total_job_change_complete,
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE
+            u_cdol_staff_changes.yearid = :curYearID
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.name_change = 'Job Change'
+    ) - (
+        SELECT
+            COUNT(u_cdol_staff_changes.final_completion_date)
+        FROM
+            u_cdol_staff_changes
+        WHERE
+            u_cdol_staff_changes.yearid = :curYearID
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.name_change = 'Job Change'
+    ) AS total_job_change_remaining, 
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE
+            u_cdol_staff_changes.yearid = :curYearID
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.ps_created = 1
+    ) AS total_job_change_ps_complete,
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE
+            u_cdol_staff_changes.yearid = :curYearID
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.name_change = 'Job Change'
+    ) - (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE
+            u_cdol_staff_changes.yearid = :curYearID
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.ps_created = 1
+    ) AS total_job_change_ps_remaining,
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE
+            u_cdol_staff_changes.yearid = :curYearID
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.ad_created = 1
+    ) AS total_job_change_ad_complete,
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE
+            u_cdol_staff_changes.yearid = :curYearID
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.name_change = 'Job Change'
+    ) - (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE
+            u_cdol_staff_changes.yearid = :curYearID
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.ad_created = 1
+    ) AS total_job_change_ad_remaining, 
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE
+            u_cdol_staff_changes.yearid = :curYearID
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.o365_created = 1
+    ) AS total_job_change_o365_complete,
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE
+            u_cdol_staff_changes.yearid = :curYearID
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.name_change = 'Job Change'
+    ) - (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE
+            u_cdol_staff_changes.yearid = :curYearID
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.o365_created = 1
+    ) AS total_job_change_o365_remaining,
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE
+            u_cdol_staff_changes.yearid = :curYearID
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.lms_created = 1
+    ) AS total_job_change_lms_complete,
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE
+            u_cdol_staff_changes.yearid = :curYearID
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.name_change = 'Job Change'
+    ) - (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE
+            u_cdol_staff_changes.yearid = :curYearID
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.lms_created = 1
+    ) AS total_job_change_lms_remaining, 
     (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -2233,7 +2455,7 @@
         )
     ) AS total_exit_ad_remaining
 FROM
-    u_cdol_staff_changes	
+    u_cdol_staff_changes
         ]]>
 		</sql>
 	</query>
