@@ -497,6 +497,7 @@
 			<column column="U_CDOL_STAFF_CHANGES.previous" description="Previously employed by CDOL">staff.previous</column>
 			<column column="U_CDOL_STAFF_CHANGES.previous_employer" description="Previous Employer">staff.previous_employer</column>
 			<column column="U_CDOL_STAFF_CHANGES.previous_employer_other" description="Other Previous Employer description">staff.previous_employer_other</column>
+			<column column="U_CDOL_STAFF_CHANGES.previous_school_name" description="Previous School Name">staff.previous_school_name</column>
 			<column column="U_CDOL_STAFF_CHANGES.submission_date" description="Submission Date">staff.submission_date</column>
 			<column column="U_CDOL_STAFF_CHANGES.submission_time" description="Submission Time">staff.submission_time</column>
 			<column column="U_CDOL_STAFF_CHANGES.who_submitted" description="Who Submitted">staff.who_submitted</column>
@@ -561,6 +562,9 @@
 					U_CDOL_STAFF_CHANGES.previous,
 					U_CDOL_STAFF_CHANGES.previous_employer,
 					U_CDOL_STAFF_CHANGES.previous_employer_other,
+					CASE WHEN U_CDOL_STAFF_CHANGES.previous_employer = 'Other' THEN U_CDOL_STAFF_CHANGES.previous_employer_other
+                    ELSE previous_school.name
+                    END as previous_school_name,
 					U_CDOL_STAFF_CHANGES.submission_date,
 					U_CDOL_STAFF_CHANGES.submission_time,
 					U_CDOL_STAFF_CHANGES.who_submitted,
@@ -583,6 +587,8 @@
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
+				LEFT OUTER JOIN SCHOOLS previous_school ON 
+				to_char(U_CDOL_STAFF_CHANGES.previous_employer) = to_char(previous_school.school_number)
 				LEFT OUTER JOIN TEACHERS replaced ON
 				to_char(replaced.ID) = to_char(U_CDOL_STAFF_CHANGES.replacing)
 				LEFT OUTER JOIN TEACHERS submitted ON
