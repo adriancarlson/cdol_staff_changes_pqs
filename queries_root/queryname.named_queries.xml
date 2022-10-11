@@ -490,6 +490,7 @@
 			<column column="U_CDOL_STAFF_CHANGES.fte" description="fte">staff.fte</column>
 			<column column="U_CDOL_STAFF_CHANGES.replacing" description="Replacing Id">staff.replacingid</column>
 			<column column="U_CDOL_STAFF_CHANGES.replacing" description="Replacing Name">staff.replacedstaff</column>
+			<column column="U_CDOL_STAFF_CHANGES.replacing_other" description="Replacing Name">staff.replacing_other</column>
 			<column column="U_CDOL_STAFF_CHANGES.old_name_placeholder" description="Old Name Placeholder">staff.old_name_placeholder</column>
 			<column column="U_CDOL_STAFF_CHANGES.start_date" description="Start Date">staff.start_date</column>
 			<column column="U_CDOL_STAFF_CHANGES.early_setup" description="Early Setup?">staff.early_setup</column>
@@ -554,6 +555,7 @@
 					U_CDOL_STAFF_CHANGES.fte, 
 					U_CDOL_STAFF_CHANGES.replacing,
 					replaced.first_name || ' ' || replaced.last_name as replacedstaff,
+					U_CDOL_STAFF_CHANGES.replacing_other,
 					U_CDOL_STAFF_CHANGES.old_name_placeholder,
 					U_CDOL_STAFF_CHANGES.start_date,
 					U_CDOL_STAFF_CHANGES.early_setup,
