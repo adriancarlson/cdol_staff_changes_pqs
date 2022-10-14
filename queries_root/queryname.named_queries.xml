@@ -600,6 +600,34 @@
         ]]>
 		</sql>
 	</query>
+	<query name="net.cdolinc.staffChanges.staff.existingstaff" flattened="true">
+		<summary>CDOL: Staff Changes Existing staff</summary>
+		<description>Gets existing staff by User DCID</description>
+		<args>
+			<arg name="userDcid" column="users.dcid" required="true" description="User Dcid"/>
+		</args>
+		<columns>
+			<column column="users.dcid" description="User Dcid">dcid</column>
+			<column column="users.title" description="User First Name">title</column>
+			<column column="users.first_name" description="User First Name">first_name</column>
+			<column column="users.middle_name" description="User Middle Name">middle_name</column>
+			<column column="users.last_name" description="User Last Name">last_name</column>
+		</columns>
+		<sql>
+			<![CDATA[
+				SELECT DISTINCT
+					users.dcid,
+                    users.title,
+					users.first_name,
+                    users.middle_name,
+					users.last_name
+					FROM SCHOOLSTAFF
+					inner join users
+					on users.dcid = schoolstaff.users_dcid
+					WHERE users.dcid = :userDcid
+        ]]>
+		</sql>
+	</query>
 	<query name="net.cdolinc.staffChanges.staff.counts" flattened="true">
 		<summary>CDOL: Staff Changes Counts</summary>
 		<description>Counts of all the staff name changes</description>
