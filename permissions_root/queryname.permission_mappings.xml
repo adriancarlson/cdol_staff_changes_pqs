@@ -37,6 +37,9 @@
 	<permission name="/admin/cdol/staffchange/cdol_staff_change.html">
 		<implies allow="post">/ws/schema/query/net.cdolinc.staffChanges.staff.counts</implies>
 	</permission>
+	<permission name="/admin/cdol/staffchange/cdol_staff_change.html">
+		<implies allow="post">/ws/schema/query/net.cdolinc.staffChanges.staff.existingstaff</implies>
+	</permission>
 	<permission name='/admin/cdol/staffchange/cdol_staff_change.html'>
 			<implies allow="post">/ws/schema/table/U_CDOL_STAFF_CHANGES</implies>
 			<implies allow="put">/ws/schema/table/U_CDOL_STAFF_CHANGES/#</implies>
