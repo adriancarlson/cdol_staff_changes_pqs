@@ -445,14 +445,8 @@
 						AND CNTCOUNT.stu_cnt_index <= 4)
 				LEFT JOIN u_student_additional_info
 					ON u_student_additional_info.studentsdcid = students.dcid
-				WHERE  schools.abbreviation IN ( 'BNHO', 'CCEL', 'JHEB', 'JHEL',
-												'JHEY', 'JNEP', 'JNEW', 'LSEN',
-												'LSHN', 'MLEL', 'MYEL', 'PKEL',
-												'WSEO', 'JNEL', 'PKEM', 'VDES',
-												'PXHL', 'JSEC', 'AQHD', 'MYED',
-												'PREL', 'SHEL', 'BSCL' ,'TAEL')
-				AND ( students.enroll_status = 0
-						OR students.enroll_status = -1 )
+				WHERE  schools.abbreviation IN ('AQED','AQHD','BNHO','BSCL','CAHH','CCEL','JHEB','JHEL','JHEY','JNEL','JNEP','JNEW','JSEC','LSEN','LSHN','MLEH','MLEL','NAML','PKEL','PKEM','PREL','PXHL','TAEL','VDES','VMSV','WSEO')
+				AND students.enroll_status in (-1,0)
 				AND CNTCOUNT.studentcontactdetailid IS NOT NULL
 				AND CNTCOUNT.countsmflag IS NULL
 				ORDER  BY CNTCOUNT.studentcontactdetailid  
