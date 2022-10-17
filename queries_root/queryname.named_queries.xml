@@ -607,7 +607,6 @@
 			<arg name="userDcid" column="users.dcid" required="true" description="User Dcid"/>
 		</args>
 		<columns>
-			<column column="users.dcid" description="User Dcid">dcid</column>
 			<column column="users.title" description="User First Name">title</column>
 			<column column="users.first_name" description="User First Name">first_name</column>
 			<column column="users.middle_name" description="User Middle Name">middle_name</column>
@@ -616,7 +615,6 @@
 		<sql>
 			<![CDATA[
 				SELECT DISTINCT
-					users.dcid,
                     users.title,
 					users.first_name,
                     users.middle_name,
