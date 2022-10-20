@@ -3,7 +3,7 @@
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd"
 name="CDOL Rest API"
-version="22.10.11"
+version="22.10.12"
 description="CDOL PowerSchool REST API inherited from Sean McCleery">
 	<oauth></oauth>
 		<access_request>
@@ -186,6 +186,11 @@ description="CDOL PowerSchool REST API inherited from Sean McCleery">
 			<field table="U_CDOL_STAFF_CHANGES" field="leaving_radio" access="FullAccess" />
 			<field table="U_CDOL_STAFF_CHANGES" field="previous_position" access="FullAccess" />
 			<field table="U_CDOL_STAFF_CHANGES" field="new_position" access="FullAccess" />
+			<field table="U_CDOL_STAFF_CHANGES" field="change_type" access="FullAccess" />
+			<field table="U_CDOL_STAFF_CHANGES" field="users_dcid" access="FullAccess" />
+			<field table="U_CDOL_STAFF_CHANGES" field="prev_school_number" access="FullAccess" />
+			<field table="U_CDOL_STAFF_CHANGES" field="prev_school_name" access="FullAccess" />
+			<field table="U_CDOL_STAFF_CHANGES" field="calendar_year" access="FullAccess" />
 		</access_request>
 <publisher name="Adrian Carlson">
 <contact email="adrian-carlson@cdolinc.net" />

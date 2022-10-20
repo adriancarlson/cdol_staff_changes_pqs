@@ -458,8 +458,8 @@
 		<description>List all staff changes</description>
 		<args>
 			<arg name="curSchoolID" column="U_CDOL_STAFF_CHANGES.schoolid" required="true" description="Current School ID" default="~(curschoolid)" />
-			<arg name="curYearID" column="U_CDOL_STAFF_CHANGES.yearid" required="true" description="Current Year ID" default="~(curyearid)" />
-			<arg name="changeType" column="U_CDOL_STAFF_CHANGES.name_change"  description="Type of staff Change" default="All" />
+			<arg name="calendarYear" column="U_CDOL_STAFF_CHANGES.calendar_year" required="true" description="Calendar Year" default="~(f.currentdate;format= YYYY)" />
+			<arg name="changeType" column="U_CDOL_STAFF_CHANGES.change_type"  description="Type of staff Change" default="All" />
 		</args>
 		<columns>
 			<column column="U_CDOL_STAFF_CHANGES.id" description="Change ID">staff.staffid</column>
@@ -513,6 +513,11 @@
 			<column column="U_CDOL_STAFF_CHANGES.leaving_radio" description="Leaving Radio">staff.leaving_radio</column>
 			<column column="U_CDOL_STAFF_CHANGES.previous_position" description="Previous Radio">staff.previous_position</column>
 			<column column="U_CDOL_STAFF_CHANGES.new_position" description="New Radio">staff.new_position</column>
+			<column column="U_CDOL_STAFF_CHANGES.change_type" description="Change type">staff.change_type</column>
+			<column column="U_CDOL_STAFF_CHANGES.users_dcid" description="Users Dcid">staff.users_dcid</column>
+			<column column="U_CDOL_STAFF_CHANGES.prev_school_number" description="Previous School Number">staff.prev_school_number</column>
+			<column column="U_CDOL_STAFF_CHANGES.prev_school_name" description="Previous School Name">staff.prev_school_name</column>
+			<column column="U_CDOL_STAFF_CHANGES.calendar_year" description="Calendar Year">staff.calendar_year</column>
 		</columns>
 		<sql>
 			<![CDATA[
@@ -581,7 +586,12 @@
 					U_CDOL_STAFF_CHANGES.position_radio,
 					U_CDOL_STAFF_CHANGES.leaving_radio,
 					U_CDOL_STAFF_CHANGES.previous_position,
-					U_CDOL_STAFF_CHANGES.new_position
+					U_CDOL_STAFF_CHANGES.new_position,
+					U_CDOL_STAFF_CHANGES.change_type,
+					U_CDOL_STAFF_CHANGES.users_dcid,
+					U_CDOL_STAFF_CHANGES.prev_school_number,
+					U_CDOL_STAFF_CHANGES.prev_school_name,
+					U_CDOL_STAFF_CHANGES.calendar_year
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
@@ -591,11 +601,11 @@
 				to_char(replaced.ID) = to_char(U_CDOL_STAFF_CHANGES.replacing)
 				LEFT OUTER JOIN TEACHERS submitted ON
 				to_char(submitted.ID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
-				WHERE U_CDOL_STAFF_CHANGES.yearid = :curYearID
+				WHERE U_cdol_staff_changes.calendar_year= :calendarYear
 				AND (U_CDOL_STAFF_CHANGES.schoolid = :curSchoolID
 								or 
 							:curSchoolID = 0)
-				AND U_CDOL_STAFF_CHANGES.name_change = :changeType or :changeType = 'All'
+				AND U_CDOL_STAFF_CHANGES.change_type = :changeType or :changeType = 'All'
 				ORDER BY U_CDOL_STAFF_CHANGES.submission_date DESC, U_CDOL_STAFF_CHANGES.last_name	
         ]]>
 		</sql>
@@ -631,7 +641,7 @@
 		<description>Counts of all the staff name changes</description>
 		<args>
 			<arg name="curSchoolID" column="U_CDOL_STAFF_CHANGES.schoolid" required="true" description="Current School ID" default="~(curschoolid)" />
-			<arg name="curYearID" column="U_CDOL_STAFF_CHANGES.yearid" required="true" description="Current Year ID" default="~(curyearid)" />
+			<arg name="calendarYear" column="U_CDOL_STAFF_CHANGES.calendar_year" required="true" description="Calendar Year" default="~(f.currentdate;format= YYYY)" />
 		</args>
 		<columns>
 			<column column="U_CDOL_STAFF_CHANGES.id" description="total_submissions">staff.total_submissions</column>
@@ -706,7 +716,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -718,7 +728,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -730,7 +740,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -741,7 +751,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -753,7 +763,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -766,7 +776,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -777,7 +787,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -790,7 +800,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -802,7 +812,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -815,7 +825,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -827,7 +837,7 @@
             FROM
                 u_cdol_staff_changes
             WHERE
-                u_cdol_staff_changes.yearid = :curYearID
+                u_cdol_staff_changes.calendar_year= :calendarYear
                 AND (
                     u_cdol_staff_changes.schoolid = :curSchoolID
                     OR :curSchoolID = 0
@@ -839,7 +849,7 @@
             FROM
                 u_cdol_staff_changes
             WHERE
-                u_cdol_staff_changes.yearid = :curYearID
+                u_cdol_staff_changes.calendar_year= :calendarYear
                 AND (
                     u_cdol_staff_changes.schoolid = :curSchoolID
                     OR :curSchoolID = 0
@@ -853,7 +863,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -865,7 +875,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -878,7 +888,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -890,7 +900,7 @@
             FROM
                 u_cdol_staff_changes
             WHERE
-                u_cdol_staff_changes.yearid = :curYearID
+                u_cdol_staff_changes.calendar_year= :calendarYear
                 AND (
                     u_cdol_staff_changes.schoolid = :curSchoolID
                     OR :curSchoolID = 0
@@ -902,7 +912,7 @@
             FROM
                 u_cdol_staff_changes
             WHERE
-                u_cdol_staff_changes.yearid = :curYearID
+                u_cdol_staff_changes.calendar_year= :calendarYear
                 AND (
                     u_cdol_staff_changes.schoolid = :curSchoolID
                     OR :curSchoolID = 0
@@ -916,7 +926,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -929,7 +939,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -941,7 +951,7 @@
             FROM
                 u_cdol_staff_changes
             WHERE
-                u_cdol_staff_changes.yearid = :curYearID
+                u_cdol_staff_changes.calendar_year= :calendarYear
                 AND (
                     u_cdol_staff_changes.schoolid = :curSchoolID
                     OR :curSchoolID = 0
@@ -955,7 +965,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -968,7 +978,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -981,7 +991,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -993,7 +1003,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1006,7 +1016,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1020,7 +1030,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1032,7 +1042,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1046,7 +1056,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1059,7 +1069,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1073,7 +1083,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1086,7 +1096,7 @@
             FROM
                 u_cdol_staff_changes
             WHERE
-                u_cdol_staff_changes.yearid = :curYearID
+                u_cdol_staff_changes.calendar_year= :calendarYear
                 AND (
                     u_cdol_staff_changes.schoolid = :curSchoolID
                     OR :curSchoolID = 0
@@ -1099,7 +1109,7 @@
             FROM
                 u_cdol_staff_changes
             WHERE
-                u_cdol_staff_changes.yearid = :curYearID
+                u_cdol_staff_changes.calendar_year= :calendarYear
                 AND (
                     u_cdol_staff_changes.schoolid = :curSchoolID
                     OR :curSchoolID = 0
@@ -1114,7 +1124,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1127,7 +1137,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1141,7 +1151,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1154,7 +1164,7 @@
             FROM
                 u_cdol_staff_changes
             WHERE
-                u_cdol_staff_changes.yearid = :curYearID
+                u_cdol_staff_changes.calendar_year= :calendarYear
                 AND (
                     u_cdol_staff_changes.schoolid = :curSchoolID
                     OR :curSchoolID = 0
@@ -1167,7 +1177,7 @@
             FROM
                 u_cdol_staff_changes
             WHERE
-                u_cdol_staff_changes.yearid = :curYearID
+                u_cdol_staff_changes.calendar_year= :calendarYear
                 AND (
                     u_cdol_staff_changes.schoolid = :curSchoolID
                     OR :curSchoolID = 0
@@ -1182,7 +1192,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1196,7 +1206,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1208,7 +1218,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1222,7 +1232,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1235,7 +1245,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1248,7 +1258,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1260,7 +1270,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1273,7 +1283,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1287,7 +1297,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1299,7 +1309,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1313,7 +1323,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1326,7 +1336,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1340,7 +1350,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1353,7 +1363,7 @@
             FROM
                 u_cdol_staff_changes
             WHERE
-                u_cdol_staff_changes.yearid = :curYearID
+                u_cdol_staff_changes.calendar_year= :calendarYear
                 AND (
                     u_cdol_staff_changes.schoolid = :curSchoolID
                     OR :curSchoolID = 0
@@ -1366,7 +1376,7 @@
             FROM
                 u_cdol_staff_changes
             WHERE
-                u_cdol_staff_changes.yearid = :curYearID
+                u_cdol_staff_changes.calendar_year= :calendarYear
                 AND (
                     u_cdol_staff_changes.schoolid = :curSchoolID
                     OR :curSchoolID = 0
@@ -1381,7 +1391,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1394,7 +1404,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1408,7 +1418,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1421,7 +1431,7 @@
             FROM
                 u_cdol_staff_changes
             WHERE
-                u_cdol_staff_changes.yearid = :curYearID
+                u_cdol_staff_changes.calendar_year= :calendarYear
                 AND (
                     u_cdol_staff_changes.schoolid = :curSchoolID
                     OR :curSchoolID = 0
@@ -1434,7 +1444,7 @@
             FROM
                 u_cdol_staff_changes
             WHERE
-                u_cdol_staff_changes.yearid = :curYearID
+                u_cdol_staff_changes.calendar_year= :calendarYear
                 AND (
                     u_cdol_staff_changes.schoolid = :curSchoolID
                     OR :curSchoolID = 0
@@ -1449,7 +1459,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1463,7 +1473,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1475,7 +1485,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1489,7 +1499,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1502,7 +1512,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1515,7 +1525,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1527,7 +1537,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1540,7 +1550,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1554,7 +1564,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1566,7 +1576,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1580,7 +1590,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1594,7 +1604,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1606,7 +1616,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1620,7 +1630,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1634,7 +1644,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1646,7 +1656,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1660,7 +1670,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1674,7 +1684,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1686,7 +1696,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1700,7 +1710,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1713,7 +1723,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1726,7 +1736,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1738,7 +1748,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1751,7 +1761,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1765,7 +1775,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1777,7 +1787,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1791,7 +1801,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1805,7 +1815,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1817,7 +1827,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1831,7 +1841,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1845,7 +1855,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1857,7 +1867,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1871,7 +1881,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1885,7 +1895,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1897,7 +1907,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1911,7 +1921,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1924,7 +1934,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1937,7 +1947,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1949,7 +1959,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1962,7 +1972,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1976,7 +1986,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -1988,7 +1998,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -2002,7 +2012,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -2015,7 +2025,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -2029,7 +2039,7 @@
         FROM
             u_cdol_staff_changes
         WHERE
-            u_cdol_staff_changes.yearid = :curYearID
+            u_cdol_staff_changes.calendar_year= :calendarYear
             AND (
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
@@ -2042,7 +2052,7 @@
             FROM
                 u_cdol_staff_changes
             WHERE
-                u_cdol_staff_changes.yearid = :curYearID
+                u_cdol_staff_changes.calendar_year= :calendarYear
                 AND (
                     u_cdol_staff_changes.schoolid = :curSchoolID
                     OR :curSchoolID = 0
@@ -2055,7 +2065,7 @@
             FROM
                 u_cdol_staff_changes
             WHERE
-                u_cdol_staff_changes.yearid = :curYearID
+                u_cdol_staff_changes.calendar_year= :calendarYear
                 AND (
                     u_cdol_staff_changes.schoolid = :curSchoolID
                     OR :curSchoolID = 0
