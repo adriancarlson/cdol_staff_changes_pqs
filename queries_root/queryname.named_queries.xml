@@ -970,7 +970,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'New Staff'
+            AND u_cdol_staff_changes.change_type = 'newStaff'
     ) total_new_submissions,
     (
         SELECT
@@ -983,7 +983,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'New Staff'
+            AND u_cdol_staff_changes.change_type = 'newStaff'
     ) total_new_complete,
     (
         SELECT
@@ -996,7 +996,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'New Staff'
+            AND u_cdol_staff_changes.change_type = 'newStaff'
     ) - (
         SELECT
             COUNT(u_cdol_staff_changes.final_completion_date)
@@ -1008,7 +1008,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'New Staff'
+            AND u_cdol_staff_changes.change_type = 'newStaff'
     ) AS total_new_remaining,
     (
         SELECT
@@ -1021,7 +1021,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'New Staff'
+            AND u_cdol_staff_changes.change_type = 'newStaff'
             AND u_cdol_staff_changes.ps_created = 1
     ) AS total_new_ps_complete,
     (
@@ -1035,7 +1035,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'New Staff'
+            AND u_cdol_staff_changes.change_type = 'newStaff'
     ) - (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -1047,7 +1047,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'New Staff'
+            AND u_cdol_staff_changes.change_type = 'newStaff'
             AND u_cdol_staff_changes.ps_created = 1
     ) AS total_new_ps_remaining,
     (
@@ -1062,7 +1062,7 @@
                 OR :curSchoolID = 0
             )
             AND u_cdol_staff_changes.ad_created = 1
-            AND u_cdol_staff_changes.name_change = 'New Staff'
+            AND u_cdol_staff_changes.change_type = 'newStaff'
     ) + (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -1075,7 +1075,7 @@
                 OR :curSchoolID = 0
             )
             AND u_cdol_staff_changes.ad_ignored = 1
-            AND u_cdol_staff_changes.name_change = 'New Staff'
+            AND u_cdol_staff_changes.change_type = 'newStaff'
     ) AS total_new_ad_complete,
     (
         SELECT
@@ -1088,7 +1088,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'New Staff'
+            AND u_cdol_staff_changes.change_type = 'newStaff'
     ) - (
         (
             SELECT
@@ -1102,7 +1102,7 @@
                     OR :curSchoolID = 0
                 )
                 AND u_cdol_staff_changes.ad_created = 1
-                AND u_cdol_staff_changes.name_change = 'New Staff'
+                AND u_cdol_staff_changes.change_type = 'newStaff'
         ) + (
             SELECT
                 COUNT(u_cdol_staff_changes.id)
@@ -1115,7 +1115,7 @@
                     OR :curSchoolID = 0
                 )
                 AND u_cdol_staff_changes.ad_ignored = 1
-                AND u_cdol_staff_changes.name_change = 'New Staff'
+                AND u_cdol_staff_changes.change_type = 'newStaff'
         )
     ) AS total_new_ad_remaining,
     (
@@ -1130,7 +1130,7 @@
                 OR :curSchoolID = 0
             )
             AND u_cdol_staff_changes.o365_created = 1
-            AND u_cdol_staff_changes.name_change = 'New Staff'
+            AND u_cdol_staff_changes.change_type = 'newStaff'
     ) + (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -1143,7 +1143,7 @@
                 OR :curSchoolID = 0
             )
             AND u_cdol_staff_changes.o365_ignored = 1
-            AND u_cdol_staff_changes.name_change = 'New Staff'
+            AND u_cdol_staff_changes.change_type = 'newStaff'
     ) AS total_new_o365_complete,
     (
         SELECT
@@ -1156,7 +1156,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'New Staff'
+            AND u_cdol_staff_changes.change_type = 'newStaff'
     ) - (
         (
             SELECT
@@ -1170,7 +1170,7 @@
                     OR :curSchoolID = 0
                 )
                 AND u_cdol_staff_changes.o365_created = 1
-                AND u_cdol_staff_changes.name_change = 'New Staff'
+                AND u_cdol_staff_changes.change_type = 'newStaff'
         ) + (
             SELECT
                 COUNT(u_cdol_staff_changes.id)
@@ -1183,7 +1183,7 @@
                     OR :curSchoolID = 0
                 )
                 AND u_cdol_staff_changes.o365_ignored = 1
-                AND u_cdol_staff_changes.name_change = 'New Staff'
+                AND u_cdol_staff_changes.change_type = 'newStaff'
         )
     ) AS total_new_o365_remaining,
     (
@@ -1197,7 +1197,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'New Staff'
+            AND u_cdol_staff_changes.change_type = 'newStaff'
             AND u_cdol_staff_changes.lms_created = 1
     ) AS total_new_lms_complete,
     (
@@ -1211,7 +1211,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'New Staff'
+            AND u_cdol_staff_changes.change_type = 'newStaff'
     ) - (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -1223,7 +1223,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'New Staff'
+            AND u_cdol_staff_changes.change_type = 'newStaff'
             AND u_cdol_staff_changes.lms_created = 1
     ) AS total_new_lms_remaining,         
     (
@@ -1237,7 +1237,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+            AND u_cdol_staff_changes.change_type = 'transferringStaff'
     ) total_transferring_submissions,
     (
         SELECT
@@ -1250,7 +1250,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+            AND u_cdol_staff_changes.change_type = 'transferringStaff'
     ) total_transferring_complete,
     (
         SELECT
@@ -1263,7 +1263,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+            AND u_cdol_staff_changes.change_type = 'transferringStaff'
     ) - (
         SELECT
             COUNT(u_cdol_staff_changes.final_completion_date)
@@ -1275,7 +1275,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+            AND u_cdol_staff_changes.change_type = 'transferringStaff'
     ) AS total_transferring_remaining,
     (
         SELECT
@@ -1288,7 +1288,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+            AND u_cdol_staff_changes.change_type = 'transferringStaff'
             AND u_cdol_staff_changes.ps_created = 1
     ) AS total_transfer_ps_complete,
     (
@@ -1302,7 +1302,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+            AND u_cdol_staff_changes.change_type = 'transferringStaff'
     ) - (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -1314,7 +1314,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+            AND u_cdol_staff_changes.change_type = 'transferringStaff'
             AND u_cdol_staff_changes.ps_created = 1
     ) AS total_transfer_ps_remaining,
     (
@@ -1329,7 +1329,7 @@
                 OR :curSchoolID = 0
             )
             AND u_cdol_staff_changes.ad_created = 1
-            AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+            AND u_cdol_staff_changes.change_type = 'transferringStaff'
     ) + (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -1342,7 +1342,7 @@
                 OR :curSchoolID = 0
             )
             AND u_cdol_staff_changes.ad_ignored = 1
-            AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+            AND u_cdol_staff_changes.change_type = 'transferringStaff'
     ) AS total_transfer_ad_complete,
     (
         SELECT
@@ -1355,7 +1355,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+            AND u_cdol_staff_changes.change_type = 'transferringStaff'
     ) - (
         (
             SELECT
@@ -1369,7 +1369,7 @@
                     OR :curSchoolID = 0
                 )
                 AND u_cdol_staff_changes.ad_created = 1
-                AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+                AND u_cdol_staff_changes.change_type = 'transferringStaff'
         ) + (
             SELECT
                 COUNT(u_cdol_staff_changes.id)
@@ -1382,7 +1382,7 @@
                     OR :curSchoolID = 0
                 )
                 AND u_cdol_staff_changes.ad_ignored = 1
-                AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+                AND u_cdol_staff_changes.change_type = 'transferringStaff'
         )
     ) AS total_transfer_ad_remaining,
     (
@@ -1397,7 +1397,7 @@
                 OR :curSchoolID = 0
             )
             AND u_cdol_staff_changes.o365_created = 1
-            AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+            AND u_cdol_staff_changes.change_type = 'transferringStaff'
     ) + (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -1410,7 +1410,7 @@
                 OR :curSchoolID = 0
             )
             AND u_cdol_staff_changes.o365_ignored = 1
-            AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+            AND u_cdol_staff_changes.change_type = 'transferringStaff'
     ) AS total_transfer_o365_complete,
     (
         SELECT
@@ -1423,7 +1423,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+            AND u_cdol_staff_changes.change_type = 'transferringStaff'
     ) - (
         (
             SELECT
@@ -1437,7 +1437,7 @@
                     OR :curSchoolID = 0
                 )
                 AND u_cdol_staff_changes.o365_created = 1
-                AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+                AND u_cdol_staff_changes.change_type = 'transferringStaff'
         ) + (
             SELECT
                 COUNT(u_cdol_staff_changes.id)
@@ -1450,7 +1450,7 @@
                     OR :curSchoolID = 0
                 )
                 AND u_cdol_staff_changes.o365_ignored = 1
-                AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+                AND u_cdol_staff_changes.change_type = 'transferringStaff'
         )
     ) AS total_transfer_o365_remaining,
     (
@@ -1464,7 +1464,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+            AND u_cdol_staff_changes.change_type = 'transferringStaff'
             AND u_cdol_staff_changes.lms_created = 1
     ) AS total_transfer_lms_complete,
     (
@@ -1478,7 +1478,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+            AND u_cdol_staff_changes.change_type = 'transferringStaff'
     ) - (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -1490,7 +1490,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Transferring Staff'
+            AND u_cdol_staff_changes.change_type = 'transferringStaff'
             AND u_cdol_staff_changes.lms_created = 1
     ) AS total_transfer_lms_remaining,           
     (
@@ -1504,7 +1504,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Name Change'
+            AND u_cdol_staff_changes.change_type = 'nameChange'
     ) total_name_change_submissions,
     (
         SELECT
@@ -1517,7 +1517,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Name Change'
+            AND u_cdol_staff_changes.change_type = 'nameChange'
     ) total_name_change_complete,
     (
         SELECT
@@ -1530,7 +1530,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Name Change'
+            AND u_cdol_staff_changes.change_type = 'nameChange'
     ) - (
         SELECT
             COUNT(u_cdol_staff_changes.final_completion_date)
@@ -1542,7 +1542,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Name Change'
+            AND u_cdol_staff_changes.change_type = 'nameChange'
     ) AS total_name_change_remaining, 
     (
         SELECT
@@ -1555,7 +1555,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Name Change'
+            AND u_cdol_staff_changes.change_type = 'nameChange'
             AND u_cdol_staff_changes.ps_created = 1
     ) AS total_name_change_ps_complete,
     (
@@ -1569,7 +1569,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Name Change'
+            AND u_cdol_staff_changes.change_type = 'nameChange'
     ) - (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -1581,7 +1581,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Name Change'
+            AND u_cdol_staff_changes.change_type = 'nameChange'
             AND u_cdol_staff_changes.ps_created = 1
     ) AS total_name_change_ps_remaining,
     (
@@ -1595,7 +1595,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Name Change'
+            AND u_cdol_staff_changes.change_type = 'nameChange'
             AND u_cdol_staff_changes.ad_created = 1
     ) AS total_name_change_ad_complete,
     (
@@ -1609,7 +1609,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Name Change'
+            AND u_cdol_staff_changes.change_type = 'nameChange'
     ) - (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -1621,7 +1621,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Name Change'
+            AND u_cdol_staff_changes.change_type = 'nameChange'
             AND u_cdol_staff_changes.ad_created = 1
     ) AS total_name_change_ad_remaining, 
     (
@@ -1635,7 +1635,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Name Change'
+            AND u_cdol_staff_changes.change_type = 'nameChange'
             AND u_cdol_staff_changes.o365_created = 1
     ) AS total_name_change_o365_complete,
     (
@@ -1649,7 +1649,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Name Change'
+            AND u_cdol_staff_changes.change_type = 'nameChange'
     ) - (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -1661,7 +1661,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Name Change'
+            AND u_cdol_staff_changes.change_type = 'nameChange'
             AND u_cdol_staff_changes.o365_created = 1
     ) AS total_name_change_o365_remaining,
     (
@@ -1675,7 +1675,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Name Change'
+            AND u_cdol_staff_changes.change_type = 'nameChange'
             AND u_cdol_staff_changes.lms_created = 1
     ) AS total_name_change_lms_complete,
     (
@@ -1689,7 +1689,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Name Change'
+            AND u_cdol_staff_changes.change_type = 'nameChange'
     ) - (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -1701,7 +1701,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Name Change'
+            AND u_cdol_staff_changes.change_type = 'nameChange'
             AND u_cdol_staff_changes.lms_created = 1
     ) AS total_name_change_lms_remaining,   
     (
@@ -1715,7 +1715,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.change_type = 'jobChange'
     ) total_job_change_submissions,
     (
         SELECT
@@ -1728,7 +1728,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.change_type = 'jobChange'
     ) total_job_change_complete,
     (
         SELECT
@@ -1741,7 +1741,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.change_type = 'jobChange'
     ) - (
         SELECT
             COUNT(u_cdol_staff_changes.final_completion_date)
@@ -1753,7 +1753,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.change_type = 'jobChange'
     ) AS total_job_change_remaining, 
     (
         SELECT
@@ -1766,7 +1766,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.change_type = 'jobChange'
             AND u_cdol_staff_changes.ps_created = 1
     ) AS total_job_change_ps_complete,
     (
@@ -1780,7 +1780,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.change_type = 'jobChange'
     ) - (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -1792,7 +1792,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.change_type = 'jobChange'
             AND u_cdol_staff_changes.ps_created = 1
     ) AS total_job_change_ps_remaining,
     (
@@ -1806,7 +1806,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.change_type = 'jobChange'
             AND u_cdol_staff_changes.ad_created = 1
     ) AS total_job_change_ad_complete,
     (
@@ -1820,7 +1820,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.change_type = 'jobChange'
     ) - (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -1832,7 +1832,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.change_type = 'jobChange'
             AND u_cdol_staff_changes.ad_created = 1
     ) AS total_job_change_ad_remaining, 
     (
@@ -1846,7 +1846,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.change_type = 'jobChange'
             AND u_cdol_staff_changes.o365_created = 1
     ) AS total_job_change_o365_complete,
     (
@@ -1860,7 +1860,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.change_type = 'jobChange'
     ) - (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -1872,7 +1872,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.change_type = 'jobChange'
             AND u_cdol_staff_changes.o365_created = 1
     ) AS total_job_change_o365_remaining,
     (
@@ -1886,7 +1886,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.change_type = 'jobChange'
             AND u_cdol_staff_changes.lms_created = 1
     ) AS total_job_change_lms_complete,
     (
@@ -1900,7 +1900,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.change_type = 'jobChange'
     ) - (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -1912,7 +1912,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Job Change'
+            AND u_cdol_staff_changes.change_type = 'jobChange'
             AND u_cdol_staff_changes.lms_created = 1
     ) AS total_job_change_lms_remaining, 
     (
@@ -1926,7 +1926,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Exiting Staff'
+            AND u_cdol_staff_changes.change_type = 'exitingStaff'
     ) total_exit_submissions,
     (
         SELECT
@@ -1939,7 +1939,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Exiting Staff'
+            AND u_cdol_staff_changes.change_type = 'exitingStaff'
     ) total_exit_complete,
     (
         SELECT
@@ -1952,7 +1952,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Exiting Staff'
+            AND u_cdol_staff_changes.change_type = 'exitingStaff'
     ) - (
         SELECT
             COUNT(u_cdol_staff_changes.final_completion_date)
@@ -1964,7 +1964,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Exiting Staff'
+            AND u_cdol_staff_changes.change_type = 'exitingStaff'
     ) AS total_exit_remaining,
     (
         SELECT
@@ -1977,7 +1977,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Exiting Staff'
+            AND u_cdol_staff_changes.change_type = 'exitingStaff'
             AND u_cdol_staff_changes.ps_created = 1
     ) AS total_exit_ps_complete,
     (
@@ -1991,7 +1991,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Exiting Staff'
+            AND u_cdol_staff_changes.change_type = 'exitingStaff'
     ) - (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -2003,7 +2003,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Exiting Staff'
+            AND u_cdol_staff_changes.change_type = 'exitingStaff'
             AND u_cdol_staff_changes.ps_created = 1
     ) AS total_exit_ps_remaining,
     (
@@ -2018,7 +2018,7 @@
                 OR :curSchoolID = 0
             )
             AND u_cdol_staff_changes.ad_created = 1
-            AND u_cdol_staff_changes.name_change = 'Exiting Staff'
+            AND u_cdol_staff_changes.change_type = 'exitingStaff'
     ) + (
         SELECT
             COUNT(u_cdol_staff_changes.id)
@@ -2031,7 +2031,7 @@
                 OR :curSchoolID = 0
             )
             AND u_cdol_staff_changes.ad_ignored = 1
-            AND u_cdol_staff_changes.name_change = 'Exiting Staff'
+            AND u_cdol_staff_changes.change_type = 'exitingStaff'
     ) AS total_exit_ad_complete,
     (
         SELECT
@@ -2044,7 +2044,7 @@
                 u_cdol_staff_changes.schoolid = :curSchoolID
                 OR :curSchoolID = 0
             )
-            AND u_cdol_staff_changes.name_change = 'Exiting Staff'
+            AND u_cdol_staff_changes.change_type = 'exitingStaff'
     ) - (
         (
             SELECT
@@ -2058,7 +2058,7 @@
                     OR :curSchoolID = 0
                 )
                 AND u_cdol_staff_changes.ad_created = 1
-                AND u_cdol_staff_changes.name_change = 'Exiting Staff'
+                AND u_cdol_staff_changes.change_type = 'exitingStaff'
         ) + (
             SELECT
                 COUNT(u_cdol_staff_changes.id)
@@ -2071,7 +2071,7 @@
                     OR :curSchoolID = 0
                 )
                 AND u_cdol_staff_changes.ad_ignored = 1
-                AND u_cdol_staff_changes.name_change = 'Exiting Staff'
+                AND u_cdol_staff_changes.change_type = 'exitingStaff'
         )
     ) AS total_exit_ad_remaining
 FROM
