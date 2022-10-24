@@ -553,7 +553,7 @@
 					U_CDOL_STAFF_CHANGES.position, 
 					U_CDOL_STAFF_CHANGES.fte, 
 					U_CDOL_STAFF_CHANGES.replacing,
-					replaced.first_name || ' ' || replaced.last_name as replacedstaff,
+                    users_replaced.first_name || ' ' || Users_replaced.last_name as replacedstaff,
 					U_CDOL_STAFF_CHANGES.replacing_other,
 					U_CDOL_STAFF_CHANGES.old_name_placeholder,
 					U_CDOL_STAFF_CHANGES.start_date,
@@ -571,7 +571,7 @@
 					U_CDOL_STAFF_CHANGES.submission_date,
 					U_CDOL_STAFF_CHANGES.submission_time,
 					U_CDOL_STAFF_CHANGES.who_submitted,
-					submitted.first_name  || ' ' ||  submitted.last_name as submittedstaff,
+                    users_submitted.first_name  || ' ' ||  users_submitted.last_name as submittedstaff,
 					U_CDOL_STAFF_CHANGES.final_completion_date,
 					U_CDOL_STAFF_CHANGES.ps_created,
 					U_CDOL_STAFF_CHANGES.ad_created,
@@ -597,16 +597,20 @@
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
 				LEFT OUTER JOIN SCHOOLS previous_school ON 
 				to_char(U_CDOL_STAFF_CHANGES.previous_employer) = to_char(previous_school.school_number)
-				LEFT OUTER JOIN USERS replaced ON
-				to_char(replaced.DCID) = to_char(U_CDOL_STAFF_CHANGES.replacing)
-				LEFT OUTER JOIN USERS submitted ON
-				to_char(submitted.DCID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
+                LEFT OUTER JOIN schoolstaff schoolstaff_replaced ON
+				to_char(schoolstaff_replaced.ID) = to_char(U_CDOL_STAFF_CHANGES.replacing)
+				LEFT OUTER JOIN users users_replaced ON
+				to_char(users_replaced.DCID) = to_char(schoolstaff_replaced.users_DCID)
+                LEFT OUTER JOIN schoolstaff schoolstaff_submitted ON
+				to_char(schoolstaff_submitted.ID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
+                LEFT OUTER JOIN users users_submitted ON
+				to_char(users_submitted.DCID) = to_char(schoolstaff_submitted.users_DCID)
 				WHERE U_cdol_staff_changes.calendar_year= :calendarYear
 				AND (U_CDOL_STAFF_CHANGES.schoolid = :curSchoolID
 								or 
 							:curSchoolID = 0)
 				AND U_CDOL_STAFF_CHANGES.change_type = :changeType or :changeType = 'All'
-				ORDER BY U_CDOL_STAFF_CHANGES.submission_date DESC, U_CDOL_STAFF_CHANGES.last_name	
+				ORDER BY U_CDOL_STAFF_CHANGES.submission_date DESC, U_CDOL_STAFF_CHANGES.last_name		
         ]]>
 		</sql>
 	</query>
