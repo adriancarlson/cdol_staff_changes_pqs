@@ -597,13 +597,13 @@
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
 				LEFT OUTER JOIN SCHOOLS previous_school ON 
 				to_char(U_CDOL_STAFF_CHANGES.previous_employer) = to_char(previous_school.school_number)
-                LEFT OUTER JOIN schoolstaff schoolstaff_replaced ON
+                INNER JOIN schoolstaff schoolstaff_replaced ON
 				to_char(schoolstaff_replaced.ID) = to_char(U_CDOL_STAFF_CHANGES.replacing)
-				LEFT OUTER JOIN users users_replaced ON
+				INNER JOIN users users_replaced ON
 				to_char(users_replaced.DCID) = to_char(schoolstaff_replaced.users_DCID)
-                LEFT OUTER JOIN schoolstaff schoolstaff_submitted ON
+                INNER JOIN schoolstaff schoolstaff_submitted ON
 				to_char(schoolstaff_submitted.ID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
-                LEFT OUTER JOIN users users_submitted ON
+                INNER JOIN users users_submitted ON
 				to_char(users_submitted.DCID) = to_char(schoolstaff_submitted.users_DCID)
 				WHERE U_cdol_staff_changes.calendar_year= :calendarYear
 				AND (U_CDOL_STAFF_CHANGES.schoolid = :curSchoolID
