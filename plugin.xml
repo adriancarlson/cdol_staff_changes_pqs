@@ -3,7 +3,7 @@
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd"
 name="CDOL Rest API"
-version="22.10.16"
+version="22.10.17"
 description="CDOL PowerSchool REST API inherited from Sean McCleery">
 	<oauth></oauth>
 		<access_request>
@@ -124,7 +124,10 @@ description="CDOL PowerSchool REST API inherited from Sean McCleery">
 			<field table="SYNC_STUDENTMAP" field="STUDENTSDCID" access="FullAccess" />
 			<field table="TEACHERS" field="ID" access="ViewOnly" />
 			<field table="TEACHERS" field="TITLE" access="ViewOnly" />
+			<field table="TEACHERS" field="FIRST_NAME" access="ViewOnly" />
+			<field table="TEACHERS" field="MIDDLE_NAME" access="ViewOnly" />
 			<field table="TEACHERS" field="LAST_NAME" access="ViewOnly" />
+			<field table="TEACHERS" field="HOMESCHOOLID" access="ViewOnly" />
 			<field table="USERS" field="DCID" access="FullAccess" />
 			<field table="USERS" field="TITLE" access="FullAccess" />
 			<field table="USERS" field="FIRST_NAME" access="FullAccess" />

@@ -616,29 +616,27 @@
 	</query>
 	<query name="net.cdolinc.staffChanges.staff.existingstaff" flattened="true">
 		<summary>CDOL: Staff Changes Existing staff</summary>
-		<description>Gets existing staff by User DCID</description>
+		<description>Gets existing staff by teachers DCID</description>
 		<args>
-			<arg name="userDcid" column="users.dcid" required="true" description="User Dcid"/>
+			<arg name="userDcid" column="teachers.dcid" required="true" description="User Dcid"/>
 		</args>
 		<columns>
-			<column column="users.title" description="User First Name">title</column>
-			<column column="users.first_name" description="User First Name">first_name</column>
-			<column column="users.middle_name" description="User Middle Name">middle_name</column>
-			<column column="users.last_name" description="User Last Name">last_name</column>
-			<column column="users.homeschoolid" description="User homeschoolid">homeschoolid</column>
+			<column column="teachers.title" description="teachers First Name">title</column>
+			<column column="teachers.first_name" description="teachers First Name">first_name</column>
+			<column column="teachers.middle_name" description="teachers Middle Name">middle_name</column>
+			<column column="teachers.last_name" description="teachers Last Name">last_name</column>
+			<column column="teachers.homeschoolid" description="teachers homeschoolid">homeschoolid</column>
 		</columns>
 		<sql>
 			<![CDATA[
 				SELECT DISTINCT
-                    users.title,
-					users.first_name,
-                    users.middle_name,
-					users.last_name,
-					users.homeschoolid
-					FROM SCHOOLSTAFF
-					inner join users
-					on users.dcid = schoolstaff.users_dcid
-					WHERE users.dcid = :userDcid
+                    teachers.title,
+					teachers.first_name,
+                    teachers.middle_name,
+					teachers.last_name,
+					teachers.homeschoolid
+					FROM teachers
+					WHERE teachers.users_dcid = :userDcid
         ]]>
 		</sql>
 	</query>
