@@ -597,13 +597,13 @@
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
 				LEFT OUTER JOIN SCHOOLS previous_school ON 
 				to_char(U_CDOL_STAFF_CHANGES.previous_employer) = to_char(previous_school.school_number)
-                INNER JOIN schoolstaff schoolstaff_replaced ON
+                LEFT OUTER JOIN schoolstaff schoolstaff_replaced ON
 				to_char(schoolstaff_replaced.ID) = to_char(U_CDOL_STAFF_CHANGES.replacing)
-				INNER JOIN users users_replaced ON
+				LEFT OUTER JOIN users users_replaced ON
 				to_char(users_replaced.DCID) = to_char(schoolstaff_replaced.users_DCID)
-                INNER JOIN schoolstaff schoolstaff_submitted ON
+                LEFT OUTER JOIN schoolstaff schoolstaff_submitted ON
 				to_char(schoolstaff_submitted.ID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
-                INNER JOIN users users_submitted ON
+                LEFT OUTER JOIN users users_submitted ON
 				to_char(users_submitted.DCID) = to_char(schoolstaff_submitted.users_DCID)
 				WHERE U_cdol_staff_changes.calendar_year= :calendarYear
 				AND (U_CDOL_STAFF_CHANGES.schoolid = :curSchoolID
@@ -625,6 +625,7 @@
 			<column column="users.first_name" description="User First Name">first_name</column>
 			<column column="users.middle_name" description="User Middle Name">middle_name</column>
 			<column column="users.last_name" description="User Last Name">last_name</column>
+			<column column="users.homeschoolid" description="User homeschoolid">homeschoolid</column>
 		</columns>
 		<sql>
 			<![CDATA[
@@ -632,7 +633,8 @@
                     users.title,
 					users.first_name,
                     users.middle_name,
-					users.last_name
+					users.last_name,
+					users.homeschoolid
 					FROM SCHOOLSTAFF
 					inner join users
 					on users.dcid = schoolstaff.users_dcid
