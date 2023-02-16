@@ -117,7 +117,10 @@
 					U_CDOL_STAFF_CHANGES.submission_date,
 					U_CDOL_STAFF_CHANGES.submission_time,
 					U_CDOL_STAFF_CHANGES.who_submitted,
-                    users_submitted.first_name  || ' ' ||  users_submitted.last_name as submittedstaff,
+                    CASE 
+                        WHEN users_submitted.first_name  || ' ' ||  users_submitted.last_name = ' ' THEN users_extra.first_name  || ' ' ||  users_extra.last_name
+                        ELSE users_submitted.first_name  || ' ' ||  users_submitted.last_name
+                    END as submittedstaff,
 					U_CDOL_STAFF_CHANGES.final_completion_date,
 					U_CDOL_STAFF_CHANGES.ps_created,
 					U_CDOL_STAFF_CHANGES.ad_created,
@@ -147,10 +150,12 @@
 				to_char(schoolstaff_replaced.ID) = to_char(U_CDOL_STAFF_CHANGES.replacing)
 				LEFT OUTER JOIN users users_replaced ON
 				to_char(users_replaced.DCID) = to_char(schoolstaff_replaced.users_DCID)
-                LEFT OUTER JOIN users schoolstaff_submitted ON
-				to_char(schoolstaff_submitted.DCID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
+                LEFT OUTER JOIN schoolstaff schoolstaff_submitted ON
+				to_char(schoolstaff_submitted.ID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
                 LEFT OUTER JOIN users users_submitted ON
-				to_char(users_submitted.DCID) = to_char(schoolstaff_submitted.DCID)
+				to_char(users_submitted.DCID) = to_char(schoolstaff_submitted.users_DCID)
+                LEFT OUTER JOIN users users_extra ON
+				to_char(users_extra.DCID) = to_char(U_CDOL_STAFF_CHANGES.who_submitted)
 				WHERE U_cdol_staff_changes.calendar_year= :calendarYear
 				AND (U_CDOL_STAFF_CHANGES.schoolid = :curSchoolID
 								or 
