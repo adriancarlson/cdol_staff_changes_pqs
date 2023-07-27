@@ -1,0 +1,13 @@
+<permission_mappings>
+	<permission name="/admin/students/staffchange/cdol_health_log.html">
+		<implies allow="post">/ws/schema/query/net.cdolinc.health.healthLog.logs</implies>
+	</permission>
+	<permission name='/admin/students/staffchange/cdol_health_log.html'>
+		<implies allow="post">/ws/schema/table/u_cdol_health_log</implies>
+		<implies allow="put">/ws/schema/table/u_cdol_health_log/#</implies>
+		<implies allow="delete">/ws/schema/table/u_cdol_health_log/#</implies>
+		<implies allow="get">/ws/schema/table/u_cdol_health_log/#</implies>
+		<implies allow="get">/ws/schema/table/u_cdol_health_log/count</implies>
+		<implies allow="get">/ws/schema/table/u_cdol_health_log</implies>
+	</permission>
+</permission_mappings>
