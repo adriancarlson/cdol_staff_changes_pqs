@@ -155,7 +155,8 @@
 				to_char(users_replaced.DCID) = to_char(schoolstaff_replaced.users_DCID)
                 LEFT OUTER JOIN users users_submitted ON
 				U_CDOL_STAFF_CHANGES.who_submitted = users_submitted.DCID
-				WHERE U_cdol_staff_changes.calendar_year= :calendarYear
+				WHERE (U_cdol_staff_changes.calendar_year= :calendarYear
+                or :calendarYear = 0)
 				AND (U_CDOL_STAFF_CHANGES.schoolid = :curSchoolID
 								or 
 							:curSchoolID = 0)
