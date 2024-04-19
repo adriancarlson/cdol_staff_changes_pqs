@@ -5,7 +5,7 @@
         <args>
             <arg name="curSchoolID" column="U_CDOL_STAFF_CHANGES.schoolid" required="true" description="Current School ID" default="~(curschoolid)" />
             <arg name="calendarYear" column="U_CDOL_STAFF_CHANGES.calendar_year" required="true" description="Calendar Year" default="~(f.currentdate;format= YYYY)" />
-            <arg name="changeType" column="U_CDOL_STAFF_CHANGES.change_type" description="Type of staff Change" default="All" />
+            <arg name="changeType" column="U_CDOL_STAFF_CHANGES.change_type" description="Type of staff Change" default="allStaff" />
         </args>
         <columns>
             <column column="U_CDOL_STAFF_CHANGES.id" description="Change ID">staff.staffid</column>
@@ -160,7 +160,7 @@
 				AND (U_CDOL_STAFF_CHANGES.schoolid = :curSchoolID
 								OR 
 							:curSchoolID = 0)
-				AND U_CDOL_STAFF_CHANGES.change_type = :changeType OR :changeType = 'All'
+				AND (:changeType = 'allStaff' OR U_CDOL_STAFF_CHANGES.change_type = :changeType)
 				ORDER BY U_CDOL_STAFF_CHANGES.submission_date DESC, U_CDOL_STAFF_CHANGES.last_name		
         ]]>
         </sql>
