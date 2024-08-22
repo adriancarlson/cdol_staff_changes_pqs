@@ -165,6 +165,61 @@
         ]]>
         </sql>
     </query>
+    <query name="net.cdolinc.staffChanges.duplicate.search" flattened="true">
+        <summary>CDOL: Staff Changes Duplicate Search</summary>
+        <description>Duplicate Search for Staff Changes</description>
+        <args>
+            <arg name="firstName" column="U_CDOL_STAFF_CHANGES.first_name" required="true" description="Search First Name" />
+            <arg name="lastName" column="U_CDOL_STAFF_CHANGES.last_name" required="true" description="Search Last Name" />
+            <arg name="curSchoolID" column="U_CDOL_STAFF_CHANGES.schoolid" required="true" description="Current School ID" default="~(curschoolid)" />
+            <arg name="calendarYear" column="U_CDOL_STAFF_CHANGES.calendar_year" required="true" description="Calendar Year" default="~(f.currentdate;format= YYYY)" />
+            <arg name="changeType" column="U_CDOL_STAFF_CHANGES.change_type" description="Type of staff Change" default="allStaff" />
+        </args>
+        <columns>
+            <column column="U_CDOL_STAFF_CHANGES.id" description="Change ID">staff.staffid</column>
+            <column column="U_CDOL_STAFF_CHANGES.change_type" description="Change type">staff.change_type</column>
+            <column column="U_CDOL_STAFF_CHANGES.title" description="Title">staff.title</column>
+            <column column="U_CDOL_STAFF_CHANGES.first_name" description="First Name">staff.first_name</column>
+            <column column="U_CDOL_STAFF_CHANGES.last_name" description="Last Name">staff.last_name</column>
+            <column column="U_CDOL_STAFF_CHANGES.who_submitted" description="Who Submitted Name">staff.submittedstaff</column>
+            <column column="U_CDOL_STAFF_CHANGES.submission_date" description="Submission Date">staff.submission_date</column>
+            <column column="U_CDOL_STAFF_CHANGES.submission_time" description="Submission Time">staff.submission_time</column>
+            <column column="SCHOOLS.NAME" description="School Name">staff.schname</column>
+        </columns>
+        <sql>
+            <![CDATA[
+                SELECT
+                    u_cdol_staff_changes.id,
+                    u_cdol_staff_changes.change_type,
+                    u_cdol_staff_changes.title,
+                    u_cdol_staff_changes.first_name,
+                    u_cdol_staff_changes.last_name,
+                    users_submitted.first_name || ' ' || users_submitted.last_name AS submittedstaff,
+                    U_CDOL_STAFF_CHANGES.submission_date,
+                    U_CDOL_STAFF_CHANGES.submission_time,
+                    CASE
+                        WHEN U_CDOL_STAFF_CHANGES.schoolid = 0 THEN 'Diocesan Office'
+                        ELSE SCHOOLS.NAME
+                    END AS schoolName
+                FROM
+                    U_CDOL_STAFF_CHANGES
+                    LEFT OUTER JOIN SCHOOLS ON U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
+                    LEFT OUTER JOIN users users_submitted ON U_CDOL_STAFF_CHANGES.who_submitted = users_submitted.DCID
+                WHERE
+                    (UTL_MATCH.JARO_WINKLER_SIMILARITY(UPPER(u_cdol_staff_changes.first_name), UPPER(:firstName)) >= 75)
+                    AND (UTL_MATCH.JARO_WINKLER_SIMILARITY(UPPER(u_cdol_staff_changes.last_name), UPPER(:lastName)) >= 90)
+                    AND (U_cdol_staff_changes.calendar_year = :calendarYear
+                        OR :calendarYear = 0)
+                    AND (U_CDOL_STAFF_CHANGES.schoolid = :curSchoolID
+                        OR :curSchoolID = 0)
+                    AND (:changeType = 'allStaff'
+                        OR U_CDOL_STAFF_CHANGES.change_type = :changeType)
+                ORDER BY
+                    U_CDOL_STAFF_CHANGES.submission_date DESC,
+                    U_CDOL_STAFF_CHANGES.last_name
+        ]]>
+        </sql>
+    </query>
     <query name="net.cdolinc.staffChanges.staff.existingstaff" flattened="true">
         <summary>CDOL: Staff Changes Existing staff</summary>
         <description>Gets existing staff by teachers DCID</description>

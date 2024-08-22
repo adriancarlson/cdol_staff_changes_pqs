@@ -3,6 +3,9 @@
 		<implies allow="post">/ws/schema/query/net.cdolinc.staffChanges.staff.changes</implies>
 	</permission>
 	<permission name="/admin/staffchange/list.html">
+		<implies allow="post">/ws/schema/query/net.cdolinc.staffChanges.duplicate.search</implies>
+	</permission>
+	<permission name="/admin/staffchange/list.html">
 		<implies allow="post">/ws/schema/query/net.cdolinc.staffChanges.staff.counts</implies>
 	</permission>
 	<permission name="/admin/staffchange/list.html">

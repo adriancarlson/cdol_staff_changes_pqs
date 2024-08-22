@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://plugin.powerschool.pearson.com"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd" name="CDOL Staff Changes PQs" version="24.4.0.5" description="CDOL Staff Changes PQs and Data Access">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd" name="CDOL Staff Changes PQs" version="24.8" description="CDOL Staff Changes PQs and Data Access">
 	<autoinstall required="true">
 		<autoredeploy />
 	</autoinstall>
