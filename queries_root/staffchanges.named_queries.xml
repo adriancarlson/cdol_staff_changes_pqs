@@ -322,6 +322,15 @@
             <column column="U_CDOL_STAFF_CHANGES.id" description="total_exit_ps_remaining">staff.total_exit_ps_remaining</column>
             <column column="U_CDOL_STAFF_CHANGES.id" description="total_exit_ad_complete">staff.total_exit_ad_complete</column>
             <column column="U_CDOL_STAFF_CHANGES.id" description="total_exit_ad_remaining">staff.total_exit_ad_remaining</column>
+            <column column="U_CDOL_STAFF_CHANGES.id" description="total_sub_submissions">staff.total_sub_submissions</column>
+            <column column="U_CDOL_STAFF_CHANGES.id" description="total_sub_complete">staff.total_sub_complete</column>
+            <column column="U_CDOL_STAFF_CHANGES.id" description="total_sub_remaining">staff.total_sub_remaining</column>
+            <column column="U_CDOL_STAFF_CHANGES.id" description="total_sub_ps_complete">staff.total_sub_ps_complete</column>
+            <column column="U_CDOL_STAFF_CHANGES.id" description="total_sub_ps_remaining">staff.total_sub_ps_remaining</column>
+            <column column="U_CDOL_STAFF_CHANGES.id" description="total_sub_ad_complete">staff.total_sub_ad_complete</column>
+            <column column="U_CDOL_STAFF_CHANGES.id" description="total_sub_ad_remaining">staff.total_sub_ad_remaining</column>
+            <column column="U_CDOL_STAFF_CHANGES.id" description="total_sub_o365_complete">staff.total_sub_o365_complete</column>
+            <column column="U_CDOL_STAFF_CHANGES.id" description="total_sub_o365_remaining">staff.total_sub_o365_remaining</column>
         </columns>
         <sql>
             <![CDATA[
@@ -1689,7 +1698,234 @@
                 AND u_cdol_staff_changes.ad_ignored = 1
                 AND u_cdol_staff_changes.change_type = 'exitingStaff'
         )
-    ) AS total_exit_ad_remaining
+    ) AS total_exit_ad_remaining,
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE (U_cdol_staff_changes.calendar_year= :calendarYear
+                OR :calendarYear = 0)
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.change_type = 'subStaff'
+    ) total_sub_submissions,
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.final_completion_date)
+        FROM
+            u_cdol_staff_changes
+        WHERE (U_cdol_staff_changes.calendar_year= :calendarYear
+                OR :calendarYear = 0)
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.change_type = 'subStaff'
+    ) total_sub_complete,
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE (U_cdol_staff_changes.calendar_year= :calendarYear
+                OR :calendarYear = 0)
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.change_type = 'subStaff'
+    ) - (
+        SELECT
+            COUNT(u_cdol_staff_changes.final_completion_date)
+        FROM
+            u_cdol_staff_changes
+        WHERE (U_cdol_staff_changes.calendar_year= :calendarYear
+                OR :calendarYear = 0)
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.change_type = 'subStaff'
+    ) AS total_sub_remaining,
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE (U_cdol_staff_changes.calendar_year= :calendarYear
+                OR :calendarYear = 0)
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.change_type = 'subStaff'
+            AND u_cdol_staff_changes.ps_created = 1
+    ) AS total_sub_ps_complete,
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE (U_cdol_staff_changes.calendar_year= :calendarYear
+                OR :calendarYear = 0)
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.change_type = 'subStaff'
+    ) - (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE (U_cdol_staff_changes.calendar_year= :calendarYear
+                OR :calendarYear = 0)
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.change_type = 'subStaff'
+            AND u_cdol_staff_changes.ps_created = 1
+    ) AS total_sub_ps_remaining,
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE (U_cdol_staff_changes.calendar_year= :calendarYear
+                OR :calendarYear = 0)
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.ad_created = 1
+            AND u_cdol_staff_changes.change_type = 'subStaff'
+    ) + (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE (U_cdol_staff_changes.calendar_year= :calendarYear
+                OR :calendarYear = 0)
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.ad_ignored = 1
+            AND u_cdol_staff_changes.change_type = 'subStaff'
+    ) AS total_sub_ad_complete,
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE (U_cdol_staff_changes.calendar_year= :calendarYear
+                OR :calendarYear = 0)
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.change_type = 'subStaff'
+    ) - (
+        (
+            SELECT
+                COUNT(u_cdol_staff_changes.id)
+            FROM
+                u_cdol_staff_changes
+            WHERE
+                u_cdol_staff_changes.calendar_year= :calendarYear
+                AND (
+                    u_cdol_staff_changes.schoolid = :curSchoolID
+                    OR :curSchoolID = 0
+                )
+                AND u_cdol_staff_changes.ad_created = 1
+                AND u_cdol_staff_changes.change_type = 'subStaff'
+        ) + (
+            SELECT
+                COUNT(u_cdol_staff_changes.id)
+            FROM
+                u_cdol_staff_changes
+            WHERE
+                u_cdol_staff_changes.calendar_year= :calendarYear
+                AND (
+                    u_cdol_staff_changes.schoolid = :curSchoolID
+                    OR :curSchoolID = 0
+                )
+                AND u_cdol_staff_changes.ad_ignored = 1
+                AND u_cdol_staff_changes.change_type = 'subStaff'
+        )
+    ) AS total_sub_ad_remaining,
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE (U_cdol_staff_changes.calendar_year= :calendarYear
+                OR :calendarYear = 0)
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.o365_created = 1
+            AND u_cdol_staff_changes.change_type = 'subStaff'
+    ) + (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE (U_cdol_staff_changes.calendar_year= :calendarYear
+                OR :calendarYear = 0)
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.o365_ignored = 1
+            AND u_cdol_staff_changes.change_type = 'subStaff'
+    ) AS total_sub_o365_complete,
+    (
+        SELECT
+            COUNT(u_cdol_staff_changes.id)
+        FROM
+            u_cdol_staff_changes
+        WHERE (U_cdol_staff_changes.calendar_year= :calendarYear
+                OR :calendarYear = 0)
+            AND (
+                u_cdol_staff_changes.schoolid = :curSchoolID
+                OR :curSchoolID = 0
+            )
+            AND u_cdol_staff_changes.change_type = 'subStaff'
+    ) - (
+        (
+            SELECT
+                COUNT(u_cdol_staff_changes.id)
+            FROM
+                u_cdol_staff_changes
+            WHERE
+                u_cdol_staff_changes.calendar_year= :calendarYear
+                AND (
+                    u_cdol_staff_changes.schoolid = :curSchoolID
+                    OR :curSchoolID = 0
+                )
+                AND u_cdol_staff_changes.o365_created = 1
+                AND u_cdol_staff_changes.change_type = 'subStaff'
+        ) + (
+            SELECT
+                COUNT(u_cdol_staff_changes.id)
+            FROM
+                u_cdol_staff_changes
+            WHERE
+                u_cdol_staff_changes.calendar_year= :calendarYear
+                AND (
+                    u_cdol_staff_changes.schoolid = :curSchoolID
+                    OR :curSchoolID = 0
+                )
+                AND u_cdol_staff_changes.o365_ignored = 1
+                AND u_cdol_staff_changes.change_type = 'subStaff'
+        )
+    ) AS total_sub_o365_remaining
 FROM
     u_cdol_staff_changes
         ]]>
