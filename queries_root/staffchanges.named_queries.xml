@@ -67,6 +67,9 @@
             <column column="U_CDOL_STAFF_CHANGES.prev_school_number" description="Previous School Number">staff.prev_school_number</column>
             <column column="U_CDOL_STAFF_CHANGES.prev_school_name" description="Previous School Name">staff.prev_school_name</column>
             <column column="U_CDOL_STAFF_CHANGES.calendar_year" description="Calendar Year">staff.calendar_year</column>
+            <column column="U_CDOL_STAFF_CHANGES.license_microsoft" description="License Microsoft">staff.license_microsoft</column>
+            <column column="U_CDOL_STAFF_CHANGES.sub_type" description="Sub Type">staff.sub_type</column>
+            <column column="U_CDOL_STAFF_CHANGES.ticket_id" description="Ticket Id">staff.ticket_id</column>
         </columns>
         <sql>
             <![CDATA[
@@ -143,7 +146,10 @@
 					U_CDOL_STAFF_CHANGES.users_dcid,
 					U_CDOL_STAFF_CHANGES.prev_school_number,
 					U_CDOL_STAFF_CHANGES.prev_school_name,
-					U_CDOL_STAFF_CHANGES.calendar_year
+					U_CDOL_STAFF_CHANGES.calendar_year,
+					U_CDOL_STAFF_CHANGES.license_microsoft,
+					U_CDOL_STAFF_CHANGES.sub_type,
+					U_CDOL_STAFF_CHANGES.ticket_id
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
