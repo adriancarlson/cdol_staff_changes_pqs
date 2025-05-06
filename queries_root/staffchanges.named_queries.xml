@@ -70,6 +70,9 @@
             <column column="U_CDOL_STAFF_CHANGES.license_microsoft" description="License Microsoft">staff.license_microsoft</column>
             <column column="U_CDOL_STAFF_CHANGES.sub_type" description="Sub Type">staff.sub_type</column>
             <column column="U_CDOL_STAFF_CHANGES.ticket_id" description="Ticket Id">staff.ticket_id</column>
+            <column column="U_CDOL_STAFF_CHANGES.canva_transfer" description="Ticket Id">staff.canva_transfer</column>
+            <column column="U_CDOL_STAFF_CHANGES.canva_created" description="Ticket Id">staff.canva_created</column>
+            <column column="U_CDOL_STAFF_CHANGES.canva_ignored" description="Ticket Id">staff.canva_ignored</column>
         </columns>
         <sql>
             <![CDATA[
@@ -149,7 +152,10 @@
 					U_CDOL_STAFF_CHANGES.calendar_year,
 					U_CDOL_STAFF_CHANGES.license_microsoft,
 					U_CDOL_STAFF_CHANGES.sub_type,
-					U_CDOL_STAFF_CHANGES.ticket_id
+					U_CDOL_STAFF_CHANGES.ticket_id,
+					U_CDOL_STAFF_CHANGES.canva_transfer,
+					U_CDOL_STAFF_CHANGES.canva_created,
+					U_CDOL_STAFF_CHANGES.canva_ignored
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
