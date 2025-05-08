@@ -70,9 +70,14 @@
             <column column="U_CDOL_STAFF_CHANGES.license_microsoft" description="License Microsoft">staff.license_microsoft</column>
             <column column="U_CDOL_STAFF_CHANGES.sub_type" description="Sub Type">staff.sub_type</column>
             <column column="U_CDOL_STAFF_CHANGES.ticket_id" description="Ticket Id">staff.ticket_id</column>
-            <column column="U_CDOL_STAFF_CHANGES.canva_transfer" description="Ticket Id">staff.canva_transfer</column>
-            <column column="U_CDOL_STAFF_CHANGES.canva_created" description="Ticket Id">staff.canva_created</column>
-            <column column="U_CDOL_STAFF_CHANGES.canva_ignored" description="Ticket Id">staff.canva_ignored</column>
+            <column column="U_CDOL_STAFF_CHANGES.canva_transfer" description="Canva Transfer">staff.canva_transfer</column>
+            <column column="U_CDOL_STAFF_CHANGES.canva_created" description="Canva Created">staff.canva_created</column>
+            <column column="U_CDOL_STAFF_CHANGES.canva_ignored" description="Canva Ignored">staff.canva_ignored</column>
+            <column column="U_CDOL_STAFF_CHANGES.canva_dcid" description="Canva DCID">staff.canva_dcid</column>
+            <column column="U_CDOL_STAFF_CHANGES.canva_title" description="Canva Title">staff.canva_title</column>
+            <column column="U_CDOL_STAFF_CHANGES.canva_first_name" description="Canva First Name">staff.canva_first_name</column>
+            <column column="U_CDOL_STAFF_CHANGES.canva_middle_name" description="Canva Middle Name">staff.canva_middle_name</column>
+            <column column="U_CDOL_STAFF_CHANGES.canva_last_name" description="Canva Last Name">staff.canva_last_name</column>
         </columns>
         <sql>
             <![CDATA[
@@ -155,7 +160,12 @@
 					U_CDOL_STAFF_CHANGES.ticket_id,
 					U_CDOL_STAFF_CHANGES.canva_transfer,
 					U_CDOL_STAFF_CHANGES.canva_created,
-					U_CDOL_STAFF_CHANGES.canva_ignored
+					U_CDOL_STAFF_CHANGES.canva_ignored,
+					U_CDOL_STAFF_CHANGES.canva_dcid,
+					U_CDOL_STAFF_CHANGES.canva_title,
+					U_CDOL_STAFF_CHANGES.canva_first_name,
+					U_CDOL_STAFF_CHANGES.canva_middle_name,
+					U_CDOL_STAFF_CHANGES.canva_last_name
 				FROM U_CDOL_STAFF_CHANGES
 				LEFT OUTER JOIN SCHOOLS ON 
 				U_CDOL_STAFF_CHANGES.schoolid = SCHOOLS.school_number
