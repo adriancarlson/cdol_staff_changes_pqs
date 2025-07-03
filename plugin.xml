@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://plugin.powerschool.pearson.com" version="25.5.0.1" name="CDOL Staff Changes PQs" description="CDOL Staff Changes PQs and Data Access"
+<plugin xmlns="http://plugin.powerschool.pearson.com" version="25.6.1" name="CDOL Staff Changes PQs" description="CDOL Staff Changes PQs and Data Access"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd">
 	<autoinstall required="true">
 		<autoredeploy />
@@ -209,6 +209,10 @@
 		<field table="U_CDOL_STAFF_CHANGES" field="canva_first_name" access="FullAccess" />
 		<field table="U_CDOL_STAFF_CHANGES" field="canva_middle_name" access="FullAccess" />
 		<field table="U_CDOL_STAFF_CHANGES" field="canva_last_name" access="FullAccess" />
+		<field table="U_CDOL_STAFF_CHANGES" field="whocreated" access="FullAccess" />
+		<field table="U_CDOL_STAFF_CHANGES" field="whomodified" access="FullAccess" />
+		<field table="U_CDOL_STAFF_CHANGES" field="whencreated" access="FullAccess" />
+		<field table="U_CDOL_STAFF_CHANGES" field="whenmodified" access="FullAccess" />
 	</access_request>
 	<publisher name="Adrian Carlson">
 		<contact email="adrian-carlson@cdolinc.net" />
